@@ -29,12 +29,12 @@
         // Declare the x (horizontal position) scale.
         const x = d3.scaleUtc()
             .domain([new Date("2023-01-01"), new Date("2024-01-01")])
-            .range([marginTop, width - marginBottom]);
+            .range([marginTop, height - marginBottom]);
         
         // Declare the y (vertical position) scale.
         const y = d3.scaleLinear()
             .domain([0, 100])
-            .range([height - marginLeft, marginRight]);
+            .range([width - marginLeft, marginRight]);
         
         // Create the SVG container.
         const svg = d3.create("svg")
