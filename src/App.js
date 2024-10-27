@@ -1,7 +1,19 @@
 import './App.css';
+import { Routes, Route} from "react-router-dom";
+import About from "./routes/About";
+import Careers from "./routes/Careers";
+import Home from "./routes/Home";
+import Navbar from './Navbar';
 
 function App() {
   return (
+    <>
+    <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/careers" element={<Careers />} />
+      </Routes>
     <div className="App">
       <header className="App-header">
         <h1>Final Project Name</h1>
@@ -22,6 +34,7 @@ function App() {
         <h4>Comparing Categories</h4>
       </header>
     </div>
+    </>
   );
 }
 
