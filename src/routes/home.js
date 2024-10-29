@@ -1,4 +1,7 @@
 import '../App.css';
+import '../LinePlot';
+import LinePlot from '../LinePlot';
+import { Link } from "react-router-dom"
 function Home() {
     return (
     <div className="App">
@@ -19,6 +22,10 @@ function Home() {
         <h2>Assignment 1</h2>
         <h3>CO2 Emissions</h3>
         <h4>Comparing Categories</h4>
+        
+        <Link to="/emissions">
+          <LinePlot width={160} height={100}/>
+        </Link>
       </header>
     </div>
     );
