@@ -1,5 +1,5 @@
 import '../App.css';
-import '../BarPlot';
+import BarPlot from'../BarPlot';
 function CO2Emissions() {
     return (
     <div className="App">
