@@ -10,21 +10,22 @@ export default function BarPlot({
   marginBottom = 40,
   marginLeft = 40
 }) {
+  const w = width  - marginRight; 
+  const h = height  - marginBottom;
   const gx = useRef();
   const gy = useRef();
-  const x = d3.scaleBand(data.map(d=>d.country),[ marginTop,height - marginBottom]);
-  const y = d3.scaleLinear(d3.extent(data.map(d=>d.emissions)), [width - marginLeft, marginRight]);
-  const line = d3.line(x, (d, i) => y(i));
+  const x = d3.scaleBand(data.map(d=>d.country),[ marginTop,h  ]).padding(.2);
+  const y = d3.scaleLinear(d3.extent([...data.map(d=>d.emissions),0]), [ marginRight,w ]);
   useEffect(() => void d3.select(gx.current).call(d3.axisLeft(x)), [gx, x]);
   useEffect(() => void d3.select(gy.current).call(d3.axisTop(y)), [gy, y]);
   return (
-    <svg width={width} height={height}>
-      <g ref={gx} transform={`translate(${marginLeft},0)`} />
-      <g ref={gy} transform={`translate(0,${marginTop})`} />
-      <path fill="none" stroke="currentColor" strokeWidth="1.5" d={line(data.map(d=>d.emissions))} />
-      <g fill="white" stroke="currentColor" strokeWidth="1.5">
-        {data.map((d, i) => (<circle key={i} cx={x(i)} cy={y(d)} r="2.5" />))}
-      </g>
+    <svg width={width} height={height} >
+      <g ref={gx} transform={`translate(${marginRight},0)`} />
+      <g ref={gy} transform={`translate(${marginRight*0},${marginTop})`}/>
+      {data.map(d =>(
+        <rect x={y(0)} y={x(d.country)} width={y(d.emissions)} height={x.bandwidth()} fill={'#694'}/>
+        ))
+      }
     </svg>
   );
 }
