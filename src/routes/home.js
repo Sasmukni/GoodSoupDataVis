@@ -27,7 +27,13 @@ function Home() {
           <LinePlot width={160} height={100}/>
         </Link>
 
-        <h2>Assignment 3</h2>
+        <h3>CO2 Emissions Decade</h3>
+        <h4>Comparing Categories</h4>
+        
+        <Link to="/emissionsDecade">
+          <LinePlot width={160} height={100}/>
+        </Link>
+
         <h3>CO2 Emissions (fossil/land-use)</h3>
         <h4>Comparing Categories</h4>
         
