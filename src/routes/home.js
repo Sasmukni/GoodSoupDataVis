@@ -1,7 +1,7 @@
 import '../App.css';
 import '../LinePlot';
 import LinePlot from '../LinePlot';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 function Home() {
     return (
     <div className="App">

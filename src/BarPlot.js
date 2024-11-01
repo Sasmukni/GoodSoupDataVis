@@ -2,7 +2,7 @@ import * as d3 from "d3";
 import {useRef, useEffect} from "react";
 
 export default function BarPlot({
-  data = [{country:"Saudi Arabia", emissions:230},{country:"China", emissions:1000},{country:"Taiwan", emissions:20},{country:"Serbia", emissions:50},{country:"Russia", emissions:700}],
+  data = [{Entity:"Saudi Arabia", Emissions:230},{Entity:"China", Emissions:1000},{Entity:"Taiwan", Emissions:20},{Entity:"Serbia", Emissions:50},{Entity:"Russia", Emissions:700}],
   width = 640,
   height = 400,
   marginTop = 40,
@@ -27,12 +27,13 @@ export default function BarPlot({
 
       )
     }
-  const w = width  - marginRight; 
+  const w = width  - marginLeft; 
   const h = height  - marginBottom;
   const gx = useRef();
   const gy = useRef();
-  const x = d3.scaleBand(data.map(d=>d.country),[ marginTop,h  ]).padding(.2);
-  const y = d3.scaleLinear(d3.extent([...data.map(d=>d.emissions),0]), [ marginRight,w ]);
+  const x = d3.scaleBand(data.map(d=>d.Entity),[ marginTop,h  ]).padding(.2);
+  const y = d3.scaleLinear(d3.extent([...data.map(d=>d.Emissions),0]), [ marginRight,w ]);
+  const regex =new RegExp(" *\\(*\\)*", "g");
   useEffect(() => void d3.select(gx.current).call(d3.axisLeft(x)), [gx, x]);
   useEffect(() => void d3.select(gy.current).call(d3.axisTop(y)), [gy, y]);
   return (
@@ -41,10 +42,10 @@ export default function BarPlot({
       <g ref={gy} transform={`translate(${marginRight*0},${marginTop})`}/>
       {data.map(d =>(
         <rect 
-          id={d.country.replace(" ","_")}
+          id={d.Entity.replaceAll(regex,"_")}
           x={y(0)} 
-          y={x(d.country)} 
-          width={y(d.emissions)-y(0)} 
+          y={x(d.Entity)} 
+          width={y(d.Emissions)-y(0)} 
           height={x.bandwidth()} 
           fill={'#694'}
           opacity={0.8}

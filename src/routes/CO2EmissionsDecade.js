@@ -1,6 +1,6 @@
 import '../App.css';
 import BarPlot from'../BarPlot';
-import EmissionsData from "../data/per_capita_2022_plot_1.json";
+import EmissionsData from "../data/per_capita_2013_2022_plot_2.json";
 import Select from "react-select";
 import {useState, useRef} from "react";
 
@@ -12,7 +12,7 @@ function uniq(a) {
   });
 }
 
-function CO2Emissions() {
+function CO2EmissionsDecade() {
     const topOptions = [
       { value: 5, label: 'Top 5' },
       { value: 10, label: 'Top 10' },
@@ -26,7 +26,7 @@ function CO2Emissions() {
     <div className="App">
       <header>
         <h1>Countries' CO2 Emissions</h1>
-        <h2>A Comparison of 2022 emissions</h2>
+        <h2>A Comparison of 2013-2022 emissions</h2>
       </header>
       
       <h2>Description</h2>
@@ -55,5 +55,5 @@ function CO2Emissions() {
     );
   }
   
-  export default CO2Emissions;
+  export default CO2EmissionsDecade;
 
