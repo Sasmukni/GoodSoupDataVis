@@ -10,6 +10,23 @@ export default function BarPlot({
   marginBottom = 40,
   marginLeft = 40
 }) {
+  var mouseover = function(d) {
+    // what subgroup are we hovering?
+    var _this = this;
+    //var subgroupName = d3.select(this.parentNode).datum().key; // This was the tricky part
+    //var subgroupValue = d.data[subgroupName];
+    // Reduce opacity of all rect to 0.2
+    d3.selectAll("rect").style("opacity", 0.2)
+    // Highlight all rects of this subgroup with opacity 0.8. It is possible to select them since they have a specific class = their name.
+    d3.select("#"+d.currentTarget.id).style("opacity", 1)
+    }
+  var mouseleave = function(d) {
+    // Back to normal opacity: 0.8
+    d3.selectAll("rect")
+      .style("opacity",0.8
+
+      )
+    }
   const w = width  - marginRight; 
   const h = height  - marginBottom;
   const gx = useRef();
@@ -23,7 +40,17 @@ export default function BarPlot({
       <g ref={gx} transform={`translate(${marginRight},0)`} />
       <g ref={gy} transform={`translate(${marginRight*0},${marginTop})`}/>
       {data.map(d =>(
-        <rect x={y(0)} y={x(d.country)} width={y(d.emissions)} height={x.bandwidth()} fill={'#694'}/>
+        <rect 
+          id={d.country.replace(" ","_")}
+          x={y(0)} 
+          y={x(d.country)} 
+          width={y(d.emissions)-y(0)} 
+          height={x.bandwidth()} 
+          fill={'#694'}
+          opacity={0.8}
+          onMouseOver={mouseover} 
+          onMouseLeave={mouseleave} 
+        />
         ))
       }
     </svg>
