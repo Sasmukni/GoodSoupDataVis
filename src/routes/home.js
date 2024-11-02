@@ -40,6 +40,27 @@ function Home() {
         <Link to="/heatmap">
           <LinePlot width={160} height={100}/>
         </Link>
+
+        <h3>CO2 Emissions stacked</h3>
+        <h4>Comparing Categories</h4>
+        
+        <Link to="/stacked">
+          <LinePlot width={160} height={100}/>
+        </Link>
+
+        <h3>CO2 Emissions stacked multiple</h3>
+        <h4>Comparing Categories</h4>
+        
+        <Link to="/stackedMultiple">
+          <LinePlot width={160} height={100}/>
+        </Link>
+
+        <h3>CO2 Emissions stacked percentile</h3>
+        <h4>Comparing Categories</h4>
+        
+        <Link to="/stackedPercentile">
+          <LinePlot width={160} height={100}/>
+        </Link>
         
       </header>
     </div>
