@@ -16,7 +16,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 function App() {
   return (
     <>
-    <Navbar bg="light" expand="lg"/>
+    <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/emissions" element={<CO2Emissions />} />
