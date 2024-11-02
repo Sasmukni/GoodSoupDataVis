@@ -24,33 +24,40 @@ function CO2Emissions() {
     const [stateSelected, setStateSelected]= useState([]);
     return (
     <div className="App">
-      <header>
-        <h1>Countries' CO2 Emissions</h1>
-        <h2>A Comparison of 2022 emissions</h2>
+      <header class="text-center py-4">
+        <h1 class="display-4 fw-bold text-primary mb-3">Countries' CO2 Emissions</h1>
+        <h2 class="h5 text-secondary mt-3">A Comparison of 2022 emissions</h2>
       </header>
-      
-      <h2>Description</h2>
-      <div class="filters-bar">
-        <Select 
-          options={topOptions} 
-          onChange={(d)=> {
-            setTopSelected(d.value);
-            setStateSelected([]);
-            setStateOptions(EmissionsData.slice(d.value).map(d=>({value:d,label:d.Entity})));
-            stateSelectRef.current.clearValue();
-          }} 
-          defaultValue={topSelected}
-        />
-        <Select 
-          ref={stateSelectRef}
-          options={stateOptions} 
-          isMulti={true} 
-          onChange={(d)=> setStateSelected(
-            d.map(e=>{if(e.value)return e.value}).sort((a,b)=> b.Emissions - a.Emissions)
-          )}
-        />
+
+      <div class="container my-3">
+        <h2 class="text-center mb-4 fw-semibold fs-4">Description</h2>
+        <div class="filters-bar d-flex justify-content-center gap-3">
+          <div class="w-25">
+            <Select
+              options={topOptions}
+              onChange={(d)=> {
+                setTopSelected(d.value);
+                setStateSelected([]);
+                setStateOptions(EmissionsData.slice(d.value).map(d=>({value:d,label:d.Entity})));
+                stateSelectRef.current.clearValue();
+              }} 
+              defaultValue={topOptions.filter(o => o.value === topSelected)}
+            />
+          </div>
+          <div class="w-25">
+            <Select 
+              ref={stateSelectRef}
+              options={stateOptions.sort((a,b)=> a.label.localeCompare(b.label))} 
+              isMulti={true} 
+              onChange={(d)=> setStateSelected(
+                d.map(e=>{if(e.value)return e.value}).sort((a,b)=> b.Emissions - a.Emissions)
+              )}
+              placeholder="Add countries to the plot"
+            />
+          </div>
+        </div>
+        <BarPlot width={1000} height={600} marginRight={120} data={uniq(EmissionsData.slice(0,topSelected).concat(stateSelected))}/>
       </div>
-      <BarPlot width={1000} height={600} marginRight={120} data={uniq(EmissionsData.slice(0,topSelected).concat(stateSelected))}/>
     </div>
     );
   }

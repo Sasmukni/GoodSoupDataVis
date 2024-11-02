@@ -6,10 +6,14 @@ import Navbar from './navbar';
 import HeatMapPage from './routes/HeatMapPage';
 import CO2EmissionsDecade from './routes/CO2EmissionsDecade';
 
+// Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 function App() {
   return (
     <>
-    <Navbar />
+    <Navbar bg="light" expand="lg"/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/emissions" element={<CO2Emissions />} />

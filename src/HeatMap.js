@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-import FossilLandData from '../data/fossil_land_2022_heatmap_1.json';
+import FossilLandData from './data/fossil_land_2022_heatmap_1.json';
 
 function HeatMap() {
     const svgRef = useRef();
