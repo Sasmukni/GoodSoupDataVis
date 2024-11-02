@@ -31,6 +31,9 @@ function CO2EmissionsDecade() {
       
       <div class="container my-3">
         <h2 class="text-center mb-4 fw-semibold fs-4">Description</h2>
+        <p class="text-muted text-center fs-5 px-3">
+          This visualization allows you to compare CO₂ emissions per capita (in tons) across different countries in a decade (2013-2022). You can start by viewing the top five, top ten, or top twenty emitters worldwide, and then add specific countries to create a customized comparison.
+        </p>
         <div class="filters-bar d-flex justify-content-center gap-3">
           <div class="w-25">
             <Select 

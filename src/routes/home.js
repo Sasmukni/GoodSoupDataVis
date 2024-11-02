@@ -28,31 +28,71 @@ function Home() {
               <p className="text-secondary">To Be Done</p>
             </div>
 
-            <div>
-              <h2 className="h4 fw-semibold text-secondary">Assignment 1</h2>
+            <div className="container my-5">
+              <h2 className="h4 fw-semibold text-secondary text-center mb-4">Assignment 1</h2>
 
-              <div className="my-3 p-3 border rounded shadow-sm">
-                <h3 className="h5 text-primary">CO₂ Emissions</h3>
-                <h4 className="h6 text-secondary">Comparing Categories</h4>
-                <Link to="/emissions" className="d-inline-block mt-2">
-                  <LinePlot width={160} height={100} />
-                </Link>
+              <div className="row">
+                <div className="col-md-4 d-flex align-items-stretch">
+                  <Link to="/emissions" style={{ textDecoration: 'none', width: '100%' }}>
+                    <div className="p-3 border rounded shadow-sm w-100">
+                      <h3 className="h5 text-primary">CO₂ Emissions</h3>
+                      <h4 className="h6 text-secondary">Comparing Categories</h4>
+                      <LinePlot width={160} height={100} />
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="col-md-4 d-flex align-items-stretch">
+                  <Link to="/emissionsDecade" style={{ textDecoration: 'none', width: '100%' }}>
+                    <div className="p-3 border rounded shadow-sm w-100">
+                      <h3 className="h5 text-primary">CO₂ Emissions Decade</h3>
+                      <h4 className="h6 text-secondary">Comparing Categories</h4>
+                      <LinePlot width={160} height={100} />
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="col-md-4 d-flex align-items-stretch">
+                  <Link to="/heatmap" style={{ textDecoration: 'none', width: '100%' }}>
+                    <div className="p-3 border rounded shadow-sm w-100">
+                      <h3 className="h5 text-primary">CO₂ Emissions (fossil/land-use)</h3>
+                      <h4 className="h6 text-secondary">Comparing Categories</h4>
+                      <LinePlot width={160} height={100} />
+                    </div>
+                  </Link>
+                </div>
               </div>
 
-              <div className="my-3 p-3 border rounded shadow-sm">
-                <h3 className="h5 text-primary">CO₂ Emissions Decade</h3>
-                <h4 className="h6 text-secondary">Comparing Categories</h4>
-                <Link to="/emissionsDecade" className="d-inline-block mt-2">
-                  <LinePlot width={160} height={100} />
-                </Link>
-              </div>
+              <div className="row mt-3">
+                <div className="col-md-4 d-flex align-items-stretch">
+                  <Link to="/stacked" style={{ textDecoration: 'none', width: '100%' }}>
+                    <div className="p-3 border rounded shadow-sm w-100">
+                      <h3 className="h5 text-primary">CO₂ Emissions Stacked</h3>
+                      <h4 className="h6 text-secondary">Comparing Categories</h4>
+                      <LinePlot width={160} height={100} />
+                    </div>
+                  </Link>
+                </div>
 
-              <div className="my-3 p-3 border rounded shadow-sm">
-                <h3 className="h5 text-primary">CO₂ Emissions (fossil/land-use)</h3>
-                <h4 className="h6 text-secondary">Comparing Categories</h4>
-                <Link to="/heatmap" className="d-inline-block mt-2">
-                  <LinePlot width={160} height={100} />
-                </Link>
+                <div className="col-md-4 d-flex align-items-stretch">
+                  <Link to="/stackedMultiple" style={{ textDecoration: 'none', width: '100%' }}>
+                    <div className="p-3 border rounded shadow-sm w-100">
+                      <h3 className="h5 text-primary">CO₂ Emissions Stacked Multiple</h3>
+                      <h4 className="h6 text-secondary">Comparing Categories</h4>
+                      <LinePlot width={160} height={100} />
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="col-md-4 d-flex align-items-stretch">
+                  <Link to="/stackedPercentile" style={{ textDecoration: 'none', width: '100%' }}>
+                    <div className="p-3 border rounded shadow-sm w-100">
+                      <h3 className="h5 text-primary">CO₂ Emissions Stacked Percentile</h3>
+                      <h4 className="h6 text-secondary">Comparing Categories</h4>
+                      <LinePlot width={160} height={100} />
+                    </div>
+                  </Link>
+                </div>
               </div>
             </div>
           </header>

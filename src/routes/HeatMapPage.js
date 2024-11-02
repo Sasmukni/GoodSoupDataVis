@@ -14,13 +14,18 @@ function HeatMapPage() {
 
     return (
         <div className="App">
-            <header className="App-header">
-                <h1>Countries' CO2 Emissions in year 2022</h1>
-                <h2>A Comparison of 2022 emissions divided by categories</h2>
+            <header class="text-center py-4">
+                <h1 class="display-4 fw-bold text-primary mb-3">Countries' CO2 Emissions in year 2022</h1>
+                <h2 class="h5 text-secondary mt-3">A Stacked Comparison of 2022 emissions divided by categories</h2>
             </header>
-            
-            <h2>Description</h2>
-            <HeatMap data={top10Countries} /> 
+
+            <div class="container my-3">
+                <h2 class="text-center mb-4 fw-semibold fs-4">Description</h2>
+                <p class="text-muted text-center fs-5 px-3">
+                    Compare fossil fuel and land-use CO₂ emissions among the top ten global emitters for 2022.
+                </p>
+                <HeatMap data={top10Countries} />
+            </div>
         </div>
     );
 }
