@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { useRef, useEffect, useState } from "react";
 
-export default function StackedBarPlot({
+export default function StackedMultipleBarPlot({
   data = [
     {
       Continent: "Asia",

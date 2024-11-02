@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { useRef, useEffect, useState } from "react";
 
-export default function StackedBarPlot({
+export default function StackedBarPlotPercentile({
   data = [{"Continent":"Asia","Top1_Country":"Qatar","Top1_Emissions":37.601273,"Top1_Percentage":10.8552281296,"Top2_Country":"United Arab Emirates","Top2_Emissions":25.833244,"Top2_Percentage":7.4578793369,"Top3_Country":"Bahrain","Top3_Emissions":25.672274,"Top3_Percentage":7.4114084083,"Top4_Country":"Kuwait","Top4_Emissions":25.578102,"Top4_Percentage":7.3842216015,"Top5_Country":"Brunei","Top5_Emissions":23.950201,"Top5_Percentage":6.9142578126,"Others_Emissions":207.4581446,"Others_Percentage":59.8917352339},{"Continent":"Europe","Top1_Country":"Faroe Islands","Top1_Emissions":14.084624,"Top1_Percentage":5.4180009437,"Top2_Country":"Luxembourg","Top2_Emissions":11.618432,"Top2_Percentage":4.4693188501,"Top3_Country":"Russia","Top3_Emissions":11.416899,"Top3_Percentage":4.391794169,"Top4_Country":"Iceland","Top4_Emissions":9.499798,"Top4_Percentage":3.654333586,"Top5_Country":"Czechia","Top5_Emissions":9.3357525,"Top5_Percentage":3.5912294041,"Others_Emissions":202.3476926,"Others_Percentage":77.8380728842}],
   width = 860,
   height = 400,
