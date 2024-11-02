@@ -1,8 +1,8 @@
 import '../App.css';
-import StackedBarPlot from '../StackedBarPlot';
+import StackedMultipleBarPlot from '../StackedMultipleBarPlot';
 import emissionsData from '../data/continents_emissions_plot_123.json';
 
-function StackedBarPlotPage() {
+function StackedMultipleBarPlotPage() {
    
     return (
         <div className="App">
@@ -12,9 +12,9 @@ function StackedBarPlotPage() {
             </header>
             
             <h2>Description</h2>
-            <StackedBarPlot marginRight={160} data={emissionsData} /> 
+            <StackedMultipleBarPlot marginRight={160} data={emissionsData} /> 
         </div>
     );
 }
 
-export default StackedBarPlotPage;
+export default StackedMultipleBarPlotPage;
