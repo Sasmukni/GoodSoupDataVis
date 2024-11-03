@@ -37,7 +37,7 @@ function Home() {
                     <div className="p-3 border rounded shadow-sm w-100">
                       <h3 className="h5 text-primary">CO₂ Emissions</h3>
                       <h4 className="h6 text-secondary">Comparing Categories</h4>
-                      <LinePlot width={160} height={100} />
+                      <LinePlot width={160} height={100} data={[157,223,487,810,232]}/>
                     </div>
                   </Link>
                 </div>
@@ -57,7 +57,7 @@ function Home() {
                     <div className="p-3 border rounded shadow-sm w-100">
                       <h3 className="h5 text-primary">CO₂ Emissions (fossil/land-use)</h3>
                       <h4 className="h6 text-secondary">Comparing Categories</h4>
-                      <LinePlot width={160} height={100} />
+                      <LinePlot width={160} height={100} data={[490,920,184,739,364]}/>
                     </div>
                   </Link>
                 </div>

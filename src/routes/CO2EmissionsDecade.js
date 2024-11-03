@@ -35,7 +35,7 @@ function CO2EmissionsDecade() {
           This visualization allows you to compare CO₂ emissions per capita (in tons) across different countries in a decade (2013-2022). You can start by viewing the top five, top ten, or top twenty emitters worldwide, and then add specific countries to create a customized comparison.
         </p>
         <div class="filters-bar d-flex justify-content-center gap-3">
-          <div class="w-25">
+          <div className={window.innerWidth > 1024?"w-25":"w-50"}>
             <Select 
               options={topOptions}
               onChange={(d)=> {
@@ -47,7 +47,7 @@ function CO2EmissionsDecade() {
               defaultValue={topOptions.filter(o => o.value === topSelected)}
             />
           </div>
-          <div class="w-25">
+          <div className={window.innerWidth > 1024?"w-25":"w-50"}>
             <Select 
               ref={stateSelectRef}
               options={stateOptions.sort((a,b)=> a.label.localeCompare(b.label))} 
@@ -59,8 +59,8 @@ function CO2EmissionsDecade() {
             />
           </div>
         </div>
-        <BarPlot width={1000} height={600} marginRight={120} data={uniq(EmissionsData.slice(0,topSelected).concat(stateSelected))}/>
       </div>
+      <BarPlot width={window.innerWidth - 0.1 * window.innerWidth} height={600} marginRight={120} data={uniq(EmissionsData.slice(0,topSelected).concat(stateSelected))}/>
     </div>
     );
   }

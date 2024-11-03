@@ -8,7 +8,7 @@ export default function StackedMultipleBarPlot({
   marginTop = 40,
   marginRight = 80,
   marginBottom = 40,
-  marginLeft = 40,
+  marginLeft = 80,
 }) {
   const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
   const svgRef = useRef();
@@ -33,10 +33,22 @@ export default function StackedMultipleBarPlot({
 
     const groups = data.map((d) => d.Continent);
 
-    const y = d3.scaleBand().domain(groups).range([marginTop, h]).padding(0.0); 
-    const x = d3.scaleLinear()
-      .domain([0, d3.max(data, (d) => d.Top1_Emissions + d.Top2_Emissions + d.Top3_Emissions + d.Others_Emissions)])
-      .range([0, w / 4 - marginRight]);
+    const y = d3.scaleBand().domain(groups).range([marginTop, h]).padding(0.2); 
+    const x1 = d3.scaleLinear()
+      .domain([0, d3.max(data, (d) =>  d.Top1_Emissions)])
+      .range([0, (w - marginRight)/4]);
+
+    const x2 = d3.scaleLinear()
+      .domain([0, d3.max(data, (d) =>  d.Top2_Emissions)])
+      .range([0, (w - marginRight)/4]);
+  
+    const x3 = d3.scaleLinear()
+    .domain([0, d3.max(data, (d) =>  d.Top3_Emissions)])
+    .range([0, (w - marginRight)/4]);
+
+    const x4 = d3.scaleLinear()
+    .domain([0, d3.max(data, (d) =>  d.Others_Emissions)])
+    .range([0, (w - marginRight)/4]);
 
     const plot = d3.select(svgRef.current);
     plot.selectAll("*").remove();
@@ -60,8 +72,13 @@ export default function StackedMultipleBarPlot({
         .enter().append("rect")
         .attr("x", marginLeft + i * (w / 4))
         .attr("y", (d) => y(d.Continent))
-        .attr("height", y.bandwidth() * 0.8) // Use a larger percentage of bandwidth for height
-        .attr("width", (d) => x(d[group.key.split("_")[0] + "_Emissions"]) * 1.5) // Increase width for better visibility
+        .attr("height", y.bandwidth()) // Use a larger percentage of bandwidth for height
+        .attr("width", (d) => { switch(i) {
+            case 0: return x1(d[group.key.split("_")[0] + "_Emissions"])
+            case 1: return x2(d[group.key.split("_")[0] + "_Emissions"])
+            case 2: return x3(d[group.key.split("_")[0] + "_Emissions"])
+            case 3: return x4(d[group.key.split("_")[0] + "_Emissions"])
+          }} ) // Increase width for better visibility
         .attr("fill", group.color)
         .attr("class", "myRect " + group.key)
         .attr("stroke", "grey")
@@ -83,8 +100,8 @@ export default function StackedMultipleBarPlot({
   return (
     <>
       <svg width={width} height={height} ref={svgRef}>
-        <g ref={gx} transform={`translate(${marginRight},0)`} />
-        <g ref={gy} transform={`translate(${marginRight * 0},${marginTop})`} />
+        <g ref={gx} transform={`translate(${marginLeft},0)`} />
+        <g ref={gy} transform={`translate(0,${marginTop})`} />
       </svg>
       {tooltip.visible && (
         <div style={{

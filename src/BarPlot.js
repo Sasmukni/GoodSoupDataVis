@@ -21,43 +21,46 @@ export default function BarPlot({
   }
   const w = width  - marginLeft; 
   const h = height  - marginBottom;
+  const g =  useRef();
   const gx = useRef();
   const gy = useRef();
-  const x = d3.scaleBand(data.map(d=>d.Entity),[ marginTop,h  ]).padding(.2);
-  const y = d3.scaleLinear(d3.extent([...data.map(d=>d.Emissions),0]), [ marginRight,w ]);
+  const x = d3.scaleBand(data.map(d=>d.Entity),[ 0,h  ]).padding(.2);
+  const y = d3.scaleLinear(d3.extent([...data.map(d=>d.Emissions),0]), [ 0,w ]);
   const regex =new RegExp(" *\\(*\\)*", "gi");
   useEffect(() => void d3.select(gx.current).call(d3.axisLeft(x)), [gx, x]);
   useEffect(() => void d3.select(gy.current).call(d3.axisTop(y)), [gy, y]);
   return (
     <>
     <svg width={width} height={height} >
-      <g ref={gx} transform={`translate(${marginRight},0)`} />
-      <g ref={gy} transform={`translate(${marginRight*0},${marginTop})`}/>
-      {data.map(d =>(
-        <rect 
-          id={d.Entity.replaceAll(regex,"_")}
-          x={y(0)} 
-          y={x(d.Entity)} 
-          width={y(d.Emissions)-y(0)} 
-          height={x.bandwidth()} 
-          fill={'#694'}
-          opacity={0.8}
-          onMouseOver={(event) =>{
-            d3.selectAll("rect").style("opacity", 0.2)
-            d3.select("#"+event.currentTarget.id).style("opacity", 1)
-            // Mostrare il tooltip
-            setTooltip({
-                visible: true,
-                value: `${d.Emissions}`,
-                x: event.pageX,
-                y: event.pageY
-            });
-          }} 
-          onMouseLeave={mouseleave}
-          values={d.Emissions}
-        />
-        ))
-      }
+      <g ref={g} transform = {`translate(${marginRight},${marginTop})`}>
+        <g ref={gx}/>
+        <g ref={gy}/>
+        {data.map(d =>(
+          <rect 
+            id={d.Entity.replaceAll(regex,"_")}
+            x={y(0)} 
+            y={x(d.Entity)} 
+            width={y(d.Emissions)-y(0)} 
+            height={x.bandwidth()} 
+            fill={'#694'}
+            opacity={0.8}
+            onMouseOver={(event) =>{
+              d3.selectAll("rect").style("opacity", 0.2)
+              d3.select("#"+event.currentTarget.id).style("opacity", 1)
+              // Mostrare il tooltip
+              setTooltip({
+                  visible: true,
+                  value: `${d.Emissions}`,
+                  x: event.pageX,
+                  y: event.pageY
+              });
+            }} 
+            onMouseLeave={mouseleave}
+            values={d.Emissions}
+          />
+          ))
+        }
+      </g>
     </svg>
     {tooltip.visible && (
       <div style={{

@@ -16,7 +16,7 @@ function StackedBarPlotPercentilePage() {
                 <p class="text-muted text-center fs-5 px-3">
                     This visualization allows you to analyze each continent's per capita CO₂ emissions as a percentage, with an emphasis on the top five emitting countries.
                 </p>
-                <StackedBarPlotPercentile marginRight={160} data={emissionsData} /> 
+                <StackedBarPlotPercentile width={window.innerWidth - 0.1 * window.innerWidth} marginLeft={80} marginRight={40} data={emissionsData} /> 
             </div>
         </div>
     );

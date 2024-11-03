@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
-function HeatMap({ data }) {
+function HeatMap({ data, width = 640 }) {
     const svgRef = useRef();
     const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
 
@@ -11,9 +11,8 @@ function HeatMap({ data }) {
         const svg = d3.select(svgRef.current);
         svg.selectAll('*').remove();
 
-        const width = 640;
         const height = 400;
-        const margin = { top: 40, right: 260, bottom: 40, left: 80 };
+        const margin = { top: 40, right: 160, bottom: 40, left: 80 };
 
         const countries = Array.from(new Set(data.map(d => d.country)));
         const categories = ['fossil', 'land-use'];

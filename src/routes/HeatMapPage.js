@@ -24,7 +24,7 @@ function HeatMapPage() {
                 <p class="text-muted text-center fs-5 px-3">
                     Compare fossil fuel and land-use CO₂ emissions among the top ten global emitters for 2022.
                 </p>
-                <HeatMap data={top10Countries} />
+                <HeatMap width={window.innerWidth - 0.1 * window.innerWidth} data={top10Countries} />
             </div>
         </div>
     );
