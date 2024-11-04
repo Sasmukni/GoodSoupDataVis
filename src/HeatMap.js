@@ -12,7 +12,11 @@ function HeatMap({ data, width = 640 }) {
         svg.selectAll('*').remove();
 
         const height = 400;
-        const margin = { top: 40, right: 160, bottom: 40, left: 80 };
+        const margin = { top: 40, right: 80, bottom: 80, left: 100 };
+
+        const innerWidth = width - margin.left - margin.right;
+        const innerHeight = height - margin.top - margin.bottom;
+        const legendHeight =12;
 
         const countries = Array.from(new Set(data.map(d => d.country)));
         const categories = ['fossil', 'land-use'];
@@ -25,12 +29,12 @@ function HeatMap({ data, width = 640 }) {
         const fossilColorScale = d3.scaleSequential(d3.interpolateReds).domain([minValue, maxValue]);
         const landUseColorScale = d3.scaleSequential(d3.interpolateBlues).domain([minValue, maxValue]);
 
-        svg.attr('width', width + margin.left + margin.right).attr('height', height + margin.top + margin.bottom);
+        svg.attr('width', width).attr('height', height);
 
         const heatmapGroup = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-        const xScale = d3.scaleBand().domain(categories).range([0, width - margin.left - margin.right - 100]).padding(0);
-        const yScale = d3.scaleBand().domain(countries).range([0, height - margin.top - margin.bottom]).padding(0);
+        const xScale = d3.scaleBand().domain(categories).range([0, innerWidth - 80]).padding(0);
+        const yScale = d3.scaleBand().domain(countries).range([0, innerHeight]).padding(0);
 
         const cells = heatmapGroup.selectAll('.cell')
             .data(data.flatMap(({ country, fossil, land_use }) => [
@@ -45,14 +49,36 @@ function HeatMap({ data, width = 640 }) {
             .attr('width', xScale.bandwidth())
             .attr('height', yScale.bandwidth())
             .attr('fill', d => d.category === 'fossil' ? fossilColorScale(d.value) : landUseColorScale(d.value))
-            .style('opacity', 1)
+            .style('opacity', 1) 
             .on('mouseover', function (event, d) {
-                cells.attr('fill', '#ccc');
-                d3.select(this).attr('fill', d.category === 'fossil' ? fossilColorScale(d.value) : landUseColorScale(d.value));
+                const originalWidth = xScale.bandwidth();
+                const originalHeight = yScale.bandwidth();
+                const enlargedWidth = originalWidth * 1.1;
+                const enlargedHeight = originalHeight * 1.1;
+
+                cells.style('opacity', 0.3);
+
+                d3.select(this)
+                    .style('stroke', 'black')
+                    .style('stroke-width', '2px')
+                    .attr('width', enlargedWidth)
+                    .attr('height', enlargedHeight)
+                    .style('opacity', 1)
+                    .raise();
+
                 setTooltip({ visible: true, value: `${d.category}: ${d.value}`, x: event.pageX, y: event.pageY });
             })
             .on('mouseout', function () {
-                cells.attr('fill', d => d.category === 'fossil' ? fossilColorScale(d.value) : landUseColorScale(d.value));
+                const originalWidth = xScale.bandwidth();
+                const originalHeight = yScale.bandwidth();
+
+                cells.style('opacity', 1);
+
+                d3.select(this)
+                    .style('stroke', 'none')
+                    .attr('width', originalWidth)
+                    .attr('height', originalHeight);
+
                 setTooltip({ ...tooltip, visible: false });
             });
 
@@ -78,127 +104,81 @@ function HeatMap({ data, width = 640 }) {
             .attr('y', d => yScale(d) + yScale.bandwidth() / 2)
             .text(d => d)
             .style('text-anchor', 'end')
-            .style('font-size', '10px')
-            .style('text-overflow', 'ellipsis')
-            .style('white-space', 'nowrap');
+            .style('font-size', '10px');
 
-        const legendHeight = 150;
-        const legendWidth = 20;
-        const legendSpacing = 20;
+        const legendGroup = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top + innerHeight + 20})`);
 
-        const fossilLegendGroup = svg.append('g')
-            .attr('transform', `translate(${width - margin.right + legendSpacing}, ${margin.top})`);
+        const fossilLegend = legendGroup.append('g')
+            .attr('class', 'legend fossil-legend')
+            .attr('transform', 'translate(0, 0)');
 
-        const fossilLegendScale = d3.scaleLog().domain([minValue, maxValue]).range([legendHeight, 0]);
-        const fossilLegendAxis = d3.axisRight(fossilLegendScale).ticks(5).tickFormat(d3.format('.1e'));
+        fossilLegend.append('text')
+            .attr('x', 0)
+            .attr('y', +3)
+            .text('Fossil')
+            .style('font-size', '12px')
+            .style('font-weight', 'bold');
 
-        fossilLegendGroup.append('g')
-            .attr('class', 'legend')
-            .call(fossilLegendAxis)
-            .selectAll("text")
-            .style("font-size", "12px")
-            .style("font-weight", "bold");
+        fossilLegend.append('rect')
+            .attr('x', 0)
+            .attr('y', 10)
+            .attr('width', innerWidth -80)
+            .attr('height', legendHeight)
+            .style('fill', 'url(#fossilGradient)');
 
         const fossilGradient = svg.append('defs')
             .append('linearGradient')
             .attr('id', 'fossilGradient')
             .attr('x1', '0%')
             .attr('y1', '0%')
-            .attr('x2', '0%')
-            .attr('y2', '100%');
+            .attr('x2', '100%')
+            .attr('y2', '0%');
 
-        fossilGradient.selectAll('stop')
-            .data([
-                { offset: '0%', color: fossilColorScale(maxValue) },
-                { offset: '100%', color: fossilColorScale(minValue) },
-            ])
-            .enter()
-            .append('stop')
-            .attr('offset', d => d.offset)
-            .attr('stop-color', d => d.color);
+        fossilGradient.append('stop')
+            .attr('offset', '0%')
+            .attr('stop-color', fossilColorScale(minValue))
+            .attr('stop-opacity', 1);
 
-        fossilLegendGroup.append('rect')
-            .attr('width', legendWidth)
-            .attr('height', legendHeight)
-            .style('fill', 'url(#fossilGradient)');
+        fossilGradient.append('stop')
+            .attr('offset', '100%')
+            .attr('stop-color', fossilColorScale(maxValue))
+            .attr('stop-opacity', 1);
 
-        fossilLegendGroup.append('text')
-            .attr('x', legendWidth / 2)
-            .attr('y', -10)
-            .attr('text-anchor', 'middle')
+        const landUseLegend = legendGroup.append('g')
+            .attr('class', 'legend land-use-legend')
+            .attr('transform', `translate(0, ${legendHeight + 20})`);
+
+        landUseLegend.append('text')
+            .attr('x', 0)
+            .attr('y', +5)
+            .text('Land Use')
             .style('font-size', '12px')
-            .style('font-weight', 'bold')
-            .text('Fossil');
+            .style('font-weight', 'bold');
 
-        // const fossilLegendTicks = fossilLegendScale.ticks(5);
-        // fossilLegendGroup.selectAll('.fossil-tick')
-        //     .data(fossilLegendTicks)
-        //     .enter()
-        //     .append('text')
-        //     .attr('class', 'fossil-tick')
-        //     .attr('x', legendWidth + 5)
-        //     .attr('y', d => fossilLegendScale(d))
-        //     .attr('dy', '0.35em')
-        //     .text(d3.format('.1e'))
-        //     .style('font-size', '12px')
-        //     .style('font-weight', 'bold');
-
-        const landUseLegendGroup = svg.append('g')
-            .attr('transform', `translate(${width - margin.right + legendSpacing}, ${margin.top + legendHeight + 60})`);
-
-        const landUseLegendScale = d3.scaleLog().domain([minValue, maxValue]).range([legendHeight, 0]);
-        const landUseLegendAxis = d3.axisRight(landUseLegendScale).ticks(5).tickFormat(d3.format('.1e'));
-
-        landUseLegendGroup.append('g')
-            .attr('class', 'legend')
-            .call(landUseLegendAxis)
-            .selectAll("text")
-            .style("font-size", "12px")
-            .style("font-weight", "bold");
+        landUseLegend.append('rect')
+            .attr('x', 0)
+            .attr('y', 10)
+            .attr('width', innerWidth - 80)
+            .attr('height', legendHeight)
+            .style('fill', 'url(#landUseGradient)');
 
         const landUseGradient = svg.append('defs')
             .append('linearGradient')
             .attr('id', 'landUseGradient')
             .attr('x1', '0%')
             .attr('y1', '0%')
-            .attr('x2', '0%')
-            .attr('y2', '100%');
+            .attr('x2', '100%')
+            .attr('y2', '0%');
 
-        landUseGradient.selectAll('stop')
-            .data([
-                { offset: '0%', color: landUseColorScale(maxValue) },
-                { offset: '100%', color: landUseColorScale(minValue) },
-            ])
-            .enter()
-            .append('stop')
-            .attr('offset', d => d.offset)
-            .attr('stop-color', d => d.color);
+        landUseGradient.append('stop')
+            .attr('offset', '0%')
+            .attr('stop-color', landUseColorScale(minValue))
+            .attr('stop-opacity', 1);
 
-        landUseLegendGroup.append('rect')
-            .attr('width', legendWidth)
-            .attr('height', legendHeight)
-            .style('fill', 'url(#landUseGradient)');
-
-        landUseLegendGroup.append('text')
-            .attr('x', legendWidth / 2)
-            .attr('y', -10)
-            .attr('text-anchor', 'middle')
-            .style('font-size', '12px')
-            .style('font-weight', 'bold')
-            .text('Land-Use');
-
-        // const landUseLegendTicks = landUseLegendScale.ticks(5);
-        // landUseLegendGroup.selectAll('.land-use-tick')
-        //     .data(landUseLegendTicks)
-        //     .enter()
-        //     .append('text')
-        //     .attr('class', 'land-use-tick')
-        //     .attr('x', legendWidth + 5)
-        //     .attr('y', d => landUseLegendScale(d))
-        //     .attr('dy', '0.35em')
-        //     .text(d3.format('.1e'))
-        //     .style('font-size', '12px')
-        //     .style('font-weight', 'bold');
+        landUseGradient.append('stop')
+            .attr('offset', '100%')
+            .attr('stop-color', landUseColorScale(maxValue))
+            .attr('stop-opacity', 1);
 
     }, [data]);
 
