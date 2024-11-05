@@ -5,6 +5,10 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
     const svgRef = useRef();
     const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
 
+    const formatValue = (value) => {
+        return `${(value).toExponential(2)} ton`;
+    };
+
     useEffect(() => {
         if (!data || data.length === 0 || !svgRef.current) return;
 
@@ -83,10 +87,7 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
                     .style('opacity', 1)
                     .raise();
 
-                // Format the value to scientific notation with 2 decimal places
-                const formattedValue = d.value.toExponential(2);
-
-                setTooltip({ visible: true, value: `${d.category}: ${formattedValue}`, x: event.pageX, y: event.pageY });
+                setTooltip({ visible: true, value: `${d.category}: ${formatValue(d.value)}`, x: event.pageX, y: event.pageY });
             })
             .on('mouseout', function (event, d) {
                 const originalWidth = xScale.bandwidth();
@@ -111,7 +112,7 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
             .append('text')
             .attr('class', 'category-label')
             .attr('x', d => xScale(d) + xScale.bandwidth() / 2)
-            .attr('y', -10)
+            .attr('y', -15)
             .text(d => d)
             .style('text-anchor', 'middle')
             .style('font-size', '10px');
@@ -128,7 +129,7 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
             .style('text-anchor', 'end')
             .style('font-size', '10px');
 
-        const legendGroup = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top + innerHeight})`); // Positioned below the heatmap
+        const legendGroup = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top + innerHeight + 20})`); 
 
         const fossilLegend = legendGroup.append('g')
             .attr('class', 'legend fossil-legend')
@@ -136,51 +137,51 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
 
         fossilLegend.append('text')
             .attr('x', 0)
-            .attr('y', +3)
+            .attr('y', +15) 
             .text('Fossil')
             .style('font-size', '12px')
             .style('font-weight', 'bold');
 
         fossilLegend.append('rect')
             .attr('x', 0)
-            .attr('y', 10)
-            .attr('width', innerWidth / 3) // Adjusted width to fit the legend below
+            .attr('y', 20) 
+            .attr('width', innerWidth / 3)
             .attr('height', legendHeight)
             .style('fill', 'url(#fossilGradient)');
 
         const landUseLegend = legendGroup.append('g')
             .attr('class', 'legend land-use-legend')
-            .attr('transform', `translate(${innerWidth / 3}, 0)`); // Positioned next to fossil legend
+            .attr('transform', `translate(${innerWidth / 3}, 0)`);
 
         landUseLegend.append('text')
             .attr('x', 0)
-            .attr('y', +5)
+            .attr('y', +15)
             .text('Land Use')
             .style('font-size', '12px')
             .style('font-weight', 'bold');
 
         landUseLegend.append('rect')
             .attr('x', 0)
-            .attr('y', 10)
-            .attr('width', innerWidth / 3) // Adjusted width to fit the legend below
+            .attr('y', 20)
+            .attr('width', innerWidth / 3)
             .attr('height', legendHeight)
             .style('fill', 'url(#landUseGradient)');
 
         const totalLegend = legendGroup.append('g')
             .attr('class', 'legend total-legend')
-            .attr('transform', `translate(${2 * (innerWidth / 3)}, 0)`); // Positioned next to land use legend
+            .attr('transform', `translate(${2 * (innerWidth / 3)}, 0)`);
 
         totalLegend.append('text')
             .attr('x', 0)
-            .attr('y', +5)
+            .attr('y', +15) 
             .text('Total')
             .style('font-size', '12px')
             .style('font-weight', 'bold');
 
         totalLegend.append('rect')
             .attr('x', 0)
-            .attr('y', 10)
-            .attr('width', innerWidth / 3) // Adjusted width to fit the legend below
+            .attr('y', 20)
+            .attr('width', innerWidth / 3)
             .attr('height', legendHeight)
             .style('fill', 'url(#totalGradient)');
 
@@ -193,11 +194,13 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
             .attr('y2', '0%');
 
         fossilGradient.selectAll('stop')
-            .data([
-                { offset: '0%', color: '#008800' },
-                { offset: `${percGreenFossil}%`, color: '#FFFFFF' },
-                { offset: '100%', color: '#880000' }
-            ])
+            .data([{
+                offset: '0%', color: '#008800'
+            }, {
+                offset: `${percGreenFossil}%`, color: '#FFFFFF'
+            }, {
+                offset: '100%', color: '#880000'
+            }])
             .enter().append('stop')
             .attr('offset', d => d.offset)
             .attr('stop-color', d => d.color);
@@ -211,11 +214,13 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
             .attr('y2', '0%');
 
         landUseGradient.selectAll('stop')
-            .data([
-                { offset: '0%', color: '#008800' },
-                { offset: `${percGreenLandUse}%`, color: '#FFFFFF' },
-                { offset: '100%', color: '#000088' }
-            ])
+            .data([{
+                offset: '0%', color: '#008800'
+            }, {
+                offset: `${percGreenLandUse}%`, color: '#FFFFFF'
+            }, {
+                offset: '100%', color: '#000088'
+            }])
             .enter().append('stop')
             .attr('offset', d => d.offset)
             .attr('stop-color', d => d.color);
@@ -229,39 +234,37 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
             .attr('y2', '0%');
 
         totalGradient.selectAll('stop')
-            .data([
-                { offset: '0%', color: '#800080' },
-                { offset: `${percGreenTotal}%`, color: '#FFFFFF' },
-                { offset: '100%', color: '#ff00ff' }
-            ])
+            .data([{
+                offset: '0%', color: '#800080'
+            }, {
+                offset: `${percGreenTotal}%`, color: '#FFFFFF'
+            }, {
+                offset: '100%', color: '#ff00ff'
+            }])
             .enter().append('stop')
             .attr('offset', d => d.offset)
             .attr('stop-color', d => d.color);
 
-        // Tooltip
-        const tooltipElement = d3.select('body').append('div')
-            .style('position', 'absolute')
-            .style('background', 'lightgrey')
-            .style('border', '1px solid black')
-            .style('padding', '5px')
-            .style('pointer-events', 'none')
-            .style('opacity', tooltip.visible ? 1 : 0)
-            .html(tooltip.value);
-
-        if (tooltip.visible) {
-            tooltipElement
-                .style('left', `${tooltip.x}px`)
-                .style('top', `${tooltip.y}px`)
-                .html(tooltip.value);
-        }
-
-        return () => {
-            tooltipElement.remove();
-        };
-    }, [data, tooltip]);
+    }, [data]);
 
     return (
-        <svg ref={svgRef}></svg>
+        <div>
+            <svg ref={svgRef}></svg>
+            {tooltip.visible && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        left: tooltip.x,
+                        top: tooltip.y,
+                        background: 'white',
+                        padding: '5px',
+                        border: '1px solid black',
+                        pointerEvents: 'none'
+                    }}>
+                    {tooltip.value}
+                </div>
+            )}
+        </div>
     );
 }
 
