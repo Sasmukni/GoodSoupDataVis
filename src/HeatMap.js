@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
-function HeatMap({ data, width = 640 }) {
+function HeatMap({ data, width = 640, margin = { top: 40, right: 80, bottom: 80, left: 100 } }) {
     const svgRef = useRef();
     const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
 
@@ -12,7 +12,6 @@ function HeatMap({ data, width = 640 }) {
         svg.selectAll('*').remove();
 
         const height = 400;
-        const margin = { top: 40, right: 80, bottom: 80, left: 100 };
 
         const innerWidth = width - margin.left - margin.right;
         const innerHeight = height - margin.top - margin.bottom;
@@ -26,8 +25,13 @@ function HeatMap({ data, width = 640 }) {
         const maxValue = Math.max(...fossilValues, ...landUseValues);
         const minValue = Math.min(...fossilValues, ...landUseValues);
 
-        const fossilColorScale = d3.scaleSequential(d3.interpolateReds).domain([minValue, maxValue]);
-        const landUseColorScale = d3.scaleSequential(d3.interpolateBlues).domain([minValue, maxValue]);
+        const fossilColorScale = d3.scaleSequential(d3.interpolateReds).domain([0, maxValue]);
+        const landUseColorScale = d3.scaleSequential(d3.interpolateBlues).domain([0, maxValue]);
+        const greenNegColorScale = d3.scaleSequential(d3.interpolateGreens).domain([minValue, 0]);
+
+
+
+        const percGreen =  (-minValue/((maxValue - minValue)*100))  
 
         svg.attr('width', width).attr('height', height);
 
@@ -51,18 +55,15 @@ function HeatMap({ data, width = 640 }) {
             .attr('fill', d => d.category === 'fossil' ? fossilColorScale(d.value) : landUseColorScale(d.value))
             .style('opacity', 1) 
             .on('mouseover', function (event, d) {
-                const originalWidth = xScale.bandwidth();
-                const originalHeight = yScale.bandwidth();
-                const enlargedWidth = originalWidth * 1.1;
-                const enlargedHeight = originalHeight * 1.1;
-
                 cells.style('opacity', 0.3);
 
                 d3.select(this)
                     .style('stroke', 'black')
                     .style('stroke-width', '2px')
-                    .attr('width', enlargedWidth)
-                    .attr('height', enlargedHeight)
+                    .attr('width', xScale.bandwidth() + 3)
+                    .attr('height', yScale.bandwidth() + 3)
+                    .attr('x', d => xScale(d.category) - 3)
+                    .attr('y', d => yScale(d.country) -3 )
                     .style('opacity', 1)
                     .raise();
 
@@ -77,7 +78,9 @@ function HeatMap({ data, width = 640 }) {
                 d3.select(this)
                     .style('stroke', 'none')
                     .attr('width', originalWidth)
-                    .attr('height', originalHeight);
+                    .attr('height', originalHeight)
+                    .attr('x', d => xScale(d.category))
+                    .attr('y', d => yScale(d.country));
 
                 setTooltip({ ...tooltip, visible: false });
             });
@@ -125,7 +128,7 @@ function HeatMap({ data, width = 640 }) {
             .attr('width', innerWidth -80)
             .attr('height', legendHeight)
             .style('fill', 'url(#fossilGradient)');
-
+        
         const fossilGradient = svg.append('defs')
             .append('linearGradient')
             .attr('id', 'fossilGradient')
@@ -134,16 +137,35 @@ function HeatMap({ data, width = 640 }) {
             .attr('x2', '100%')
             .attr('y2', '0%');
 
-        fossilGradient.append('stop')
+        /*fossilGradient.append('stop')
             .attr('offset', '0%')
-            .attr('stop-color', fossilColorScale(minValue))
+            .attr('stop-color', greenNegColorScale(minValue))
+            .attr('stop-opacity', 1);
+        
+        fossilGradient.append('stop')
+            .attr('offset', percGreen+'%')
+            .attr('stop-color', fossilColorScale(0))
             .attr('stop-opacity', 1);
 
         fossilGradient.append('stop')
             .attr('offset', '100%')
             .attr('stop-color', fossilColorScale(maxValue))
-            .attr('stop-opacity', 1);
+            .attr('stop-opacity', 1);*/
 
+        fossilGradient.selectAll("stop")
+            .data([
+              {offset: "0%", color: "#008800"},
+              {offset: percGreen+"%", color: "#FFFFF"},
+              {offset: "100%", color: "#880000"}
+            ])
+            .enter().append("stop")
+            .attr("offset", function(d) { 
+              return d.offset; 
+            })
+            .attr("stop-color", function(d) { 
+              return d.color; 
+            });
+        
         const landUseLegend = legendGroup.append('g')
             .attr('class', 'legend land-use-legend')
             .attr('transform', `translate(0, ${legendHeight + 20})`);

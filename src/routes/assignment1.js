@@ -5,8 +5,8 @@ function Assignment1() {
   return (
     <div className="App">
       <header className="App-header py-5">
-        <h1 class="display-4 fw-bold text-primary mb-3">Assignment 1</h1>
-        <h2 class="h5 text-secondary mt-3">Comparing categories</h2>
+        <h1 className="display-4 fw-bold text-primary mb-3">Assignment 1</h1>
+        <h2 className="h5 text-secondary mt-3">Comparing categories</h2>
         <div className="container my-5">
             <div className="row">
                 <div className="col-md-4 d-flex align-items-stretch">

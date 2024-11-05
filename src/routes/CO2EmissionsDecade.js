@@ -24,17 +24,17 @@ function CO2EmissionsDecade() {
     const [stateSelected, setStateSelected]= useState([]);
     return (
     <div className="App">
-      <header class="text-center py-4">
-        <h1 class="display-4 fw-bold text-primary mb-3">Countries' CO2 Emissions</h1>
-        <h2 class="h5 text-secondary mt-3">A Comparison of 2013-2022 emissions</h2>
+      <header className="text-center py-4">
+        <h1 className="display-4 fw-bold text-primary mb-3">Countries' CO2 Emissions</h1>
+        <h2 className="h5 text-secondary mt-3">A Comparison of 2013-2022 emissions</h2>
       </header>
       
-      <div class="container my-3">
-        <h2 class="text-center mb-4 fw-semibold fs-4">Description</h2>
-        <p class="text-muted text-center fs-5 px-3">
+      <div className="container my-3">
+        <h2 className="text-center mb-4 fw-semibold fs-4">Description</h2>
+        <p className="text-muted text-center fs-5 px-3">
           This visualization allows you to compare CO₂ emissions per capita (in tons) across different countries in a decade (2013-2022). You can start by viewing the top five, top ten, or top twenty emitters worldwide, and then add specific countries to create a customized comparison.
         </p>
-        <div class="filters-bar d-flex justify-content-center gap-3">
+        <div className="filters-bar d-flex justify-content-center gap-3">
           <div className={window.innerWidth > 1024?"w-25":"w-50"}>
             <Select 
               options={topOptions}

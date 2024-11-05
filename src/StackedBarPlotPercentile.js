@@ -58,7 +58,7 @@ export default function StackedBarPlotPercentile({
     .attr("y", height - marginBottom / 2)
     .style("fill", function(d){ return color(d)})
     .style("font-size", 8 + width/100)
-    .text(function(d){ return d.replace("_"," ")})
+    .text(function(d){ return window.innerWidth>1024?d.replace("_"," "):d.split("_")[0]})
     .attr("text-anchor", "left")
     .style("alignment-baseline", "middle")    
 
