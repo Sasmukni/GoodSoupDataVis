@@ -183,7 +183,7 @@ function HeatMap({ data, width = 640 }) {
     }, [data]);
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'/*, minHeight: '100vh'*/ }}>
             <svg ref={svgRef} />
             {tooltip.visible && (
                 <div

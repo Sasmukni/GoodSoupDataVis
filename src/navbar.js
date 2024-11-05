@@ -2,7 +2,7 @@ import './App.css';
 import { Link } from "react-router-dom"
 const Navbar =()=>{
       return (
-            <div className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm py-3">
                   <div className="container">
                         <button 
                               className="navbar-toggler" 
@@ -18,10 +18,13 @@ const Navbar =()=>{
                         <div className="collapse navbar-collapse" id="navbarNav">
                               <ul className="navbar-nav">
                                     <li className="nav-item">
-                                          <Link className="nav-link" to="/">Home</Link>
+                                          <Link className="nav-link text-light fw-semibold" to="/">Home</Link>
                                     </li>
                                     <li className="nav-item">
-                                          <Link className="nav-link" to="/emissions">Emissions</Link>
+                                          <Link className="nav-link text-light fw-semibold" to="/assignment1">Assignment 1</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                          <Link className="nav-link text-light fw-semibold" to="/aboutus">About Us</Link>
                                     </li>
                               </ul>
                         </div>

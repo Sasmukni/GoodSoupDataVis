@@ -46,16 +46,21 @@ export default function StackedBarPlotPercentile({
     const plot = d3.select(svgRef.current);
 
     plot.selectAll("mylabels")
-      .data(subgroups)
-      .enter()
-      .append("text")
-      .attr("x", function(_,i){ return width>1024?i*120:(i%3)*120})
-      .attr("y", function(_,i){ return height - 2*marginBottom/3 + (width>1024 || i < subgroups.length/2 ?0:15)} ) 
-      .style("fill", function(d){ return color(d)})
-      .style("font-size", 8 + width/100)
-      .text(function(d){ return d.replace("_"," ")})
-      .attr("text-anchor", "left")
-      .style("alignment-baseline", "middle")
+    .data(subgroups)
+    .enter()
+    .append("text")
+    /*.attr("x", function(_,i){ return width>1024?i*120:(i%3)*120})
+    .attr("y", function(_,i){ return height - 2*marginBottom/3 + (width>1024 || i < subgroups.length/2 ?0:15)} )*/
+    .attr("x", (d, i) => {
+      const barWidth = width / groups.length;
+      return (i * barWidth) + (barWidth / 2);
+    })
+    .attr("y", height - marginBottom / 2)
+    .style("fill", function(d){ return color(d)})
+    .style("font-size", 8 + width/100)
+    .text(function(d){ return d.replace("_"," ")})
+    .attr("text-anchor", "left")
+    .style("alignment-baseline", "middle")    
 
     plot.append("g")
       .selectAll("g")
