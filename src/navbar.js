@@ -21,7 +21,7 @@ const Navbar =()=>{
                                           <Link className="nav-link text-light fw-semibold" to="/">Home</Link>
                                     </li>
                                     <li className="nav-item">
-                                          <Link className="nav-link text-light fw-semibold" to="/assignment1">Assignment 1</Link>
+                                          <Link className="nav-link text-light fw-semibold" to="/assignment1">CO₂ Emissions</Link>
                                     </li>
                                     <li className="nav-item">
                                           <Link className="nav-link text-light fw-semibold" to="/aboutus">About Us</Link>

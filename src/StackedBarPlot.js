@@ -89,7 +89,7 @@ export default function StackedBarPlot({
               .style("opacity", 1);
               setTooltip({
                 visible: true,
-                value: `${subgroupName!=="Others"?data[subgroupName]:subgroupName}: ${data[subgroupName.split("_")[0]+"_Emissions"]}`,
+                value: `${subgroupName!=="Others"?data[subgroupName]:subgroupName}: ${data[subgroupName.split("_")[0]+"_Emissions"]} tonnes`,
                 x: d.pageX,
                 y: d.pageY
             });

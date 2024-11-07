@@ -50,7 +50,7 @@ export default function BarPlot({
               // Mostrare il tooltip
               setTooltip({
                   visible: true,
-                  value: `${d.Emissions}`,
+                  value: `${d.Emissions} tonnes per person`,
                   x: event.pageX,
                   y: event.pageY
               });

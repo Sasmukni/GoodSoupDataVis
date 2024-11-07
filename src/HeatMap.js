@@ -6,7 +6,7 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
     const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
 
     const formatValue = (value) => {
-        return `${(value).toExponential(2)} ton`;
+        return `${(value).toExponential(2)} tonnes`;
     };
 
     useEffect(() => {
