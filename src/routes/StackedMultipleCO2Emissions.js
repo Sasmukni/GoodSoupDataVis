@@ -17,7 +17,8 @@ function StackedMultipleBarPlotPage() {
                     This visualization allows you to analyze each continent's per capita CO₂ emissions in tons, with an emphasis on the top five emitting countries.
                 </p>
             </div>
-            <StackedMultipleBarPlot width={window.innerWidth - 0.1 * window.innerWidth} marginRight={160} data={emissionsData} />
+            <StackedMultipleBarPlot width={window.innerWidth - 0.1 * window.innerWidth} marginRight={160} data={emissionsData.sort((a,b)=> 
+                (b.Top1_Emissions) - (a.Top1_Emissions ))} />
         </div>
     );
 }
