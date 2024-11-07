@@ -1,6 +1,6 @@
 import '../App.css';
 import StackedBarPlotPercentile from '../StackedBarPlotPercentile';
-import emissionsData from '../data/continents_emissions_plot_123.json';
+import emissionsData from '../data/continents_tot_emissions_plot_123.json';
 
 function StackedBarPlotPercentilePage() {
    

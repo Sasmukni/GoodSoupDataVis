@@ -24,12 +24,12 @@ function HeatMapPage() {
                 <p className="text-muted text-center fs-5 px-3">
                     Compare fossil fuel and land-use CO₂ emissions among the top ten global emitters for 2022.
                 </p>
-                <HeatMap 
-                    width={window.innerWidth - 0.1 * window.innerWidth} 
-                    data={top10Countries} 
-                    margin={{top: 40, right:window.innerWidth<1024? 0:80, bottom: 80, left: 100 }}    
-                />
             </div>
+            <HeatMap 
+                width={window.innerWidth - 0.1 * window.innerWidth} 
+                data={top10Countries} 
+                margin={{top: 40, right:window.innerWidth<1024? 0:80, bottom: 80, left: 100 }}    
+            />
         </div>
     );
 }

@@ -39,15 +39,15 @@ export default function StackedMultipleBarPlot({
       .range([0, (w - marginRight)/4]);
 
     const x2 = d3.scaleLinear()
-      .domain([0, d3.max(data, (d) =>  d.Top2_Emissions)])
+      .domain([0, d3.max(data, (d) =>  d.Top1_Emissions)])
       .range([0, (w - marginRight)/4]);
   
     const x3 = d3.scaleLinear()
-    .domain([0, d3.max(data, (d) =>  d.Top3_Emissions)])
+    .domain([0, d3.max(data, (d) =>  d.Top1_Emissions)])
     .range([0, (w - marginRight)/4]);
 
     const x4 = d3.scaleLinear()
-    .domain([0, d3.max(data, (d) =>  d.Others_Emissions)])
+    .domain([0, d3.max(data, (d) =>  d.Top1_Emissions)])
     .range([0, (w - marginRight)/4]);
 
     const plot = d3.select(svgRef.current);

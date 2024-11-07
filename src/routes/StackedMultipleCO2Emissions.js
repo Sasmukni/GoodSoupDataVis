@@ -1,6 +1,6 @@
 import '../App.css';
 import StackedMultipleBarPlot from '../StackedMultipleBarPlot';
-import emissionsData from '../data/continents_emissions_plot_123.json';
+import emissionsData from '../data/continents_tot_emissions_plot_123.json';
 
 function StackedMultipleBarPlotPage() {
    
