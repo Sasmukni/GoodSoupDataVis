@@ -88,7 +88,7 @@ export default function StackedMultipleBarPlot({
 
           setTooltip({
             visible: true,
-            value: `${group.key !== "Others" ? d[group.key] : group.key}: ${d[group.key.split("_")[0] + "_Emissions"]}`,
+            value: `${group.key !== "Others" ? d[group.key] : group.key}: ${d[group.key.split("_")[0] + "_Emissions"]} tonnes`,
             x: event.pageX,
             y: event.pageY,
           });

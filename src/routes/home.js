@@ -21,7 +21,7 @@ function Home() {
               <div className="col-md-6">
                 <Link to="/assignment1" style={{ textDecoration: 'none' }}>
                   <div className="card text-center shadow-sm p-4">
-                    <h2 className="h4 fw-semibold text-primary mb-3">Assignment 1</h2>
+                    <h2 className="h4 fw-semibold text-primary mb-3">CO₂ Emissions</h2>
                     <p className="text-secondary">Comparing categories</p>
                   </div>
                 </Link>
