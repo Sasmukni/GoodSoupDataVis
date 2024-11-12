@@ -1,111 +1,166 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
-const AlluvialGraph = () => {
-  const svgRef = useRef();
+const AlluvialDiagram = ({ data, width, height, margin }) => {
+    const svgRef = useRef();
+    const tooltipRef = useRef();
 
-  useEffect(() => {
-    const svg = d3.select(svgRef.current)
-      .attr('width', 800)
-      .attr('height', 500)
-      .append('g')
-      .attr('transform', 'translate(50, 50)');
+    useEffect(() => {
+        const svg = d3.select(svgRef.current);
+        const tooltip = d3.select(tooltipRef.current);
+        svg.selectAll("*").remove();
 
-    // Sample data
-    const data = [
-      { source: 'A', target: 'X', value: 20 },
-      { source: 'A', target: 'Y', value: 30 },
-      { source: 'B', target: 'X', value: 40 },
-      { source: 'B', target: 'Z', value: 50 },
-      { source: 'C', target: 'Y', value: 60 },
-      { source: 'C', target: 'Z', value: 70 }
-    ];
+        const layers = ["continent", "nation", "category"];
+        
+        const xScale = d3.scalePoint()
+            .domain(layers)
+            .range([margin.left, width - margin.right]);
 
-    const nodes = {
-      source: ['A', 'B', 'C'],
-      target: ['X', 'Y', 'Z']
-    };
+        const maxNodeValue = d3.max(data.nodes, d => d.value);
+        const yScale = d3.scaleLinear()
+            .domain([0, maxNodeValue])
+            .range([margin.top, height - margin.bottom]);
+            
+        const layerColors = {
+            continent: "red",
+            nation: "blue",
+            category: "green"
+        };
 
-    // Set up scales for positioning the source and target nodes
-    const xScaleSource = d3.scaleBand()
-      .domain(nodes.source)
-      .range([0, 300])
-      .padding(0.2);
+        const nodesByLayer = {};
+        data.nodes.forEach(node => {
+            node.x = xScale(node.layer);
+            node.y = (nodesByLayer[node.layer] || 0) + margin.top;
+            node.height = yScale(node.value) - margin.top; 
+            nodesByLayer[node.layer] = node.y + node.height + 20;
+        });
 
-    const xScaleTarget = d3.scaleBand()
-      .domain(nodes.target)
-      .range([400, 700])
-      .padding(0.2);
+        const maxLinkValue = d3.max(data.links, d => d.value);
 
-    const yScale = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d.value)])
-      .range([400, 0]);
+        const links = svg.append("g")
+            .attr("fill", "none")
+            .selectAll("path")
+            .data(data.links)
+            .join("path")
+            .attr("d", d => {
+                const sourceNode = data.nodes.find(n => n.name === d.source);
+                const targetNode = data.nodes.find(n => n.name === d.target);
+                return d3.line()
+                    .curve(d3.curveBundle.beta(0.85))
+                    .x(d => d.x)
+                    .y(d => d.y)([
+                        { x: sourceNode.x + 10, y: sourceNode.y + sourceNode.height / 2 },
+                        { x: (sourceNode.x + targetNode.x) / 2, y: sourceNode.y + sourceNode.height / 2 },
+                        { x: (sourceNode.x + targetNode.x) / 2, y: targetNode.y + targetNode.height / 2 },
+                        { x: targetNode.x - 10, y: targetNode.y + targetNode.height / 2 }
+                    ]);
+            })
+            .attr("stroke", d => {
+                const sourceNode = data.nodes.find(n => n.name === d.source);
+                const targetNode = data.nodes.find(n => n.name === d.target);
+                if (sourceNode.layer === "continent" && targetNode.layer === "nation") {
+                    return "red";
+                } else if (sourceNode.layer === "nation" && targetNode.layer === "category") {
+                    return "blue";
+                }
+            })
+            .attr("stroke-width", d => (d.value / maxLinkValue) * 8 + 2)
+            .attr("stroke-opacity", d => (d.value / maxLinkValue) * 0.7 + 0.3);
 
-    // Create links (flows) between source and target
-    svg.selectAll('.link')
-      .data(data)
-      .enter().append('path')
-      .attr('class', 'link')
-      .attr('d', d => {
-        const sourceX = xScaleSource(d.source) + xScaleSource.bandwidth() / 2;
-        const targetX = xScaleTarget(d.target) + xScaleTarget.bandwidth() / 2;
-        const yStart = yScale(d.value);
-        const yEnd = yScale(0);  // Position at the bottom of the graph
+        links.on("mouseover", function(event, d) {
+            const sourceNode = data.nodes.find(n => n.name === d.source);
+            const targetNode = data.nodes.find(n => n.name === d.target);
 
-        return `
-          M${sourceX},${yStart}
-          C${(sourceX + targetX) / 2},${yStart} ${(sourceX + targetX) / 2},${yEnd} ${targetX},${yEnd}
-        `;
-      })
-      .attr('fill', 'none')
-      .attr('stroke', '#ccc')
-      .attr('stroke-width', 2);
+            d3.select(this).attr("stroke-opacity", 1);
 
-    // Create source nodes (rectangles)
-    svg.selectAll('.source')
-      .data(nodes.source)
-      .enter().append('rect')
-      .attr('class', 'source')
-      .attr('x', d => xScaleSource(d))
-      .attr('width', xScaleSource.bandwidth())
-      .attr('y', 0)
-      .attr('height', d => yScale(d3.sum(data.filter(link => link.source === d), link => link.value)))
-      .attr('fill', '#cce5ff');
+            if (sourceNode.layer === "continent" && targetNode.layer === "nation") {
+                tooltip.html(`Total Emissions: ${targetNode.totalEmissions} MT`)
+                    .style("left", `${event.pageX + 5}px`)
+                    .style("top", `${event.pageY - 28}px`)
+                    .style("opacity", 1);
+            } else if (sourceNode.layer === "nation" && targetNode.layer === "category") {
+                if (targetNode.name === "fossil") {
+                    tooltip.html(`Fossil Emissions: ${targetNode.fossilEmissions} MT`)
+                        .style("left", `${event.pageX + 5}px`)
+                        .style("top", `${event.pageY - 28}px`)
+                        .style("opacity", 1);
+                } else if (targetNode.name === "land use") {
+                    tooltip.html(`Land Use Emissions: ${targetNode.landEmissions} MT`)
+                        .style("left", `${event.pageX + 5}px`)
+                        .style("top", `${event.pageY - 28}px`)
+                        .style("opacity", 1);
+                } 
+            }
 
-    // Create target nodes (rectangles)
-    svg.selectAll('.target')
-      .data(nodes.target)
-      .enter().append('rect')
-      .attr('class', 'target')
-      .attr('x', d => xScaleTarget(d))
-      .attr('width', xScaleTarget.bandwidth())
-      .attr('y', d => yScale(d3.sum(data.filter(link => link.target === d), link => link.value)))
-      .attr('height', d => 400 - yScale(d3.sum(data.filter(link => link.target === d), link => link.value)))
-      .attr('fill', '#ffcc99');
+            svg.selectAll("path")
+                .attr("stroke-opacity", link => {
+                    const linkSourceNode = data.nodes.find(n => n.name === link.source);
+                    const linkTargetNode = data.nodes.find(n => n.name === link.target);
+                    if ((linkSourceNode === sourceNode && linkTargetNode === targetNode) ||
+                        (linkSourceNode === targetNode && linkTargetNode === sourceNode)) {
+                        return 1;
+                    }
+                    return 0.1;
+                });
+        })
+        .on("mouseout", function() {
+            svg.selectAll("path")
+                .attr("stroke-opacity", d => (d.value / maxLinkValue) * 0.7 + 0.3);
+            tooltip.style("opacity", 0);
+        });
 
-    // Add labels to source nodes
-    svg.selectAll('.source-label')
-      .data(nodes.source)
-      .enter().append('text')
-      .attr('class', 'source-label')
-      .attr('x', d => xScaleSource(d) + xScaleSource.bandwidth() / 2)
-      .attr('y', -10)  // Position above the source node
-      .attr('text-anchor', 'middle')
-      .text(d => d);
+        const nodes = svg.append("g")
+            .selectAll("rect")
+            .data(data.nodes)
+            .join("rect")
+            .attr("x", d => d.x - 10)
+            .attr("y", d => d.y)
+            .attr("width", 20)
+            .attr("height", d => d.height)
+            .attr("fill", d => layerColors[d.layer]);
 
-    // Add labels to target nodes
-    svg.selectAll('.target-label')
-      .data(nodes.target)
-      .enter().append('text')
-      .attr('class', 'target-label')
-      .attr('x', d => xScaleTarget(d) + xScaleTarget.bandwidth() / 2)
-      .attr('y', 410)  // Position below the target node
-      .attr('text-anchor', 'middle')
-      .text(d => d);
+      
+        nodes.on("mouseover", function(event, d) {
+            d3.select(this).attr("fill-opacity", 0.8);
 
-  }, []);
+            svg.selectAll("path")
+                .attr("stroke-opacity", link => {
+                    const sourceNode = data.nodes.find(n => n.name === link.source);
+                    const targetNode = data.nodes.find(n => n.name === link.target);
+                    if (sourceNode === d || targetNode === d) {
+                        return 1;
+                    }
+                    return 0.1;
+                });
+        })
+        .on("mouseout", function() {
+            d3.select(this).attr("fill-opacity", 1);
 
-  return <svg ref={svgRef}></svg>;
+            svg.selectAll("path")
+                .attr("stroke-opacity", d => (d.value / maxLinkValue) * 0.7 + 0.3);  // Reset opacity based on value
+        });
+
+        svg.append("g")
+            .selectAll("text")
+            .data(data.nodes)
+            .join("text")
+            .attr("x", d => d.x)
+            .attr("y", d => d.y - 5)
+            .attr("dy", "0.35em")
+            .attr("text-anchor", "middle")
+            .text(d => d.name);
+
+    }, [data, width, height, margin]);
+
+    return (
+        <>
+            <svg ref={svgRef} width={width} height={height}></svg>
+            <div ref={tooltipRef} style={{
+                position: 'absolute', background: 'rgba(255, 255, 255, 0.7)', padding: '5px', borderRadius: '5px',
+                pointerEvents: 'none', opacity: 0, transition: 'opacity 0.2s'
+            }}></div>
+        </>
+    );
 };
 
-export default AlluvialGraph;
+export default AlluvialDiagram;

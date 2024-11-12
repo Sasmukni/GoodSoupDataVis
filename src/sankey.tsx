@@ -1,4 +1,4 @@
-import { scaleOrdinal } from "d3";
+/*import { scaleOrdinal } from "d3";
 import { sankey, sankeyJustify, sankeyLinkHorizontal } from "d3-sankey";
 import React from "react";
 
@@ -115,3 +115,4 @@ export const Sankey = ({ width, height, data }: SankeyProps) => {
     </div>
   );
 };
+*/
