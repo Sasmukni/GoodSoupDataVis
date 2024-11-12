@@ -11,10 +11,12 @@ import StackedMultipleBarPlotPage from './routes/StackedMultipleCO2Emissions';
 import StackedBarPlotPercentilePage from './routes/StackedCO2EmissionsPercentile';
 import AboutUs from './routes/aboutus';
 import Assignment1 from './routes/assignment1';
+import AlluvialPage from './routes/alluvial';
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import AlluvialGraph from './alluvial';
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
         <Route path="/stacked" element={<StackedBarPlotPage/>}/>
         <Route path="/stackedMultiple" element={<StackedMultipleBarPlotPage/>}/>
         <Route path="/stackedPercentile" element={<StackedBarPlotPercentilePage/>}/>
+        <Route path="/alluvial" element={<AlluvialPage/>}/>
       </Routes>
     </>
   );
