@@ -32,8 +32,8 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
 
         const categoryColor =
         {
-            fossil: "Purple",
-            "land use": "Pink"
+            fossil: "Brown",
+            "land use": "Green"
         }
         
         const layerColors= (layer, name, continent) => {
@@ -49,7 +49,7 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
             node.x = xScale(node.layer);
             node.y = (nodesByLayer[node.layer] || 0) + margin.top;
             node.height = yScale(node.value) - margin.top; 
-            nodesByLayer[node.layer] = node.y + node.height + 20;
+            nodesByLayer[node.layer] = node.y + node.height - 20;
         });
 
         const maxLinkValue = d3.max(data.links, d => d.value);
@@ -161,7 +161,7 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
             .data(data.nodes)
             .join("rect")
             .attr("x", d => d.x - 10)
-            .attr("y", d => d.y)
+            .attr("y", d => d.y )
             .attr("width", 20)
             .attr("height", d => d.height)
             .attr("fill", d => layerColors(d.layer, d.name, d.continent));
@@ -192,8 +192,8 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
             .data(data.nodes)
             .join("text")
             .attr("x", d => d.x)
-            .attr("y", d => d.y - 5)
-            .attr("dy", "0.35em")
+            .attr("y", d => d.y - 4)
+            .attr("dy", "0.01em")
             .attr("text-anchor", "middle")
             .text(d => d.name);
 

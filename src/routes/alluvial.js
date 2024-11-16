@@ -3,16 +3,61 @@ import '../App.css';
 import AlluvialDiagram from '../alluvial';
 import Select from "react-select";
 import {useState} from "react";
+import { link } from 'd3';
+import nodes_2013 from '../data/nodes_2013.json'
+import links_2013 from '../data/links_2013.json'
+import nodes_2014 from '../data/nodes_2014.json'
+import links_2014 from '../data/links_2014.json'
+import nodes_2015 from '../data/nodes_2015.json'
+import links_2015 from '../data/links_2015.json'
+import nodes_2016 from '../data/nodes_2016.json'
+import links_2016 from '../data/links_2016.json'
+import nodes_2017 from '../data/nodes_2017.json'
+import links_2017 from '../data/links_2017.json'
+import nodes_2018 from '../data/nodes_2018.json'
+import links_2018 from '../data/links_2018.json'
+import nodes_2019 from '../data/nodes_2019.json'
+import links_2019 from '../data/links_2019.json'
+import nodes_2020 from '../data/nodes_2020.json'
+import links_2020 from '../data/links_2020.json'
+import nodes_2021 from '../data/nodes_2021.json'
+import links_2021 from '../data/links_2021.json'
+import nodes_2022 from '../data/nodes_2022.json'
+import links_2022 from '../data/links_2022.json'
 
 function AlluvialPage() {
-    const data2013 = {};
-    const data2014 = {}
-    const data2015 = {}
-    const data2016 = {}
-    const data2017 = {}
-    const data2018 = {}
-    const data2019 = {}
-    const data2020 = {}
+    const data2013 = {
+        nodes: nodes_2013,
+        links: links_2013
+    }
+    const data2014 = {
+        nodes: nodes_2014,
+        links: links_2014
+    }
+    const data2015 = {
+        nodes: nodes_2015,
+        links: links_2015
+    }
+    const data2016 = {
+        nodes: nodes_2016,
+        links: links_2016
+    }
+    const data2017 = {
+        nodes: nodes_2017,
+        links: links_2017
+    }
+    const data2018 = {
+        nodes: nodes_2018,
+        links: links_2018
+    }
+    const data2019 = {
+        nodes: nodes_2019,
+        links: links_2019
+    }
+    const data2020 = {
+        nodes: nodes_2020,
+        links: links_2020
+    }
     const data2022 = {
         nodes: [
             { name: 'Asia', layer: 'continent', value: 80 },
