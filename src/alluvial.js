@@ -16,16 +16,33 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
             .domain(layers)
             .range([margin.left, width - margin.right]);
 
-        const maxNodeValue = d3.max(data.nodes, d => d.value);
+        const sumNodeValues = d3.sum(data.nodes, d => d.value);
         const yScale = d3.scaleLinear()
-            .domain([0, maxNodeValue])
+            .domain([0, sumNodeValues])
             .range([margin.top, height - margin.bottom]);
-            
-        const layerColors = {
-            continent: "red",
-            nation: "blue",
-            category: "green"
+          
+        const continentColors = {
+            Asia: "yellow",
+            Europe: "blue",
+            Africa: "black",
+            Oceania: "green",
+            "North America": "red",
+            "South America": "orange"
         };
+
+        const categoryColor =
+        {
+            fossil: "Purple",
+            "land use": "Pink"
+        }
+        
+        const layerColors= (layer, name, continent) => {
+            switch(layer){
+                case "continent" : return continentColors[name];
+                case "nation" : return continentColors[continent];
+                case "category" : return categoryColor[name];
+            }
+        }
 
         const nodesByLayer = {};
         data.nodes.forEach(node => {
@@ -37,6 +54,22 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
 
         const maxLinkValue = d3.max(data.links, d => d.value);
 
+        let prevValsCN = {
+            Asia: 0,
+            Europe: 0,
+            Africa: 0,
+            Oceania: 0,
+            "North America": 0,
+            "South America": 0
+        };
+
+        let prevValsNE = {};
+
+        let prevValE = {
+            fossil:0,
+            "land use":0
+        }
+
         const links = svg.append("g")
             .attr("fill", "none")
             .selectAll("path")
@@ -45,26 +78,40 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
             .attr("d", d => {
                 const sourceNode = data.nodes.find(n => n.name === d.source);
                 const targetNode = data.nodes.find(n => n.name === d.target);
+                let pos = 0;
+                let targetPos = 0;
+                if(sourceNode.layer==="continent"){
+                    pos = prevValsCN[sourceNode.name] + (yScale(d.value)- margin.top)/2;
+                    prevValsCN[sourceNode.name] += (yScale(d.value)- margin.top);
+                    targetPos = targetNode.height / 2;
+                }else{
+                    if(sourceNode.name in prevValsNE){
+                        pos = prevValsNE[sourceNode.name] + (yScale(d.value)- margin.top)/2;
+                        prevValsNE[sourceNode.name] += (yScale(d.value)- margin.top);
+                    }else{
+                        pos = (yScale(d.value)- margin.top)/2;
+                        prevValsNE[sourceNode.name] = (yScale(d.value)- margin.top);
+                    }
+                    targetPos = prevValE[targetNode.name] + (yScale(d.value)- margin.top)/2;
+                    prevValE[targetNode.name] += (yScale(d.value)- margin.top);
+                }
                 return d3.line()
-                    .curve(d3.curveBundle.beta(0.85))
-                    .x(d => d.x)
+                    .curve(d3.curveBundle.beta(0.25))
+                    .x(d => d.x-3)
                     .y(d => d.y)([
-                        { x: sourceNode.x + 10, y: sourceNode.y + sourceNode.height / 2 },
+                        { x: sourceNode.x + 10, y: sourceNode.y + pos},
                         { x: (sourceNode.x + targetNode.x) / 2, y: sourceNode.y + sourceNode.height / 2 },
-                        { x: (sourceNode.x + targetNode.x) / 2, y: targetNode.y + targetNode.height / 2 },
-                        { x: targetNode.x - 10, y: targetNode.y + targetNode.height / 2 }
+                        { x: (sourceNode.x + targetNode.x) / 2, y: targetNode.y + targetPos },
+                        { x: targetNode.x , y: targetNode.y + targetPos}
                     ]);
             })
             .attr("stroke", d => {
                 const sourceNode = data.nodes.find(n => n.name === d.source);
                 const targetNode = data.nodes.find(n => n.name === d.target);
-                if (sourceNode.layer === "continent" && targetNode.layer === "nation") {
-                    return "red";
-                } else if (sourceNode.layer === "nation" && targetNode.layer === "category") {
-                    return "blue";
-                }
+
+                return layerColors(sourceNode.layer,sourceNode.name, sourceNode.continent);
             })
-            .attr("stroke-width", d => (d.value / maxLinkValue) * 8 + 2)
+            .attr("stroke-width", d => (yScale(d.value)- margin.top))
             .attr("stroke-opacity", d => (d.value / maxLinkValue) * 0.7 + 0.3);
 
         links.on("mouseover", function(event, d) {
@@ -117,7 +164,7 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
             .attr("y", d => d.y)
             .attr("width", 20)
             .attr("height", d => d.height)
-            .attr("fill", d => layerColors[d.layer]);
+            .attr("fill", d => layerColors(d.layer, d.name, d.continent));
 
       
         nodes.on("mouseover", function(event, d) {
