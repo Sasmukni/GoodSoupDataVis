@@ -128,7 +128,7 @@ function AlluvialPage() {
         {label : 2022, value: data2022}
     ];
     const width = window.innerWidth - 0.1 * window.innerWidth;
-    const height = window.innerHeight;
+    const height = window.innerHeight * 1.1;
     const margin = { top: 40, right: window.innerWidth < 1024 ? 20 : 80, bottom: 400, left: window.innerWidth < 1024 ? 20 : 80 };
     const [topSelected, setTopSelected] = useState(data2022);
 

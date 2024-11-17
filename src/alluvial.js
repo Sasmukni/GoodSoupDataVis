@@ -130,18 +130,18 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
             d3.select(this).attr("stroke-opacity", 1);
 
             if (sourceNode.layer === "continent" && targetNode.layer === "nation") {
-                tooltip.html(`Total Emissions nation: ${targetNode.value}`) //
+                tooltip.html(`${d.target}: responsible of ${d.value.toFixed(2)}% of the globe's total emissions`) //
                     .style("left", `${event.pageX + 5}px`)
                     .style("top", `${event.pageY - 28}px`)
                     .style("opacity", 1);
             } else if (sourceNode.layer === "nation" && targetNode.layer === "category") {
                 if (targetNode.name === "fossil") {
-                    tooltip.html(`Fossil Emissions: ${sourceNode.value_fossil} `)  //
+                    tooltip.html(`${d.source}: responsible of ${d.value.toFixed(2)}% of the globe's fossil emissions`)  //
                         .style("left", `${event.pageX + 5}px`)
                         .style("top", `${event.pageY - 28}px`)
                         .style("opacity", 1);
                 } else if (targetNode.name === "land use") {
-                    tooltip.html(`Land Use Emissions: ${sourceNode.value_land} `) //
+                    tooltip.html(`${d.source}: responsible of ${d.value.toFixed(2)}% of the globe's land use emissions`) //
                         .style("left", `${event.pageX + 5}px`)
                         .style("top", `${event.pageY - 28}px`)
                         .style("opacity", 1);
