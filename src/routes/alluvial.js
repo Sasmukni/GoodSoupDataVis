@@ -3,7 +3,7 @@ import '../App.css';
 import AlluvialDiagram from '../alluvial';
 import Select from "react-select";
 import {useState} from "react";
-import { link } from 'd3';
+//import { link } from 'd3';
 import nodes_2013 from '../data/nodes_2013.json'
 import links_2013 from '../data/links_2013.json'
 import nodes_2014 from '../data/nodes_2014.json'
@@ -58,7 +58,15 @@ function AlluvialPage() {
         nodes: nodes_2020,
         links: links_2020
     }
+    const data2021 = {
+        nodes: nodes_2021,
+        links: links_2021
+    }
     const data2022 = {
+        nodes: nodes_2022,
+        links: links_2022
+    }
+    /*const data2022 = {
         nodes: [
             { name: 'Asia', layer: 'continent', value: 80 },
             { name: 'Europe', layer: 'continent', value: 20 },
@@ -107,7 +115,7 @@ function AlluvialPage() {
             { source: 'India', target: 'land use', value: 5 }
             // Altri link per ogni continente e nazione...
         ]
-    };   
+    };*/   
     const yearOptions = [{label : 2013, value: data2013},
         {label : 2014, value: data2014},
         {label : 2015, value: data2015},
