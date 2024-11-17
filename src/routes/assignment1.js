@@ -72,6 +72,20 @@ function Assignment1() {
                 </div>
             </div>
         </div>
+        <div className="text-secondary py-3 px-2">
+          <p className="mb-3">
+            <strong className="text-primary">Per capita CO₂ emissions</strong>
+            <span className="d-block mt-2">
+              These are typically higher in countries with a strong dependence on fossil fuels. This includes major producers like the Gulf states, wealthy nations with high energy consumption per person like Luxembourg, heavily industrialized countries such as the United States or Canada, and even small nations with significant tourism, like Trinidad and Tobago.
+            </span>
+          </p>
+          <p>
+            <strong className="text-primary">Total CO₂ emissions</strong>
+            <span className="d-block mt-2">
+              These are typically higher in countries with large populations and substantial industrial activity. Countries where land use change is a major source of emissions are often characterized by deforestation, like Brazil. In contrast, those with higher fossil fuel emissions rely heavily on oil production and/or have significant energy consumption, like the United States.
+            </span>
+          </p>
+        </div>
       </header>
     </div>
   );
