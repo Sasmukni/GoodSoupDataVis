@@ -39,7 +39,7 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
         const layerColors= (layer, name, continent) => {
             switch(layer){
                 case "continent" : return continentColors[name];
-                case "nation" : return continentColors[continent];
+                case "nation" : return name!=="Others"?continentColors[continent]:"purple";
                 case "category" : return categoryColor[name];
             }
         }
@@ -63,7 +63,12 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
             "South America": 4   //
         };
 
-        let prevValsNE = {};
+        let prevValsTargetCN = {
+            Others:4,
+        };
+
+        let prevValsNE = {
+        };
 
         let prevValE = {
             fossil:4,   //
@@ -83,7 +88,11 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
                 if(sourceNode.layer==="continent"){
                     pos = prevValsCN[sourceNode.name] + (yScale(d.value)- margin.top)/2;
                     prevValsCN[sourceNode.name] += (yScale(d.value)- margin.top);
-                    targetPos = targetNode.height / 2;
+                    if(targetNode.name === "Others"){
+                        targetPos = prevValsTargetCN[targetNode.name] + (yScale(d.value)- margin.top)/2;
+                        prevValsTargetCN[targetNode.name] += (yScale(d.value)- margin.top);
+                    }
+                    else targetPos = targetNode.height / 2;
                 }else{
                     if(sourceNode.name in prevValsNE){
                         pos = prevValsNE[sourceNode.name] + (yScale(d.value)- margin.top)/2;
@@ -111,7 +120,7 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
 
                 return layerColors(sourceNode.layer,sourceNode.name, sourceNode.continent);
             })
-            .attr("stroke-width", d => (yScale(d.value)- margin.top))
+            .attr("stroke-width", d => Math.max((yScale(d.value)- margin.top),2))
             .attr("stroke-opacity", d => (d.value / maxLinkValue) * 0.7 + 0.3);
 
         links.on("mouseover", function(event, d) {
