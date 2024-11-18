@@ -55,12 +55,12 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
         const maxLinkValue = d3.max(data.links, d => d.value);
 
         let prevValsCN = {
-            Asia: 4,  // rimetti 0
-            Europe: 4,//
-            Africa: 4,//
-            Oceania: 4,//
-            "North America": 4, //
-            "South America": 4   //
+            Asia: 4, 
+            Europe: 4,
+            Africa: 4,
+            Oceania: 4,
+            "North America": 4,
+            "South America": 4
         };
 
         let prevValsTargetCN = {
@@ -71,8 +71,8 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
         };
 
         let prevValE = {
-            fossil:4,   //
-            "land use":4   //
+            fossil:4,
+            "land use":4
         }
 
         const links = svg.append("g")
@@ -130,18 +130,18 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
             d3.select(this).attr("stroke-opacity", 1);
 
             if (sourceNode.layer === "continent" && targetNode.layer === "nation") {
-                tooltip.html(`${d.target}: responsible of ${d.value.toFixed(2)}% of the globe's total emissions`) //
+                tooltip.html(`${d.target}: responsible of ${d.value.toFixed(2)}% of the globe's total emissions`)
                     .style("left", `${event.pageX + 5}px`)
                     .style("top", `${event.pageY - 28}px`)
                     .style("opacity", 1);
             } else if (sourceNode.layer === "nation" && targetNode.layer === "category") {
                 if (targetNode.name === "fossil") {
-                    tooltip.html(`${d.source}: responsible of ${d.value.toFixed(2)}% of the globe's fossil emissions`)  //
+                    tooltip.html(`${d.source}: responsible of ${d.value.toFixed(2)}% of the globe's fossil emissions`)
                         .style("left", `${event.pageX + 5}px`)
                         .style("top", `${event.pageY - 28}px`)
                         .style("opacity", 1);
                 } else if (targetNode.name === "land use") {
-                    tooltip.html(`${d.source}: responsible of ${d.value.toFixed(2)}% of the globe's land use emissions`) //
+                    tooltip.html(`${d.source}: responsible of ${d.value.toFixed(2)}% of the globe's land use emissions`)
                         .style("left", `${event.pageX + 5}px`)
                         .style("top", `${event.pageY - 28}px`)
                         .style("opacity", 1);
@@ -172,18 +172,17 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
             .attr("x", d => d.x - 10)
             .attr("y", d => d.y)
             .attr("width", 20)
-            .attr("height", d => d.height + 10 )//togli 10
+            .attr("height", d => d.height + 10 )
             .attr("fill", d => layerColors(d.layer, d.name, d.continent))
-            .attr("stroke", "#000") //new
-            .attr("stroke-width", 0.5) //new
-            .attr("rx", 4); //new
+            .attr("stroke", "#000")
+            .attr("stroke-width", 0.5)
+            .attr("rx", 4);
       
         nodes.on("mouseover", function(event, d) {
             d3.select(this).attr("fill-opacity", 0.8);
 
-            //new per far come prima togli
         if (d.layer === "continent") {
-            tooltip.html(`Total Emission continent: ${d.value}`)
+            tooltip.html(`Total Emission continent: ${d.value} % of the total`)
                 .style("left", `${event.pageX + 5}px`)
                 .style("top", `${event.pageY - 28}px`)
                 .style("opacity", 1);
@@ -192,12 +191,11 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
                 .filter(link => link.target === d.name)
                 .reduce((sum, link) => sum + link.value, 0);
 
-            tooltip.html(`Total Emissions: ${totalEmissions}`)
+            tooltip.html(`Total Emissions: ${totalEmissions} % of the total`)
                 .style("left", `${event.pageX + 5}px`)
                 .style("top", `${event.pageY - 28}px`)
                 .style("opacity", 1);
         }
-            //fino a qui
 
             svg.selectAll("path")
                 .attr("stroke-opacity", link => {
@@ -211,7 +209,7 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
         })
         .on("mouseout", function() {
             d3.select(this).attr("fill-opacity", 1);
-            tooltip.style("opacity", 0);//new per far come prima togli
+            tooltip.style("opacity", 0);
 
             svg.selectAll("path")
                 .attr("stroke-opacity", d => (d.value / maxLinkValue) * 0.7 + 0.3);
@@ -223,11 +221,11 @@ const AlluvialDiagram = ({ data, width, height, margin }) => {
             .join("text")
             .attr("x", d => d.x)
             .attr("y", d => d.y - 4)
-            .attr("dy", "0.3em") // era 0.01
+            .attr("dy", "0.3em")
             .attr("text-anchor", "middle")
-            .attr("font-family", "Arial")//new
-            .attr("font-size", 10)//new
-            .attr("fill", "#000")//new
+            .attr("font-family", "Arial")
+            .attr("font-size", 10)
+            .attr("fill", "#000")
             .text(d => d.name);
 
     }, [data, width, height, margin]);

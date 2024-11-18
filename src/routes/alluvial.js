@@ -66,56 +66,7 @@ function AlluvialPage() {
         nodes: nodes_2022,
         links: links_2022
     }
-    /*const data2022 = {
-        nodes: [
-            { name: 'Asia', layer: 'continent', value: 80 },
-            { name: 'Europe', layer: 'continent', value: 20 },
-            // Altri continenti...
-            { name: 'China', layer: 'nation', value: 50, continent: 'Asia' },
-            { name: 'India', layer: 'nation', value: 30, continent: 'Asia' },
-            { name: 'Germany', layer: 'nation', value: 11, continent: 'Europe' },
-            { name: 'France', layer: 'nation', value: 9, continent: 'Europe' },
-            // Altre nazioni (top 2 per continente)...
-            { name: 'fossil', layer: 'category', value: 80 },
-            { name: 'land use', layer: 'category', value: 20 }
-        ],
-        links: [
-            { source: 'Asia', target: 'China', value: 50 },
-            { source: 'Asia', target: 'India', value: 30 },
-            { source: 'Europe', target: 'Germany', value: 11 },
-            { source: 'Europe', target: 'France', value: 9 },
-            { source: 'China', target: 'fossil', value: 40 },
-            { source: 'China', target: 'land use', value: 10 },
-            { source: 'India', target: 'fossil', value: 25 },
-            { source: 'India', target: 'land use', value: 5 },
-            // Altri link per ogni continente e nazione...
-        ]
-    };   
-    const data2021 = {
-        nodes: [
-            { name: 'Asia', layer: 'continent', value: 50 },
-            { name: 'Europe', layer: 'continent', value: 50 },
-            // Altri continenti...
-            { name: 'China', layer: 'nation', value: 25, continent: 'Asia' },
-            { name: 'India', layer: 'nation', value: 25, continent: 'Asia' },
-            { name: 'Germany', layer: 'nation', value: 25, continent: 'Europe' },
-            { name: 'France', layer: 'nation', value: 25, continent: 'Europe' },
-            // Altre nazioni (top 2 per continente)...
-            { name: 'fossil', layer: 'category', value: 80 },
-            { name: 'land use', layer: 'category', value: 20 }
-        ],
-        links: [
-            { source: 'Asia', target: 'China', value: 25 },
-            { source: 'Asia', target: 'India', value: 25 },
-            { source: 'Europe', target: 'Germany', value: 25 },
-            { source: 'Europe', target: 'France', value: 25 },
-            { source: 'China', target: 'fossil', value: 20 },
-            { source: 'China', target: 'land use', value: 5 },
-            { source: 'India', target: 'fossil', value: 20 },
-            { source: 'India', target: 'land use', value: 5 }
-            // Altri link per ogni continente e nazione...
-        ]
-    };*/   
+   
     const yearOptions = [{label : 2013, value: data2013},
         {label : 2014, value: data2014},
         {label : 2015, value: data2015},
