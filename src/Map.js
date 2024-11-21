@@ -1,25 +1,18 @@
 import * as d3 from 'd3';
-import { FeatureCollection } from 'geojson';
 
-/*type MapProps = {
-  width: number;
-  height: number;
-  geoData: FeatureCollection;
-  numData: { code: string; value: number }[];
-};*/
-
-export const Map = ({ width, height, geoData, numData }) => {
+export const Map = ({ width, height, geoData, numData, angle }) => {
   var colorScale = d3
     .scaleThreshold()
     .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
     .range(d3.schemeBlues[7]);
 
   const projection = d3
-    .geoMercator()
-    .scale(width / 2 / Math.PI - 20)
-    .center([10, 55]);
+    .geoAzimuthalEqualArea()
+    .scale(width / 2 / Math.PI-20)
+    .center([0, 0]).rotate(angle);
 
   const geoPathGenerator = d3.geoPath().projection(projection);
+    
 
   const allSvgPaths = geoData.features
     .filter((shape) => shape.id !== 'ATA')
