@@ -21,7 +21,10 @@ const Navbar =()=>{
                                           <Link className="nav-link text-light fw-semibold" to="/">Home</Link>
                                     </li>
                                     <li className="nav-item">
-                                          <Link className="nav-link text-light fw-semibold" to="/assignment1">CO₂ Emissions</Link>
+                                          <Link className="nav-link text-light fw-semibold" to="/assignment1">Comparing categories</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                          <Link className="nav-link text-light fw-semibold" to="/alluvial">Alluvial</Link>
                                     </li>
                                     <li className="nav-item">
                                           <Link className="nav-link text-light fw-semibold" to="/aboutus">About Us</Link>
