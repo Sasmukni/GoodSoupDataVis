@@ -12,6 +12,7 @@ import StackedBarPlotPercentilePage from './routes/StackedCO2EmissionsPercentile
 import AboutUs from './routes/aboutus';
 import Assignment1 from './routes/assignment1';
 import AlluvialPage from './routes/alluvial';
+import { ChoroplethMapBasicDemo } from './routes/Map';
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -34,6 +35,7 @@ function App() {
         <Route path="/stackedMultiple" element={<StackedMultipleBarPlotPage/>}/>
         <Route path="/stackedPercentile" element={<StackedBarPlotPercentilePage/>}/>
         <Route path="/alluvial" element={<AlluvialPage/>}/>
+        <Route path="/map" element={<ChoroplethMapBasicDemo/>}/>
       </Routes>
     </>
   );
