@@ -28,7 +28,7 @@ function updateAngle(){
   }
 
   return (
-    <Map geoData={geoData} numData={numDataTot} width={width} height={height} angle={angle} />
+    <Map geoData={geoData} numData={numDataTot} width={window.innerWidth - 0.1 * window.innerWidth} height={height} angle={angle} />
   );
 };
 
