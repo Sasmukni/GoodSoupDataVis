@@ -1,15 +1,15 @@
 import * as d3 from 'd3';
 
-export const Map = ({ width, height, geoData, numData, angle }) => {
+export const Map = ({ width, height, geoData, numData, angle=[0,0] }) => {
   var colorScale = d3
-    .scaleThreshold()
-    .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
-    .range(d3.schemeBlues[7]);
+    .scaleLinear()
+    .domain(d3.extent([...numData.map(d=>(d.Emissions??d.Tot_Emissions))]))
+    .range(['#FFFFFF', '#ff00ff']);
 
   const projection = d3
-    .geoAzimuthalEqualArea()
-    .scale(width / 2 / Math.PI-20)
-    .center([0, 0]).rotate(angle);
+    .geoMercator()//.geoAzimuthalEqualArea()//.geoGnomonic()//
+    .scale(width / 8 )/// Math.PI-20
+    .center([0, Math.max(height/10,20)]).rotate(angle);
 
   const geoPathGenerator = d3.geoPath().projection(projection);
     
@@ -17,9 +17,9 @@ export const Map = ({ width, height, geoData, numData, angle }) => {
   const allSvgPaths = geoData.features
     .filter((shape) => shape.id !== 'ATA')
     .map((shape) => {
-      const regionData = numData.find((region) => region.code === shape.id);
+      const regionData = numData.find((region) => region.Code === shape.id);
 
-      const color = regionData ? colorScale(regionData?.value) : 'lightgrey';
+      const color = regionData ? colorScale(regionData?.Emissions ?? regionData?.Tot_Emissions) : 'lightgrey';
 
       return (
         <path
