@@ -18,11 +18,13 @@ import {StillMap } from './routes/Map';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import AlluvialGraph from './alluvial';
+import BackButton from './backbutton';
 
 function App() {
   return (
     <>
     <ScrollToTop />
+    <BackButton/>
     <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
