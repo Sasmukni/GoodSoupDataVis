@@ -13,7 +13,7 @@ export const Map = ({ width, height, geoData, numData, angle=[0,0] }) => {
     .scaleLinear()
     .domain([d3.min([...numData.map(d=>nthRoot(d.Emissions??d.Tot_Emissions,3))]),0,d3.max([...numData.map(d=>nthRoot(d.Emissions??d.Tot_Emissions,3))])])
     .range(["#00FF00",'#FFFFFF', '#FF0000']);
-
+  var geoDataFiltered = geoData.features.filter((shape) => shape.id !== 'ATA');
   const projection = d3
   .geoMercator()//.geoOrthographic() //.geoAzimuthalEqualArea()//.geoGnomonic()//
     .fitSize([width, height], geoData).rotate(angle);
@@ -25,8 +25,7 @@ export const Map = ({ width, height, geoData, numData, angle=[0,0] }) => {
   const geoPathGenerator = d3.geoPath().projection(projection);
     
 
-  const allSvgPaths = geoData.features
-    .filter((shape) => shape.id !== 'ATA')
+  const allSvgPaths = geoDataFiltered
     .map((shape) => {
       const regionData = numData.find((region) => region.Code === shape.id);
 
