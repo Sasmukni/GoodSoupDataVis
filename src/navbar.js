@@ -1,9 +1,18 @@
 import './App.css';
 import { Link } from "react-router-dom"
+import logo from "./goodsoup-removebg.png"
 const Navbar =()=>{
       return (
-            <div className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm py-3">
-                  <div className="container">
+            <div className="navbar sticky-top navbar-expand-lg navbar-dark bg-primary shadow-sm py-0">
+                  <div className="container-fluid">
+                        <a class="navbar-brand" href="#/">
+                              <img 
+                              src={logo} 
+                              alt="Good Soup Logo" 
+                              className="d-inline-block align-text-top" 
+                              style={{ height: 'auto', width: '75px' }} 
+                              />
+                        </a>
                         <button 
                               className="navbar-toggler" 
                               type="button" 
@@ -21,10 +30,13 @@ const Navbar =()=>{
                                           <Link className="nav-link text-light fw-semibold" to="/">Home</Link>
                                     </li>
                                     <li className="nav-item">
-                                          <Link className="nav-link text-light fw-semibold" to="/assignment1">Comparing categories</Link>
+                                          <Link className="nav-link text-light fw-semibold" to="/assignment1">Assignment 1</Link>
                                     </li>
                                     <li className="nav-item">
-                                          <Link className="nav-link text-light fw-semibold" to="/alluvial">Alluvial</Link>
+                                          <Link className="nav-link text-light fw-semibold" to="/alluvial">Assignment 2</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                          <Link className="nav-link text-light fw-semibold" to="/map">Assignment 3</Link>
                                     </li>
                                     <li className="nav-item">
                                           <Link className="nav-link text-light fw-semibold" to="/aboutus">About Us</Link>
