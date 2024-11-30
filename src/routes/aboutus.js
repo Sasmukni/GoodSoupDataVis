@@ -1,9 +1,9 @@
 import logo from "../goodsoup-removebg.png"
-
+// bg-light
 function AboutUs() {
   return (
     <div className="App">
-        <header className="App-header py-5 bg-light rounded shadow-sm">
+        <header className="App-header py-5 rounded shadow-sm">
             <img 
             src={logo}
             alt="Good Soup Logo" 

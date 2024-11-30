@@ -57,7 +57,7 @@ export default function StackedBarPlot({
     .attr("y", height - marginBottom / 2)
     .style("fill", function(d){ return color(d)})
     .style("font-size", 8 + width/100)
-    .text(function(d){ return d.replace("_"," ")})
+    .text(function(d){ return d.replace("_"," ").replace(/(Top)(\d+)/, '$1 $2')})
     .attr("text-anchor", "left")
     .style("alignment-baseline", "middle") 
 
@@ -89,7 +89,7 @@ export default function StackedBarPlot({
               .style("opacity", 1);
               setTooltip({
                 visible: true,
-                value: `${subgroupName!=="Others"?data[subgroupName]:subgroupName}: ${data[subgroupName.split("_")[0]+"_Emissions"]} tonnes`,
+                value: `${subgroupName!=="Others"?data[subgroupName]:subgroupName}: ${Intl.NumberFormat().format(data[subgroupName.split("_")[0]+"_Emissions"])} tonnes`,
                 x: d.pageX,
                 y: d.pageY
             });
@@ -102,6 +102,9 @@ export default function StackedBarPlot({
     <svg width={width} height={height} ref={svgRef}>
       <g ref={gx} transform={`translate(${marginRight},0)`} />
       <g ref={gy} transform={`translate(${marginRight*0},${marginTop})`}/>
+      <text x={marginRight + (width/2)} y={10} textAnchor="end" fontSize="12px">
+        Tonnes of CO₂ in total
+      </text>
     </svg>
     {tooltip.visible && (
       <div style={{

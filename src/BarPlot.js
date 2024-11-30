@@ -35,8 +35,8 @@ export default function BarPlot({
       <g ref={g} transform = {`translate(${marginRight},${marginTop})`}>
         <g ref={gx}/>
         <g ref={gy}/>
-        <text text-anchor="end" y={marginTop-60} x={marginLeft}>
-          Tonns of CO2 pro capita
+        <text x={width/2} y={-30} textAnchor="end" fontSize="12px">
+          Tonnes of CO₂ per capita
         </text>
         {data.map(d =>(
           <rect 
@@ -53,7 +53,7 @@ export default function BarPlot({
               // Mostrare il tooltip
               setTooltip({
                   visible: true,
-                  value: `${d.Emissions} tonnes per person`,
+                  value: `${d.Emissions.toFixed(2)} tonnes per person`,
                   x: event.pageX,
                   y: event.pageY
               });

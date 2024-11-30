@@ -30,13 +30,13 @@ const Navbar =()=>{
                                           <Link className="nav-link text-light fw-semibold" to="/">Home</Link>
                                     </li>
                                     <li className="nav-item">
-                                          <Link className="nav-link text-light fw-semibold" to="/assignment1">Assignment 1</Link>
+                                          <Link className="nav-link text-light fw-semibold" to="/assignment1">Comparing categories</Link>
                                     </li>
                                     <li className="nav-item">
-                                          <Link className="nav-link text-light fw-semibold" to="/alluvial">Assignment 2</Link>
+                                          <Link className="nav-link text-light fw-semibold" to="/alluvial">Emissions flow</Link>
                                     </li>
                                     <li className="nav-item">
-                                          <Link className="nav-link text-light fw-semibold" to="/map">Assignment 3</Link>
+                                          <Link className="nav-link text-light fw-semibold" to="/map">Maps</Link>
                                     </li>
                                     <li className="nav-item">
                                           <Link className="nav-link text-light fw-semibold" to="/aboutus">About Us</Link>

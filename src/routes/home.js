@@ -9,9 +9,9 @@ function Home() {
             <div class="container">
               <h1 className="display-4 fw-bold text-primary">Final Project Name</h1>
               <p className="lead text-secondary">By <a href="/#/aboutus"><b>Good Soup</b></a></p>
-              <p className="text-secondary">Visualizing CO₂ emmissions data</p>
+              {<p className="text-secondary">Visualizing CO₂ emmissions data</p>}
               {<p class="lead">
-                <Link class="btn btn-primary btn-lg" to="/assignment1">Check out our assignments!</Link>
+                <Link class="btn btn-primary btn-lg" to="/assignment1">Check out our work!</Link>
               </p>}
             </div>
           </div>
@@ -21,8 +21,8 @@ function Home() {
               <Link to="/assignment1" style={{ textDecoration: 'none' }}>
               <div class="card shadow-sm p-4">
                 <div class="card-body">
-                  <h5 class="card-title text-primary h4 fw-semibold mb-4">Comparing categories</h5>
-                  <p class="card-text text-secondary">Comparing categories</p>
+                  <h3 class="card-title text-primary fw-semibold mb-4">Comparing categories</h3>
+                  <p class="card-text text-secondary">Countries compared both in terms of per capita and total emissions</p>
                 </div>
               </div>
               </Link>
@@ -32,8 +32,8 @@ function Home() {
               <Link to="/alluvial" style={{ textDecoration: 'none' }}>
               <div class="card shadow-sm p-4">
                 <div class="card-body">
-                  <h5 class="card-title text-primary h4 fw-semibold mb-4">Alluvial</h5>
-                  <p class="card-text text-secondary">Alluvial</p>
+                  <h3 class="card-title text-primary fw-semibold mb-4">Emissions flow</h3>
+                  <p class="card-text text-secondary">Relationship between continents, countries and emission types</p>
                 </div>
               </div>
               </Link>
@@ -43,8 +43,8 @@ function Home() {
               <Link to="/map" style={{ textDecoration: 'none' }}>
               <div class="card shadow-sm p-4">
                 <div class="card-body">
-                  <h5 class="card-title text-primary h4 fw-semibold mb-4">Maps</h5>
-                  <p class="card-text text-secondary">Maps</p>
+                  <h3 class="card-title text-primary fw-semibold mb-4">Maps</h3>
+                  <p class="card-text text-secondary">3D and 2D maps for a spatial and global view of emmissions</p>
                 </div>
               </div>
               </Link>
