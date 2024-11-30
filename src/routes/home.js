@@ -8,8 +8,8 @@ function Home() {
           <div class="jumbotron jumbotron-fluid">
             <div class="container">
               <h1 className="display-4 fw-bold text-primary">Final Project Name</h1>
-              <p className="lead text-secondary">By <b>Good Soup</b> - learn more about us <a href="/#/aboutus">here</a></p>
-              <p className="text-secondary">Visualizing CO2 emmissions data</p>
+              <p className="lead text-secondary">By <a href="/#/aboutus"><b>Good Soup</b></a></p>
+              <p className="text-secondary">Visualizing CO₂ emmissions data</p>
               {<p class="lead">
                 <Link class="btn btn-primary btn-lg" to="/assignment1">Check out our assignments!</Link>
               </p>}
@@ -21,7 +21,7 @@ function Home() {
               <Link to="/assignment1" style={{ textDecoration: 'none' }}>
               <div class="card shadow-sm p-4">
                 <div class="card-body">
-                  <h5 class="card-title text-primary h4 fw-semibold mb-4">Assignment 1</h5>
+                  <h5 class="card-title text-primary h4 fw-semibold mb-4">Comparing categories</h5>
                   <p class="card-text text-secondary">Comparing categories</p>
                 </div>
               </div>
@@ -32,7 +32,7 @@ function Home() {
               <Link to="/alluvial" style={{ textDecoration: 'none' }}>
               <div class="card shadow-sm p-4">
                 <div class="card-body">
-                  <h5 class="card-title text-primary h4 fw-semibold mb-4">Assignment 2</h5>
+                  <h5 class="card-title text-primary h4 fw-semibold mb-4">Alluvial</h5>
                   <p class="card-text text-secondary">Alluvial</p>
                 </div>
               </div>
@@ -43,7 +43,7 @@ function Home() {
               <Link to="/map" style={{ textDecoration: 'none' }}>
               <div class="card shadow-sm p-4">
                 <div class="card-body">
-                  <h5 class="card-title text-primary h4 fw-semibold mb-4">Assignment 3</h5>
+                  <h5 class="card-title text-primary h4 fw-semibold mb-4">Maps</h5>
                   <p class="card-text text-secondary">Maps</p>
                 </div>
               </div>
