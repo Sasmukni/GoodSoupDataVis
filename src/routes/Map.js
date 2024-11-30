@@ -33,7 +33,26 @@ function updateAngle(){
 };
 
 export const StillMap = ({ width = 1000, height = 600 }) => {
+    const [angle, setAngle] = React.useState([0,0]);
+    const [isDragging, setIsDragging] = React.useState(false);
+
+    function handleMouseDown(event){
+      setIsDragging(true);
+    }
+    function handleMouseUp(event){
+      setIsDragging(false);
+    }
+    function handleMouseMove(event){
+      if(isDragging){
+        setAngle([angle[0]+event.movementX,angle[1]-event.movementY])
+      }
+    }
+
     return (
-      <Map geoData={geoData} numData={numDataTot} width={window.innerWidth - 0.1 * window.innerWidth} height={height}/>
+      <div onMouseDown={handleMouseDown} 
+          onMouseUp={handleMouseUp} 
+          onMouseMove={handleMouseMove}>
+        <Map geoData={geoData} numData={numDataTot} width={window.innerWidth - 0.1 * window.innerWidth} height={height} angle={angle}/>
+      </div>
     );
   };
