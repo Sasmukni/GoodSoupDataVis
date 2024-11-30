@@ -35,6 +35,9 @@ export default function BarPlot({
       <g ref={g} transform = {`translate(${marginRight},${marginTop})`}>
         <g ref={gx}/>
         <g ref={gy}/>
+        <text text-anchor="end" y={marginTop-60} x={marginLeft}>
+          Tonns of CO2 pro capita
+        </text>
         {data.map(d =>(
           <rect 
             id={d.Entity.replaceAll(regex,"_")}
