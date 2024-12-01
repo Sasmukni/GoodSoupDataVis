@@ -28,6 +28,7 @@ export const Map = ({ width, height, geoData, numData, angle=[0,0] }) => {
     .map((shape) => {
       const regionData = numData.find((region) => region.Code === shape.id);
       const color = regionData ? colorScale(nthRoot(regionData?.Emissions ?? regionData?.Tot_Emissions,3)) : 'lightgrey';
+      const countryName = shape.properties?.name ?? 'No Data'; //new
       return (
         <path
           key={shape.id}
@@ -41,6 +42,7 @@ export const Map = ({ width, height, geoData, numData, angle=[0,0] }) => {
             var label = `${regionData?.Emissions ?? regionData?.Tot_Emissions}` + " tonnes" + (regionData?.Emissions? " per person":"");
             if(!(regionData?.Emissions ?? regionData?.Tot_Emissions))
               label = "no data"
+           label = `${countryName}: ${label}`;
             setTooltip({
                   visible: true,
                   value: label,
