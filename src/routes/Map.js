@@ -35,6 +35,7 @@ function updateAngle(){
 export const StillMap = ({ width = 1000, height = 600 }) => {
     const [angle, setAngle] = React.useState([0,0]);
     const [isDragging, setIsDragging] = React.useState(false);
+    const [currentPos, setCurrentPos ] = React.useState([0,0]);
 
     function handleMouseDown(event){
       setIsDragging(true);
@@ -48,11 +49,27 @@ export const StillMap = ({ width = 1000, height = 600 }) => {
       }
     }
 
+    function handleTouchStart(event){
+      setIsDragging(true);
+      setCurrentPos([event.touches[0].clientX,event.touches[0].clientY])
+    }
+    function handleTouchEnd(event){
+      setIsDragging(false);
+    }
+    function handleTouchMove(event){
+      if(isDragging){
+        setAngle([angle[0]+(currentPos[0]-event.touches[0].clientX),angle[1]-(currentPos[1]-event.touches[0].clientY)])
+        setCurrentPos([event.touches[0].clientX,event.touches[0].clientY]);
+      }
+    }
     return (
       <div onMouseDown={handleMouseDown} 
           onMouseUp={handleMouseUp} 
-          onMouseMove={handleMouseMove}>
-        <Map geoData={geoData} numData={numDataTot} width={window.innerWidth - 0.1 * window.innerWidth} height={height} angle={angle}/>
+          onMouseMove={handleMouseMove}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onTouchMove={handleTouchMove}>
+        <Map geoData={geoData} numData={numDataTot} numData2={numDataProCapita} width={window.innerWidth - 0.1 * window.innerWidth} height={window.innerHeight/2} angle={angle}/>
       </div>
     );
   };
