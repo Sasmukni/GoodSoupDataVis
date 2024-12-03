@@ -1,7 +1,15 @@
 import '../App.css';
 import '../LinePlot';
 import { Link } from "react-router-dom";
+import {useRef} from "react";
 function Home() {
+    const assRef = useRef();
+
+    function goToAssignments(){
+      assRef.current.scrollIntoView();
+    }
+
+
     return (
       <div className="App">
         <header className="App-header py-0">
@@ -11,12 +19,12 @@ function Home() {
               <p className="lead text-secondary">By <a href="/#/aboutus"><b>Good Soup</b></a></p>
               {<p className="text-secondary">Visualizing CO₂ emmissions data</p>}
               {<p class="lead">
-                <Link class="btn btn-primary btn-lg" to="/assignment1">Check out our work!</Link>
+                <div class="btn btn-primary btn-lg" onClick={()=>goToAssignments()} to="/assignment1">Check out our work!</div>
               </p>}
             </div>
           </div>
 
-          <div id="assignments" class="row gap-4 my-5 mx-3">
+          <div id="assignments" ref= {assRef} class="row gap-4 my-5 mx-3">
             <div class="col-sm-12">
               <Link to="/assignment1" style={{ textDecoration: 'none' }}>
               <div class="card shadow-sm p-4">

@@ -68,7 +68,8 @@ export const StillMap = ({ width = 1000, height = 600 }) => {
           onMouseMove={handleMouseMove}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          onTouchMove={handleTouchMove}>
+          onTouchMove={handleTouchMove}
+          className='d-flex justify-content-center gap-3'>
         <Map geoData={geoData} numData={numDataTot} numData2={numDataProCapita} width={window.innerWidth - 0.1 * window.innerWidth} height={window.innerHeight/2} angle={angle}/>
       </div>
     );

@@ -42,8 +42,17 @@ export const Map = ({ width, height, geoData, numData, numData2 ,angle=[0,0] }) 
   else if(["EqualEarth","NaturalEarth","Equirectangular"].includes(projectionType)){
     true_angle = [angle[0],0]
   }
-  var geoDataFiltered = geoData.features.filter((shape) => shape.id !== 'ATA');
-  const projection = projectionMap[projectionType]().fitSize([width>500?width/2:width, height], geoData).rotate(true_angle);
+  var myGeoData = {};// = geoData;
+  myGeoData.type = "FeatureCollection";
+  if(projectionType==="Mercator"){
+    myGeoData.features = geoData.features.filter((shape) => shape.id !== 'ATA');
+  }else{
+    myGeoData.features = geoData.features//.filter((shape) => shape.id !== 'ATA');
+  }
+
+  var geoDataFiltered = myGeoData.features//.filter((shape) => shape.id !== 'ATA');
+  const projection = projectionMap[projectionType]()
+  .fitSize([width>500?width/2:width, height], myGeoData).rotate(true_angle);
 
   const geoPathGenerator = d3.geoPath().projection(projection);
 
