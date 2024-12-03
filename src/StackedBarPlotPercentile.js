@@ -99,6 +99,9 @@ export default function StackedBarPlotPercentile({
       <svg width={width} height={height} ref={svgRef}>
         <g ref={gx} transform={`translate(${marginLeft},0)`} />
         <g ref={gy} transform={`translate(0,${marginTop})`} />
+        <text x={(width/2)} y={10} textAnchor="middle" fontSize="12px">
+        Country's CO₂ emissions as a percentage of its continent's total
+        </text>
       </svg>
       {tooltip.visible && (
         <div style={{

@@ -25,9 +25,9 @@ export default function StackedMultipleBarPlot({
     const h = height - marginBottom;
 
     const chartGroups = [
-      { key: "Top1_Country", label: "Top1 Country", color: "orange" },
-      { key: "Top2_Country", label: "Top2 Country", color: "gold" },
-      { key: "Top3_Country", label: "Top3 Country", color: "blue" },
+      { key: "Top1_Country", label: "Top 1 Country", color: "orange" },
+      { key: "Top2_Country", label: "Top 2 Country", color: "gold" },
+      { key: "Top3_Country", label: "Top 3 Country", color: "blue" },
       { key: "Others", label: "Others Countries", color: "teal" },
     ];
 
@@ -88,7 +88,7 @@ export default function StackedMultipleBarPlot({
 
           setTooltip({
             visible: true,
-            value: `${group.key !== "Others" ? d[group.key] : group.key}: ${d[group.key.split("_")[0] + "_Emissions"]} tonnes`,
+            value: `${group.key !== "Others" ? d[group.key] : group.key}: ${Intl.NumberFormat().format(d[group.key.split("_")[0] + "_Emissions"])} tonnes`,
             x: event.pageX,
             y: event.pageY,
           });
