@@ -67,7 +67,8 @@ function AlluvialPage() {
         links: links_2022
     }
    
-    const yearOptions = [{label : 2013, value: data2013},
+    const yearOptions = [
+        {label : 2013, value: data2013},
         {label : 2014, value: data2014},
         {label : 2015, value: data2015},
         {label : 2016, value: data2016},
@@ -79,8 +80,8 @@ function AlluvialPage() {
         {label : 2022, value: data2022}
     ];
     const width = window.innerWidth - 0.1 * window.innerWidth;
-    const height = window.innerHeight * 1.1;
-    const margin = { top: 40, right: window.innerWidth < 1024 ? 20 : 80, bottom: 400, left: window.innerWidth < 1024 ? 20 : 80 };
+    const height = window.innerHeight * 1;
+    //const margin = { top: 40, right: window.innerWidth < 1024 ? 20 : 80, bottom: 400, left: window.innerWidth < 1024 ? 20 : 80 };
     const [topSelected, setTopSelected] = useState(data2022);
 
     return (
@@ -111,7 +112,7 @@ function AlluvialPage() {
                 width={width}
                 height={height}
                 data={topSelected} 
-                margin={margin}    
+                //margin={margin}    
             />
         </div>
     );
