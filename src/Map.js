@@ -30,7 +30,6 @@ export const Map = ({ width, height, geoData, numData, numData2 ,angle=[0,0] }) 
     .domain([d3.min([...numData.map(d=>nthRoot(d.Emissions??d.Tot_Emissions,3))]),0,d3.max([...numData.map(d=>nthRoot(d.Emissions??d.Tot_Emissions,3))])])
     .range(["#00FF00",'#FFFFFF', '#FF0000']);
 
-     // Scale for density, change name and see the scale
   var colorScaleDensity = d3
     .scaleLinear()
     .domain([d3.min(numData2.map(d => d.Emissions)), d3.max(numData2.map(d => d.Emissions))])
@@ -60,7 +59,7 @@ export const Map = ({ width, height, geoData, numData, numData2 ,angle=[0,0] }) 
     .map((shape) => {
       const regionData = numData.find((region) => region.Code === shape.id);
       const color = regionData ? colorScale(nthRoot(regionData?.Emissions ?? regionData?.Tot_Emissions,3)) : 'lightgrey';
-      const countryName = shape.properties?.name ?? 'No Data'; //new
+      const countryName = shape.properties?.name ?? 'No Data'; 
       return (
         <path
           key={shape.id}
@@ -89,7 +88,6 @@ export const Map = ({ width, height, geoData, numData, numData2 ,angle=[0,0] }) 
         />
       );
     })
-// Paths for density map
 const densityPaths = geoDataFiltered.map((shape) => {
   const regionData = numData2.find((region) => region.Code === shape.id);
   const color = regionData ? colorScaleDensity(regionData?.Emissions) : 'lightgrey';
@@ -126,64 +124,99 @@ const projectionOptions = Object.keys(projectionMap).map(key => (
   {label:key, value:key}
 ))
 
-return (
-  <div style={{ display: 'flex', flexDirection: 'column', width: `${width}px`, gap: '10px' }}>
-    {/* Dropdown to select projection */}
-    <div className='filters-bar d-flex justify-content-center gap-3' >
-      <Select
-        style={{ marginBottom: '10px', }}
-        className={window.innerWidth > 1024?"w-25":"w-100"}
-        defaultValue={projectionOptions.filter(o => o.value === projectionType)}
-        onChange={e => setProjectionType(e.value)}
-        options={projectionOptions}
-      />
-    </div>
-
-    <div style={{ display: 'flex', flexDirection: width>500?"row":'column', gap: '10px' }}>
-      {/* Emissions Map */}
-      <div style={{ flex: 1 }}>
-        <svg width={width>500?width/2:width} height={height}>
-          {allSvgPaths}
-        </svg>
-        {tooltip.visible && (
-          <div
-            style={{
-              position: 'absolute',
-              left: tooltip.x,
-              top: tooltip.y,
-              background: 'white',
-              border: '1px solid black',
-              padding: '5px',
-              pointerEvents: 'none',
-            }}
-          >
-            {tooltip.value}
-          </div>
-        )}
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', width: `${width}px`, gap: '10px' }}>
+      <div className='filters-bar d-flex justify-content-center gap-3'>
+        <Select
+          style={{ marginBottom: '10px' }}
+          className={window.innerWidth > 1024 ? "w-25" : "w-100"}
+          defaultValue={projectionOptions.filter(o => o.value === projectionType)}
+          onChange={(e) => setProjectionType(e.value)}
+          options={projectionOptions}
+        />
       </div>
 
-      {/* Density Map */}
-      <div style={{ flex: 1 }}>
-        <svg width={width>500?width/2:width} height={height}>
-          {densityPaths}
-        </svg>
-        {tooltip.visible && (
-          <div
-            style={{
-              position: 'absolute',
-              left: tooltip.x,
-              top: tooltip.y,
-              background: 'white',
-              border: '1px solid black',
-              padding: '5px',
-              pointerEvents: 'none',
-            }}
-          >
-            {tooltip.value}
+      <div style={{ display: 'flex', flexDirection: width > 500 ? "row" : 'column', gap: '10px' }}>
+        <div style={{ flex: 1 }}>
+          <svg width={width > 500 ? width / 2 : width} height={height}>
+            {allSvgPaths}
+          </svg>
+          {tooltip.visible && (
+            <div
+              style={{
+                position: 'absolute',
+                left: tooltip.x,
+                top: tooltip.y,
+                background: 'white',
+                border: '1px solid black',
+                padding: '5px',
+                pointerEvents: 'none',
+              }}
+            >
+              {tooltip.value}
+            </div>
+          )}
+          <div style={{ marginTop: '10px', textAlign: 'center' }}>
+            <svg width="300" height="50">
+              <defs>
+                <linearGradient id="divergent-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#00FF00" />
+                  <stop offset="20%" stopColor="#FFFFFF" />
+                  <stop offset="100%" stopColor="#FF0000" />
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="300" height="20" fill="url(#divergent-gradient)" />
+              <text x="0" y="40" fontSize="12" textAnchor="start">
+                {d3.min(numData.map(d => d.Tot_Emissions))}
+              </text>
+              <text x="150" y="40" fontSize="12" textAnchor="middle">0</text>
+              <text x="300" y="40" fontSize="12" textAnchor="end">
+                {d3.max(numData.map(d => d.Tot_Emissions))}
+              </text>
+            </svg>
+            <p>Tonnes</p>
           </div>
-        )}
+        </div>
+
+        <div style={{ flex: 1 }}>
+          <svg width={width > 500 ? width / 2 : width} height={height}>
+            {densityPaths}
+          </svg>
+          {tooltip.visible && (
+            <div
+              style={{
+                position: 'absolute',
+                left: tooltip.x,
+                top: tooltip.y,
+                background: 'white',
+                border: '1px solid black',
+                padding: '5px',
+                pointerEvents: 'none',
+              }}
+            >
+              {tooltip.value}
+            </div>
+          )}
+          <div style={{ marginTop: '10px', textAlign: 'center' }}>
+            <svg width="300" height="50">
+              <defs>
+                <linearGradient id="continuous-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#FFFFFF" />
+                  <stop offset="100%" stopColor="#FF8800" />
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="300" height="20" fill="url(#continuous-gradient)" />
+              <text x="0" y="40" fontSize="12" textAnchor="start">
+                {d3.min(numData2.map(d => d.Emissions))}
+              </text>
+              <text x="300" y="40" fontSize="12" textAnchor="end">
+                {d3.max(numData2.map(d => d.Emissions))}
+              </text>
+            </svg>
+            <p>Tonnes per person</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 };
