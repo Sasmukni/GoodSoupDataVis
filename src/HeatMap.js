@@ -30,6 +30,9 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
         const maxFossil = Math.max(...fossilValues);
         const maxLandUse = Math.max(...landUseValues);
         const maxTotal = Math.max(...totalValues);
+        const minFossil = Math.min(...fossilValues);
+        const minLandUse = Math.min(...landUseValues);
+        const minTotal = Math.min(...totalValues);
         const min = Math.min(...fossilValues, ...landUseValues, ...totalValues);
 
         const percGreenFossil = (-min / (maxFossil - min)) * 100;
@@ -149,6 +152,20 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
             .attr('height', legendHeight)
             .style('fill', 'url(#fossilGradient)');
 
+        fossilLegend.append('text')
+            .attr('x', 2)
+            .attr('y', legendHeight + 32)
+            .text(minFossil.toExponential(2) + "t")
+            .style('font-size', '10px')
+            .style('text-anchor', 'start');
+
+        fossilLegend.append('text')
+            .attr('x', (innerWidth / 3) - 2)
+            .attr('y', legendHeight + 32)
+            .text(maxFossil.toExponential(2) + "t")
+            .style('font-size', '10px')
+            .style('text-anchor', 'end');
+
         const landUseLegend = legendGroup.append('g')
             .attr('class', 'legend land-use-legend')
             .attr('transform', `translate(${innerWidth / 3}, 0)`);
@@ -166,6 +183,20 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
             .attr('width', innerWidth / 3)
             .attr('height', legendHeight)
             .style('fill', 'url(#landUseGradient)');
+        
+        landUseLegend.append('text')
+            .attr('x', 2)
+            .attr('y', legendHeight + 32)
+            .text(minLandUse.toExponential(2) + "t")
+            .style('font-size', '10px')
+            .style('text-anchor', 'start');
+
+        landUseLegend.append('text')
+            .attr('x', (innerWidth / 3) - 2)
+            .attr('y', legendHeight + 32)
+            .text(maxLandUse.toExponential(2) + "t")
+            .style('font-size', '10px')
+            .style('text-anchor', 'end');
 
         const totalLegend = legendGroup.append('g')
             .attr('class', 'legend total-legend')
@@ -184,6 +215,20 @@ function HeatMap({ data, width = 640, margin = { top: 40, right: 20, bottom: 80,
             .attr('width', innerWidth / 3)
             .attr('height', legendHeight)
             .style('fill', 'url(#totalGradient)');
+        
+        totalLegend.append('text')
+            .attr('x', 2)
+            .attr('y', legendHeight + 32)
+            .text(minTotal.toExponential(2) + "t")
+            .style('font-size', '10px')
+            .style('text-anchor', 'start');
+
+        totalLegend.append('text')
+            .attr('x', (innerWidth / 3) - 2)
+            .attr('y', legendHeight + 32)
+            .text(maxTotal.toExponential(2) + "t")
+            .style('font-size', '10px')
+            .style('text-anchor', 'end');
 
         const fossilGradient = svg.append('defs')
             .append('linearGradient')
