@@ -165,11 +165,11 @@ const projectionOptions = Object.keys(projectionMap).map(key => (
                   <stop offset="100%" stopColor="#FF0000" />
                 </linearGradient>
               </defs>
-              <rect x="0" y="0" width="300" height="20" fill="url(#divergent-gradient)" />
+              <rect x="20" y="0" width="300" height="20" fill="url(#divergent-gradient)" />
               <text x="0" y="40" fontSize="12" textAnchor="start">
                 {d3.min(numData.map(d => d.Tot_Emissions))}
               </text>
-              <text x="150" y="40" fontSize="12" textAnchor="middle">0</text>
+              <text x="80" y="40" fontSize="12" textAnchor="middle">0</text>
               <text x="300" y="40" fontSize="12" textAnchor="end">
                 {d3.max(numData.map(d => d.Tot_Emissions))}
               </text>
