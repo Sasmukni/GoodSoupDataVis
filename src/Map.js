@@ -70,7 +70,7 @@ export const Map = ({ width, height, geoData, numData, numData2 ,angle=[0,0] }) 
           fillOpacity={1}
           onMouseOver={(e)=>{
             setFocused(shape.id);
-            var label = `${regionData?.Emissions ?? regionData?.Tot_Emissions}` + " tonnes" + (regionData?.Emissions? " per person":"");
+            var label = `${regionData?.Emissions ?? Intl.NumberFormat().format(regionData?.Tot_Emissions)} tonnes ${(regionData?.Emissions? " per person":"")}`;
             if(!(regionData?.Emissions ?? regionData?.Tot_Emissions))
               label = "no data"
            label = `${countryName}: ${label}`;
@@ -126,7 +126,7 @@ const projectionOptions = Object.keys(projectionMap).map(key => (
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: `${width}px`, gap: '10px' }}>
-      <div className='filters-bar d-flex justify-content-center gap-3'>
+      <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
         <Select
           style={{ marginBottom: '10px' }}
           className={window.innerWidth > 1024 ? "w-25" : "w-100"}
@@ -138,6 +138,7 @@ const projectionOptions = Object.keys(projectionMap).map(key => (
 
       <div style={{ display: 'flex', flexDirection: width > 500 ? "row" : 'column', gap: '10px' }}>
         <div style={{ flex: 1 }}>
+          <h4 className='mb-4'>Total emissions</h4>
           <svg width={width > 500 ? width / 2 : width} height={height}>
             {allSvgPaths}
           </svg>
@@ -167,11 +168,11 @@ const projectionOptions = Object.keys(projectionMap).map(key => (
               </defs>
               <rect x="20" y="0" width="300" height="20" fill="url(#divergent-gradient)" />
               <text x="0" y="40" fontSize="12" textAnchor="start">
-                {d3.min(numData.map(d => d.Tot_Emissions))}
+                {d3.min(numData.map(d => d.Tot_Emissions)).toExponential(2)}
               </text>
               <text x="80" y="40" fontSize="12" textAnchor="middle">0</text>
               <text x="300" y="40" fontSize="12" textAnchor="end">
-                {d3.max(numData.map(d => d.Tot_Emissions))}
+                {d3.max(numData.map(d => d.Tot_Emissions)).toExponential(2)}
               </text>
             </svg>
             <p>Tonnes</p>
@@ -179,6 +180,7 @@ const projectionOptions = Object.keys(projectionMap).map(key => (
         </div>
 
         <div style={{ flex: 1 }}>
+          <h4 className='mb-4'>Per capita emissions</h4>
           <svg width={width > 500 ? width / 2 : width} height={height}>
             {densityPaths}
           </svg>
@@ -207,10 +209,10 @@ const projectionOptions = Object.keys(projectionMap).map(key => (
               </defs>
               <rect x="0" y="0" width="300" height="20" fill="url(#continuous-gradient)" />
               <text x="0" y="40" fontSize="12" textAnchor="start">
-                {d3.min(numData2.map(d => d.Emissions))}
+                {d3.min(numData2.map(d => d.Emissions)).toFixed(2)}
               </text>
               <text x="300" y="40" fontSize="12" textAnchor="end">
-                {d3.max(numData2.map(d => d.Emissions))}
+                {d3.max(numData2.map(d => d.Emissions)).toFixed(2)}
               </text>
             </svg>
             <p>Tonnes per person</p>

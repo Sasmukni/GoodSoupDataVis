@@ -87,25 +87,25 @@ function AlluvialPage() {
     return (
         <div className="App">
             <header className="text-center py-4">
-                <h1 className="display-4 fw-bold text-primary mb-3">CO₂ emissions across the globe</h1>
-                <h2 className="h5 text-secondary mt-3">Continents' 2013-2022 emissions divided by categories</h2>
+                <h1 className="display-4 fw-bold text-primary mb-3">Emissions flow</h1>
+                <h2 className="h5 text-secondary mt-3">Continents' 2013-2022 CO₂ emissions divided by categories</h2>
             </header>
 
             <div className="container my-3">
-                <h2 className="text-center mb-4 fw-semibold fs-4">Description</h2>
-                <p className="text-muted text-center fs-5 px-3">
-                    Compare fossil fuel and land-use CO₂ emissions among all continents (in tonnes) across different countries in a decade (2013-2022).
+                <h2 className="text-center mb-4 fw-semibold fs-4">Reading the visualization</h2>
+                <p className="text-muted text-start fs-5 px-3">
+                    This alluvial visualization allows you to compare fossil fuel and land-use CO₂ emissions among all continents (in tonnes) across different countries in a decade (2013-2022).
                 </p>
-            </div>
-            <div className="filters-bar d-flex justify-content-center gap-3">
-                <div className={window.innerWidth > 1024?"w-25":"w-50"}>
-                    <Select 
-                    options={yearOptions}
-                    onChange={(d)=> {
-                        setTopSelected(d.value);
-                    }} 
-                    defaultValue={yearOptions.filter(o => o.value === topSelected)}
-                    />
+                <div className="filters-bar d-flex justify-content-center gap-3">
+                    <div className={window.innerWidth > 1024?"w-25":"w-50"}>
+                        <Select 
+                        options={yearOptions}
+                        onChange={(d)=> {
+                            setTopSelected(d.value);
+                        }} 
+                        defaultValue={yearOptions.filter(o => o.value === topSelected)}
+                        />
+                    </div>
                 </div>
             </div>
             <AlluvialDiagram 

@@ -30,9 +30,9 @@ function CO2EmissionsDecade() {
       </header>
       
       <div className="container my-3">
-        <h2 className="text-center mb-4 fw-semibold fs-4">Description</h2>
-        <p className="text-muted text-center fs-5 px-3">
-          This visualization allows you to compare CO₂ emissions per capita (in tonnes) across different countries in a decade (2013-2022). You can start by viewing the top five, top ten, or top twenty emitters worldwide, and then add specific countries to create a customized comparison.
+        <h2 className="text-center mb-4 fw-semibold fs-4">Reading the visualization</h2>
+        <p className="text-muted text-start fs-5 px-3">
+          This bar plot visualization allows you to compare CO₂ emissions per capita (in tonnes) across different countries in a decade (2013-2022). You can start by viewing the top five, top ten, or top twenty emitters worldwide, and then add specific countries to create a customized comparison.
         </p>
         <div className="filters-bar d-flex justify-content-center gap-3">
           <div className={window.innerWidth > 1024?"w-25":"w-50"}>
@@ -61,6 +61,12 @@ function CO2EmissionsDecade() {
         </div>
       </div>
       <BarPlot width={window.innerWidth - 0.1 * window.innerWidth} height={600} marginRight={120} data={uniq(EmissionsData.slice(0,topSelected).concat(stateSelected))}/>
+      <div className="container my-3">
+        <h2 className="text-center my-4 fw-semibold fs-4">Understanding the data</h2>
+        <p className="text-muted text-start fs-5 px-3">
+         Per capita CO₂ emissions are typically higher in countries with a strong dependence on fossil fuels. This includes major producers like the Gulf states, wealthy nations with high energy consumption per person like Luxembourg, heavily industrialized countries such as the United States or Canada, and even small nations with significant tourism, like Trinidad and Tobago.
+        </p>
+      </div>
     </div>
     );
   }

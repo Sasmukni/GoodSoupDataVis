@@ -12,9 +12,9 @@ function StackedMultipleBarPlotPage() {
             </header>
 
             <div className="container my-3">
-                <h2 className="text-center mb-4 fw-semibold fs-4">Description</h2>
-                <p className="text-muted text-center fs-5 px-3">
-                    This visualization allows you to analyze each continent's total CO₂ emissions in tonnes, with an emphasis on the top five emitting countries.
+                <h2 className="text-center mb-4 fw-semibold fs-4">Reading the visualization</h2>
+                <p className="text-muted text-start fs-5 px-3">
+                    This stacked bar plot visualization allows you to analyze each continent's total CO₂ emissions in tonnes, with an emphasis on the top five emitting countries.
                 </p>
             </div>
             <StackedMultipleBarPlot width={window.innerWidth - 0.1 * window.innerWidth} marginRight={160} data={emissionsData.sort((a,b)=> 
