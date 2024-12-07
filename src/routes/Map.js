@@ -85,6 +85,15 @@ export const StillMap = ({ width = 1000, height = 600 }) => {
           className='d-flex justify-content-center gap-3'>
           <Map geoData={geoData} numData={numDataTot} numData2={numDataProCapita} width={window.innerWidth - 0.1 * window.innerWidth} height={window.innerHeight/2} angle={angle}/>
         </div>
+        <div className="container my-3">
+          <h2 className="text-center my-4 fw-semibold fs-4">Understanding the data</h2>
+          <p className="text-muted text-start fs-5 px-3">
+           When considering total CO₂ emissions, countries with large populations like China, the United States and Brazil stand out. 
+           When considering instead per capita CO₂ emissions, it is possible to notice that the Northern Hemisphere is responsible for most of it.
+           The main motivation could be the lifestyle, since people living in developed continents like North America and Europe, tend to consume more resources.
+           Another interesting region to analyze is the Persian Gulf, which has large per capita CO₂ emission values due to the fossil fuel production which is considerably high when compared to their small population sizes.
+          </p>
+      </div>
       </div>
     );
   };

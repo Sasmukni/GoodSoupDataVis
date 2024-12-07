@@ -94,7 +94,7 @@ function AlluvialPage() {
             <div className="container my-3">
                 <h2 className="text-center mb-4 fw-semibold fs-4">Reading the visualization</h2>
                 <p className="text-muted text-start fs-5 px-3">
-                    This alluvial visualization allows you to compare fossil fuel and land-use CO₂ emissions among all continents (in tonnes) across different countries in a decade (2013-2022).
+                    This alluvial visualization allows you to compare fossil fuel and land-use CO₂ emissions (in tonnes) of all continents across different countries in a decade (2013-2022).
                 </p>
                 <div className="filters-bar d-flex justify-content-center gap-3">
                     <div className={window.innerWidth > 1024?"w-25":"w-50"}>
@@ -114,6 +114,14 @@ function AlluvialPage() {
                 data={topSelected} 
                 //margin={margin}    
             />
+            <div className="container my-3">
+                <h2 className="text-center my-4 fw-semibold fs-4">Understanding the data</h2>
+                <p className="text-muted text-start fs-5 px-3">
+                 The continent responsible of most of the global CO₂ emissions is Asia, with a percentage of 59.62% in 2022, especially due to China, which represents most of its percentage (34.30% in 2022). Asia is also the greatest contributor in the "others" category.
+                 Alongside with China, the United States and India were consistently in the top 3 emitters. Russia, Indonesia and Brazil often appears in the top emitters as well. All these nations in the top 10 nations in terms of population size.
+                 Around 80% of the total global CO₂ emissions were fossil over the decade.
+                </p>
+            </div>
         </div>
     );
 }

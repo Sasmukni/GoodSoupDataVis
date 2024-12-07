@@ -64,7 +64,7 @@ function CO2Emissions() {
       <div className="container my-3">
         <h2 className="text-center my-4 fw-semibold fs-4">Understanding the data</h2>
         <p className="text-muted text-start fs-5 px-3">
-         Per capita CO₂ emissions are typically higher in countries with a strong dependence on fossil fuels. This includes major producers like the Gulf states, wealthy nations with high energy consumption per person like Luxembourg, heavily industrialized countries such as the United States or Canada, and even small nations with significant tourism, like Trinidad and Tobago.
+         Per capita CO₂ emissions are typically higher in countries with a strong dependence on fossil fuels. This includes major producers like the Gulf states, wealthy nations with high energy consumption per person like Luxembourg, heavily industrialized countries like Australia, and even small nations with significant tourism, like Trinidad and Tobago.
         </p>
       </div>
       <br/>

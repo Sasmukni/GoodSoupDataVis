@@ -22,7 +22,7 @@ function HeatMapPage() {
             <div className="container my-3">
                 <h2 className="text-center mb-4 fw-semibold fs-4">Reading the visualization</h2>
                 <p className="text-muted text-start fs-5 px-3">
-                    This heatmap visualization allows you to compare fossil fuel, land-use and total CO₂ emissions (in tonnes) among the top ten global emitters for 2022.
+                    This heatmap visualization allows you to compare fossil fuel, land-use and total CO₂ emissions (in tonnes) of the top ten global emitters for 2022.
                 </p>
             </div>
             <HeatMap 
@@ -33,7 +33,7 @@ function HeatMapPage() {
             <div className="container my-3">
                 <h2 className="text-center my-4 fw-semibold fs-4">Understanding the data</h2>
                 <p className="text-muted text-start fs-5 px-3">
-                Total CO₂ emissions are typically higher in countries with large populations and substantial industrial activity. Countries where land use change is a major source of emissions are often characterized by deforestation, like Brazil. In contrast, those with higher fossil fuel emissions rely heavily on oil production and/or have significant energy consumption, like the United States.
+                 Countries where land use change is a major source of emissions are often characterized by deforestation, like Brazil. In contrast, those with higher fossil fuel emissions rely heavily on oil production and/or have significant energy consumption, like the Saudi Arabia and the United States, respectively.
                 </p>
             </div>
         </div>

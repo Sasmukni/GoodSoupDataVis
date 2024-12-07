@@ -32,7 +32,7 @@ function CO2EmissionsDecade() {
       <div className="container my-3">
         <h2 className="text-center mb-4 fw-semibold fs-4">Reading the visualization</h2>
         <p className="text-muted text-start fs-5 px-3">
-          This bar plot visualization allows you to compare CO₂ emissions per capita (in tonnes) across different countries in a decade (2013-2022). You can start by viewing the top five, top ten, or top twenty emitters worldwide, and then add specific countries to create a customized comparison.
+          This bar plot visualization allows you to compare average CO₂ emissions per capita (in tonnes) across different countries over a decade (2013-2022). You can start by viewing the top five, top ten, or top twenty emitters worldwide, and then add specific countries to create a customized comparison.
         </p>
         <div className="filters-bar d-flex justify-content-center gap-3">
           <div className={window.innerWidth > 1024?"w-25":"w-50"}>
@@ -64,7 +64,9 @@ function CO2EmissionsDecade() {
       <div className="container my-3">
         <h2 className="text-center my-4 fw-semibold fs-4">Understanding the data</h2>
         <p className="text-muted text-start fs-5 px-3">
-         Per capita CO₂ emissions are typically higher in countries with a strong dependence on fossil fuels. This includes major producers like the Gulf states, wealthy nations with high energy consumption per person like Luxembourg, heavily industrialized countries such as the United States or Canada, and even small nations with significant tourism, like Trinidad and Tobago.
+         In comparison to the 2022 visualization, it is possible to notice that small countries with significant tourism were below their decade average per capita CO₂ emissions (Trinidad and Tobago, for example, went from emitting 27.22 tonnes per person to 22.42).
+         The same happened with Luxembourg, which  in 2022 emitted 11.62 tonnes of CO₂, a value which is lower than its decade average of 15.34.
+         Industrialized countries and fossil fuel producers instead kept their emissions stable over the decade.
         </p>
       </div>
     </div>

@@ -20,6 +20,12 @@ function StackedBarPlotPage() {
             <StackedBarPlot width={window.innerWidth - 0.1 * window.innerWidth} marginRight={80} data={emissionsData.sort((a,b)=> 
                 (b.Top1_Emissions + b.Top2_Emissions + b.Top3_Emissions + b.Top4_Emissions + b.Top5_Emissions + b.Others_Emissions) - 
                 (a.Top1_Emissions + a.Top2_Emissions + a.Top3_Emissions + a.Top4_Emissions + a.Top5_Emissions + a.Others_Emissions))} /> 
+            <div className="container my-3">
+                <h2 className="text-center my-4 fw-semibold fs-4">Understanding the data</h2>
+                <p className="text-muted text-start fs-5 px-3">
+                Total CO₂ emissions are typically higher in countries with large populations and substantial industrial activity, two aspects that are often correlated with each other.
+                </p>
+            </div>
         </div>
     );
 }
