@@ -13,6 +13,9 @@ import AboutUs from './routes/aboutus';
 import Assignment1 from './routes/assignment1';
 import AlluvialPage from './routes/alluvial';
 import {StillMap,RotatingMap } from './routes/Map';
+import LinechartPage from './routes/linechart';
+import RadarChartPage from './routes/radarchart';
+import RidgelinePage from './routes/ridgeline';
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -38,6 +41,9 @@ function App() {
         <Route path="/assignment1/stackedPercentile" element={<StackedBarPlotPercentilePage/>}/>
         <Route path="/alluvial" element={<AlluvialPage/>}/>
         <Route path="/map" element={<StillMap/>}/>
+        <Route path="/linechart" element={<LinechartPage/>}/>
+        <Route path="/radarchart" element={<RadarChartPage/>}/>
+        <Route path="/ridgeline" element={<RidgelinePage/>}/>
       </Routes>
     </>
   );

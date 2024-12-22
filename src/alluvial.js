@@ -224,7 +224,7 @@ const AlluvialDiagram = ({ data, width, height }) => {
             d3.select(this).attr("fill-opacity", 0.8);
 
         if (d.layer === "continent") {
-            tooltip.html(`Total Emission of ${d.name}: ${d.value} % of the total `)
+            tooltip.html(`Total Emission of ${d.name}: ${d.value.toFixed(2)} % of the total `)
                 .style("left", `${event.pageX + 5}px`)
                 .style("top", `${event.pageY - 28}px`)
                 .style("opacity", 1);
@@ -233,12 +233,12 @@ const AlluvialDiagram = ({ data, width, height }) => {
                 .filter(link => link.target === d.name)
                 .reduce((sum, link) => sum + link.value, 0);
 
-            tooltip.html(`Total ${d.name} Emissions: ${totalEmissions} % of the total`)
+            tooltip.html(`Total ${d.name} Emissions: ${totalEmissions.toFixed(2)} % of the total`)
                 .style("left", `${event.pageX + 5}px`)
                 .style("top", `${event.pageY - 28}px`)
                 .style("opacity", 1);
         }else{
-            tooltip.html(`Total Emission of ${d.name}: ${d.value} % of the total`)
+            tooltip.html(`Total Emission of ${d.name}: ${d.value.toFixed(2)} % of the total`)
                 .style("left", `${event.pageX + 5}px`)
                 .style("top", `${event.pageY - 28}px`)
                 .style("opacity", 1);
