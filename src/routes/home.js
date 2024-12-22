@@ -16,7 +16,7 @@ function Home() {
           <div class="jumbotron jumbotron-fluid">
             <div class="container">
               <h1 className="display-4 fw-bold text-primary">Final Project Name</h1>
-              <p className="lead text-secondary">By <a href="/#/aboutus"><b>Good Soup</b></a></p>
+              <p className="lead text-secondary">By <Link to="/aboutus" style={{ textDecoration: 'none' }}><b>Good Soup</b></Link></p>
               {<p className="text-secondary">Visualizing CO₂ emmissions data</p>}
               {<p class="lead">
                 <div class="btn btn-primary btn-lg" onClick={()=>goToAssignments()} to="/assignment1">Check out our work!</div>
