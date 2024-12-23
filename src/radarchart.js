@@ -12,7 +12,7 @@ function RadarChart({ data }) {
         const radius = Math.min(width, height) / 2 - margin;
 
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const years = Array.from(new Set(data.map(d => d.year))); // Get unique years
+        const years = Array.from(new Set(data.map(d => d.Year))); // Get unique years
 
         // Color scale for years
         const colorScale = d3.scaleOrdinal()
@@ -27,16 +27,16 @@ function RadarChart({ data }) {
 
         // Aggregate data by year and month
         const aggregatedData = years.map(year => {
-            const yearData = data.filter(d => d.year === year);
+            const yearData = data.filter(d => d.Year === year);
             return {
                 year,
-                data: months.map(month => {
-                    const monthData = yearData.filter(d => d.month === month);
+                data: months.map((month, i) => {
+                    const monthData = yearData.filter(d => d.Month === i + 1); // Match month number
                     return {
                         month,
-                        mean: monthData.length > 0 ? d3.mean(monthData, d => d.mean) : 0 // Average value per month if needed
+                        mean: monthData.length > 0 ? d3.mean(monthData, d => d["Average Temperature"]) : 0, // Average temperature per month
                     };
-                })
+                }),
             };
         });
 
@@ -138,6 +138,6 @@ function RadarChart({ data }) {
     }, [data]);
 
     return <svg ref={svgRef}></svg>;
-};
+}
 
 export default RadarChart;

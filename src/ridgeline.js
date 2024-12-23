@@ -9,7 +9,7 @@ function RidgelineChart({ data }) {
 
     const svg = d3.select(svgRef.current);
     const width = 800;
-    const height = 150 * data.length; // Adjust height for each year
+    const height = 6000; // Adjust height for each year
     const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
     svg.attr('width', width).attr('height', height);
@@ -17,22 +17,36 @@ function RidgelineChart({ data }) {
     const chartWidth = width - margin.left - margin.right;
     const chartHeight = 100; // Height of each ridgeline
 
+    // Extract unique years
+    const years = Array.from(new Set(data.map(d => d.Year)));
+
+    // Organize data by year
+    const groupedData = years.map(year => {
+      return {
+        year,
+        values: data
+          .filter(d => d.Year === year)
+          .flatMap(d => [d["Maximum Temperature"], d["Minimum Temperature"]]), // Use both max and min temperatures
+      };
+    });
+
     // Scale setup
     const x = d3
       .scaleLinear()
       .domain([
-        d3.min(data, (d) => d3.min(d.values)),
-        d3.max(data, (d) => d3.max(d.values))
+        d3.min(groupedData, (d) => d3.min(d.values)),
+        d3.max(groupedData, (d) => d3.max(d.values))
       ])
       .range([0, chartWidth]);
 
+    // Kernel density estimation
     const kde = (kernel, thresholds, data) =>
       thresholds.map((t) => [t, d3.mean(data, (d) => kernel(t - d))]);
 
     const kernelEpanechnikov = (k) => (v) =>
       Math.abs(v /= k) <= 1 ? (0.75 * (1 - v * v)) / k : 0;
 
-    const density = data.map((yearData) => {
+    const density = groupedData.map((yearData) => {
       const thresholds = x.ticks(40);
       return kde(kernelEpanechnikov(3), thresholds, yearData.values).map(
         ([xVal, densityVal]) => ({ x: xVal, density: densityVal })
@@ -44,7 +58,7 @@ function RidgelineChart({ data }) {
 
     const g = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-    data.forEach((yearData, i) => {
+    groupedData.forEach((yearData, i) => {
       const yDensity = d3
         .scaleLinear()
         .domain([0, d3.max(density[i], (d) => d.density)])
@@ -86,6 +100,6 @@ function RidgelineChart({ data }) {
   }, [data]);
 
   return <svg ref={svgRef}></svg>;
-};
+}
 
 export default RidgelineChart;
