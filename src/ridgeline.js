@@ -92,11 +92,17 @@ function RidgelineChart({ data }) {
       group
         .append('text')
         .attr('x', 0)
-        .attr('y', -10)
+        .attr('y', chartHeight + 30)
         .style('font-size', '12px')
         .style('font-weight', 'bold')
         .text(yearData.year);
     });
+
+    svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width/2)
+      .attr("y", height - 400)
+      .text("Fahrenheit degrees °F");
   }, [data]);
 
   return <svg ref={svgRef}></svg>;

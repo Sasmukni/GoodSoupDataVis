@@ -57,6 +57,17 @@ function Home() {
               </div>
               </Link>
             </div>
+
+            <div class="col-sm-12">
+              <Link to="/assignment4" style={{ textDecoration: 'none' }}>
+              <div class="card shadow-sm p-4">
+                <div class="card-body">
+                  <h3 class="card-title text-primary fw-semibold mb-4">Temperature</h3>
+                  <p class="card-text text-secondary">Analysis of monthly temperature time series</p>
+                </div>
+              </div>
+              </Link>
+            </div>
           </div>
         </header>
       </div>

@@ -9,7 +9,7 @@ function LineChart({ data }) {
         const width = 800;
         const height = 400;
         const margin = { top: 20, right: 30, bottom: 50, left: 50 };
-
+        const legendMargin = 50;
         // Parse data
         const parsedData = data.map(d => ({
             year: d.Year,
@@ -21,9 +21,10 @@ function LineChart({ data }) {
 
         // Group by year
         const years = Array.from(new Set(parsedData.map(d => d.year)));
-        const colorScale = d3.scaleOrdinal()
+        /*const colorScale = d3.scaleOrdinal()
             .domain(years)
-            .range(d3.schemeCategory10);
+            .range(d3.schemeCategory10);*/
+        const colorScale = d3.scaleSequential([0, years.length - 1], d3.interpolateTurbo);
 
         const xScale = d3.scalePoint()
             .domain(d3.range(1, 13)) // Mesi da 1 a 12
@@ -35,7 +36,7 @@ function LineChart({ data }) {
                 d3.max(parsedData, d => d.max),
             ])
             .nice()
-            .range([height - margin.bottom, margin.top]);
+            .range([height - margin.bottom, margin.top + legendMargin]);
 
         // Select and clear SVG
         const svg = d3.select(svgRef.current)
@@ -54,7 +55,7 @@ function LineChart({ data }) {
             .call(d3.axisLeft(yScale));
 
         // Plot lines and scatter points
-        years.forEach(year => {
+        years.forEach((year, index) => {
             const yearData = parsedData.filter(d => d.year === year);
 
             const lineGenerator = d3.line()
@@ -64,7 +65,7 @@ function LineChart({ data }) {
             svg.append("path")
                 .datum(yearData)
                 .attr("fill", "none")
-                .attr("stroke", colorScale(year))
+                .attr("stroke", d3.color(colorScale(index)).brighter(-1))
                 .attr("stroke-width", 1.5)
                 .attr("d", lineGenerator);
 
@@ -72,7 +73,7 @@ function LineChart({ data }) {
             svg.append("path")
                 .datum(yearData)
                 .attr("fill", "none")
-                .attr("stroke", d3.color(colorScale(year)).brighter(1))
+                .attr("stroke", d3.color(colorScale(index)).brighter(1))
                 .attr("stroke-width", 1.5)
                 .attr("d", lineGenerator);
 
@@ -83,7 +84,47 @@ function LineChart({ data }) {
                 .attr("cx", d => xScale(d.month))
                 .attr("cy", d => yScale(d.mean))
                 .attr("r", 4)
-                .attr("fill", colorScale(year));
+                .attr("fill", colorScale(index));
+            
+            svg.append("text")
+                .attr("text-anchor", "end")
+                .attr("x", width/2)
+                .attr("y", height - 10)
+                .text("Months");
+            
+            svg.append("text")
+                .attr("text-anchor", "end")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 20)
+                .attr("x", -height/3)
+                .text("Fahrenheit degrees °F")
+        });
+
+        // Add the legend below the radar chart
+        const legendWidth = 300;
+        const legendHeight = 20;
+        const legend = svg.append("g")
+            .attr("transform", `translate(${width/3}, ${margin.top})`);
+
+        // Add color rectangles for each year
+        years.sort().forEach((year, index) => {
+            const rectWidth = legendWidth / years.length;
+            legend.append("rect")
+                .attr("x", rectWidth * index)
+                .attr("y", 0)
+                .attr("width", rectWidth)
+                .attr("height", legendHeight)
+                .attr("fill", colorScale(index));
+
+            // Add text for extremes
+            if(index === 0 || index === years.length-1){
+                legend.append("text")
+                    .attr("x", rectWidth * index + rectWidth / 2)
+                    .attr("y", legendHeight + 12)
+                    .attr("text-anchor", "middle")
+                    .attr("fill", "black")
+                    .text(year);
+            }
         });
     }, [data]);
 

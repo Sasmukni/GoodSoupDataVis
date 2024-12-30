@@ -8,16 +8,14 @@ function RadarChart({ data }) {
         // Dimensions and margins
         const width = 600;
         const height = 600;
-        const margin = 50;
+        const margin = 100;
         const radius = Math.min(width, height) / 2 - margin;
 
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         const years = Array.from(new Set(data.map(d => d.Year))); // Get unique years
 
         // Color scale for years
-        const colorScale = d3.scaleOrdinal()
-            .domain(years)
-            .range(d3.schemeCategory10);
+        const colorScale = d3.scaleSequential([0, years.length - 1], d3.interpolateTurbo);
 
         // Scales
         const angleScale = d3.scaleBand()
@@ -105,35 +103,47 @@ function RadarChart({ data }) {
         });
 
         // Draw lines for each year
-        aggregatedData.forEach(yearData => {
+        aggregatedData.forEach((yearData, index) => {
+            const dataWithClosingPoint = [...yearData.data, yearData.data[0]];
+
             const lineGenerator = d3.lineRadial()
                 .angle(d => angleScale(d.month))
                 .radius(d => valueScale(d.mean));
 
             g.append("path")
-                .datum(yearData.data)
+                .datum(dataWithClosingPoint)
                 .attr("fill", "none")
-                .attr("stroke", colorScale(yearData.year))
+                .attr("stroke", colorScale(index))
                 .attr("stroke-width", 2)
                 .attr("d", lineGenerator);
         });
 
-        // Add legend
+        // Add the legend below the radar chart
+        const legendWidth = 300;
+        const legendHeight = 20;
+        const legendMargin = 50;
         const legend = svg.append("g")
-            .attr("transform", `translate(${width - margin * 2}, ${margin})`);
+            .attr("transform", `translate(${(width - legendWidth) / 2}, ${height - margin + legendMargin})`);
 
-        years.forEach((year, i) => {
+        // Add color rectangles for each year
+        years.sort().forEach((year, index) => {
+            const rectWidth = legendWidth / years.length;
             legend.append("rect")
-                .attr("x", 0)
-                .attr("y", i * 20)
-                .attr("width", 15)
-                .attr("height", 15)
-                .attr("fill", colorScale(year));
+                .attr("x", rectWidth * index)
+                .attr("y", 0)
+                .attr("width", rectWidth)
+                .attr("height", legendHeight)
+                .attr("fill", colorScale(index));
 
-            legend.append("text")
-                .attr("x", 20)
-                .attr("y", i * 20 + 12)
-                .text(year);
+            // Add text for extremes
+            if(index === 0 || index === years.length-1){
+                legend.append("text")
+                    .attr("x", rectWidth * index + rectWidth / 2)
+                    .attr("y", legendHeight + 12)
+                    .attr("text-anchor", "middle")
+                    .attr("fill", "black")
+                    .text(year);
+            }
         });
     }, [data]);
 

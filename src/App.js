@@ -11,8 +11,9 @@ import StackedMultipleBarPlotPage from './routes/StackedMultipleCO2Emissions';
 import StackedBarPlotPercentilePage from './routes/StackedCO2EmissionsPercentile';
 import AboutUs from './routes/aboutus';
 import Assignment1 from './routes/assignment1';
+import Assignment4 from './routes/assignment4';
 import AlluvialPage from './routes/alluvial';
-import {StillMap,RotatingMap } from './routes/Map';
+import {StillMap } from './routes/Map';
 import LinechartPage from './routes/linechart';
 import RadarChartPage from './routes/radarchart';
 import RidgelinePage from './routes/ridgeline';
@@ -20,7 +21,6 @@ import RidgelinePage from './routes/ridgeline';
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import AlluvialGraph from './alluvial';
 import BackButton from './backbutton';
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/assignment1" element={<Assignment1/>}/>
+        <Route path="/assignment4" element={<Assignment4/>}/>
         <Route path="/aboutus" element={<AboutUs/>}/>
         <Route path="/assignment1/emissions" element={<CO2Emissions />} />
         <Route path="/assignment1/emissionsDecade" element={<CO2EmissionsDecade />} />
@@ -41,9 +42,9 @@ function App() {
         <Route path="/assignment1/stackedPercentile" element={<StackedBarPlotPercentilePage/>}/>
         <Route path="/alluvial" element={<AlluvialPage/>}/>
         <Route path="/map" element={<StillMap/>}/>
-        <Route path="/linechart" element={<LinechartPage/>}/>
-        <Route path="/radarchart" element={<RadarChartPage/>}/>
-        <Route path="/ridgeline" element={<RidgelinePage/>}/>
+        <Route path="/assignment4/linechart" element={<LinechartPage/>}/>
+        <Route path="/assignment4/radarchart" element={<RadarChartPage/>}/>
+        <Route path="/assignment4/ridgeline" element={<RidgelinePage/>}/>
       </Routes>
     </>
   );

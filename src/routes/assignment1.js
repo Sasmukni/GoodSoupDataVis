@@ -1,5 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
-import LinePlot from "../LinePlot";
+import { Link } from "react-router-dom";
 
 function Assignment1() {
   return (
