@@ -13,7 +13,7 @@ function LinechartPage() {
         <div className="container my-3">
             <h2 className="text-center mb-4 fw-semibold fs-4">Reading the visualization</h2>
             <p className="text-muted text-start fs-5 px-3">
-            This linechart visualization allows you to compare average, min and max temperatures (in Fahrenheit) recorded in the state of Texas over the months and years.
+            This linechart visualization allows you to compare average, min and max temperatures (in Fahrenheit) recorded in the state of Texas over the months from 1978 to 2023.
             </p>
             <LineChart data={Data} />
         </div>
