@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/GoodSoupDataVis/static/css/main.92954d58.css",
-    "main.js": "/GoodSoupDataVis/static/js/main.4a26b6f0.js",
+    "main.css": "/GoodSoupDataVis/static/css/main.6bda5e8b.css",
+    "main.js": "/GoodSoupDataVis/static/js/main.fda530db.js",
     "static/js/453.14bbc566.chunk.js": "/GoodSoupDataVis/static/js/453.14bbc566.chunk.js",
+    "static/media/jumbotron.jpg": "/GoodSoupDataVis/static/media/jumbotron.157e8deec93b124c6ff0.jpg",
     "static/media/goodsoup-removebg.png": "/GoodSoupDataVis/static/media/goodsoup-removebg.dde3af7333072c5c5787.png",
     "index.html": "/GoodSoupDataVis/index.html",
-    "main.92954d58.css.map": "/GoodSoupDataVis/static/css/main.92954d58.css.map",
-    "main.4a26b6f0.js.map": "/GoodSoupDataVis/static/js/main.4a26b6f0.js.map",
+    "main.6bda5e8b.css.map": "/GoodSoupDataVis/static/css/main.6bda5e8b.css.map",
+    "main.fda530db.js.map": "/GoodSoupDataVis/static/js/main.fda530db.js.map",
     "453.14bbc566.chunk.js.map": "/GoodSoupDataVis/static/js/453.14bbc566.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.92954d58.css",
-    "static/js/main.4a26b6f0.js"
+    "static/css/main.6bda5e8b.css",
+    "static/js/main.fda530db.js"
   ]
 }
