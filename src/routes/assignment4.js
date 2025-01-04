@@ -9,7 +9,7 @@ function Assignment4() {
 
         <div className="container mt-5">
             <div className="row mt-3">
-                <div className="col-md-4 d-flex align-items-stretch">
+                <div className="col-md-4 d-flex align-items-stretch mb-3 mb-md-0">
                     <Link to="linechart" style={{ textDecoration: 'none', width: '100%' }}>
                     <div className="p-3 border rounded shadow-sm w-100">
                         <h3 className="h5 text-primary">Temperature timeline</h3>
@@ -18,7 +18,7 @@ function Assignment4() {
                     </Link>
                 </div>
 
-                <div className="col-md-4 d-flex align-items-stretch">
+                <div className="col-md-4 d-flex align-items-stretch mb-3 mb-md-0">
                     <Link to="radarchart" style={{ textDecoration: 'none', width: '100%' }}>
                     <div className="p-3 border rounded shadow-sm w-100">
                         <h3 className="h5 text-primary">Temperature timeline</h3>
@@ -27,7 +27,7 @@ function Assignment4() {
                     </Link>
                 </div>
 
-                <div className="col-md-4 d-flex align-items-stretch">
+                <div className="col-md-4 d-flex align-items-stretch mb-3 mb-md-0">
                     <Link to="ridgeline" style={{ textDecoration: 'none', width: '100%' }}>
                     <div className="p-3 border rounded shadow-sm w-100">
                         <h3 className="h5 text-primary">Temperature distribution</h3>

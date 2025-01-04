@@ -50,6 +50,10 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  background-image: url('jumbotron.jpg');
+  background-size: cover; /* Makes sure the image covers the entire area */
+  background-position: center center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
 }
 
 .jumbotron .container {

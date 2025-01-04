@@ -17,7 +17,7 @@ function Assignment1() {
         </div>
         <div className="container">
             <div className="row">
-                <div className="col-md-6 d-flex align-items-stretch">
+                <div className="col-md-6 d-flex align-items-stretch mb-3 mb-md-0">
                   <Link to="emissions" style={{ textDecoration: 'none', width: '100%' }}>
                     <div className="p-3 border rounded shadow-sm w-100">
                       <h3 className="h5 text-primary">CO₂ emissions per capita</h3>
@@ -26,7 +26,7 @@ function Assignment1() {
                   </Link>
                 </div>
 
-                <div className="col-md-6 d-flex align-items-stretch">
+                <div className="col-md-6 d-flex align-items-stretch mb-3 mb-md-0">
                   <Link to="emissionsDecade" style={{ textDecoration: 'none', width: '100%' }}>
                     <div className="p-3 border rounded shadow-sm w-100">
                       <h3 className="h5 text-primary">CO₂ emissions per capita (decade)</h3>
@@ -47,7 +47,7 @@ function Assignment1() {
         </div>
         <div className="container">
           <div className="row mt-3">
-          <div className="col-md-3 d-flex align-items-stretch">
+          <div className="col-md-3 d-flex align-items-stretch mb-3 mb-md-0">
             <Link to="heatmap" style={{ textDecoration: 'none', width: '100%' }}>
               <div className="p-3 border rounded shadow-sm w-100">
                 <h3 className="h5 text-primary">CO₂ emissions in total (fossil/land-use)</h3>
@@ -56,7 +56,7 @@ function Assignment1() {
             </Link>
           </div>
 
-            <div className="col-md-3 d-flex align-items-stretch">
+            <div className="col-md-3 d-flex align-items-stretch mb-3 mb-md-0">
                 <Link to="stacked" style={{ textDecoration: 'none', width: '100%' }}>
                 <div className="p-3 border rounded shadow-sm w-100">
                     <h3 className="h5 text-primary">CO₂ emissions in total</h3>
@@ -65,7 +65,7 @@ function Assignment1() {
                 </Link>
             </div>
 
-            <div className="col-md-3 d-flex align-items-stretch">
+            <div className="col-md-3 d-flex align-items-stretch mb-3 mb-md-0">
                 <Link to="stackedMultiple" style={{ textDecoration: 'none', width: '100%' }}>
                 <div className="p-3 border rounded shadow-sm w-100">
                     <h3 className="h5 text-primary">CO₂ emissions in total</h3>
@@ -74,7 +74,7 @@ function Assignment1() {
                 </Link>
             </div>
 
-            <div className="col-md-3 d-flex align-items-stretch">
+            <div className="col-md-3 d-flex align-items-stretch mb-3 mb-md-0">
                 <Link to="stackedPercentile" style={{ textDecoration: 'none', width: '100%' }}>
                 <div className="p-3 border rounded shadow-sm w-100">
                     <h3 className="h5 text-primary">CO₂ emissions in total (percentage)</h3>
