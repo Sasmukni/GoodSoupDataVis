@@ -17,6 +17,8 @@ import {StillMap } from './routes/Map';
 import LinechartPage from './routes/linechart';
 import RadarChartPage from './routes/radarchart';
 import RidgelinePage from './routes/ridgeline';
+import ProjectHome from "./project/routes/projectHome";
+import SubsidiaryPage from "./project/routes/subsidiaryPage";
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -45,6 +47,8 @@ function App() {
         <Route path="/assignment4/linechart" element={<LinechartPage/>}/>
         <Route path="/assignment4/radarchart" element={<RadarChartPage/>}/>
         <Route path="/assignment4/ridgeline" element={<RidgelinePage/>}/>
+        <Route path="/project" element={<ProjectHome/>}/>
+        <Route path="/project/NEET" element={<SubsidiaryPage/>}/>
       </Routes>
     </>
   );
