@@ -39,11 +39,8 @@ function ProjectHome() {
             </div>
             <h2>Second Section</h2>
             <div className='row'>
-                <div className='col-4'>
-                    <DonutChart/>
-                </div>
-                <div className='col-8'>
-                    <ChoroplethMap/>
+                <div className='col-12'>
+                    <ChoroplethMap width={window.innerWidth - 0.3 * window.innerWidth} height={window.innerHeight* 3/4}/>
                 </div>
             </div>
             <h2>Third Section</h2>
