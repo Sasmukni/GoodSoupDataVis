@@ -18,20 +18,22 @@ export default function PieChart({
   const svgRef = useRef();
 
   useEffect(() => {
-    const totalMaleFullTime = d3.sum(data, d => d.tot_male_full_time);
-    const totalMalePartTime = d3.sum(data, d => d.tot_male_part_time);
-    const totalFemaleFullTime = d3.sum(data, d => d.tot_female_full_time);
-    const totalFemalePartTime = d3.sum(data, d => d.tot_female_part_time);
-    const totalMales = totalMaleFullTime + totalMalePartTime;
-    const totalFemales = totalFemaleFullTime + totalFemalePartTime;
+    const totalYears = data.length;
+    const averageMaleFullTime = d3.mean(data, d => d.tot_male_full_time);
+    const averageMalePartTime = d3.mean(data, d => d.tot_male_part_time);
+    const averageFemaleFullTime = d3.mean(data, d => d.tot_female_full_time);
+    const averageFemalePartTime = d3.mean(data, d => d.tot_female_part_time);
+
+    const totalMales = averageMaleFullTime + averageMalePartTime;
+    const totalFemales = averageFemaleFullTime + averageFemalePartTime;
 
     const aggregatedMaleData = [
-      { category: "Full-Time", value: totalMaleFullTime },
-      { category: "Part-Time", value: totalMalePartTime }
+      { category: "Full-Time", value: averageMaleFullTime },
+      { category: "Part-Time", value: averageMalePartTime }
     ];
     const aggregatedFemaleData = [
-      { category: "Full-Time", value: totalFemaleFullTime },
-      { category: "Part-Time", value: totalFemalePartTime }
+      { category: "Full-Time", value: averageFemaleFullTime },
+      { category: "Part-Time", value: averageFemalePartTime }
     ];
 
     const svg = d3.select(svgRef.current)
@@ -63,7 +65,7 @@ export default function PieChart({
 
     maleGroup.append("text")
       .text("Male")
-      .attr("y", -height / 4)
+      .attr("y", -height / 3.5)
       .attr("text-anchor", "middle")
       .attr("font-size", "18px")
       .attr("fill", colors.male[0]);
@@ -82,7 +84,7 @@ export default function PieChart({
         tooltip.style("visibility", "visible")
           .style("top", `${event.pageY + 10}px`)
           .style("left", `${event.pageX + 10}px`)
-          .text(`${d.data.category}: ${d.data.value} (${percentage}%)`);
+          .text(`${d.data.category}: ${d.data.value.toFixed(2)} (${percentage}%)`);
         d3.select(this).transition().duration(200).attr("transform", liftSlice(d));
       })
       .on("mouseout", function () {
@@ -95,7 +97,7 @@ export default function PieChart({
 
     femaleGroup.append("text")
       .text("Female")
-      .attr("y", -height / 4)
+      .attr("y", -height / 3.5)
       .attr("text-anchor", "middle")
       .attr("font-size", "18px")
       .attr("fill", colors.female[0]);
@@ -114,7 +116,7 @@ export default function PieChart({
         tooltip.style("visibility", "visible")
           .style("top", `${event.pageY + 10}px`)
           .style("left", `${event.pageX + 10}px`)
-          .text(`${d.data.category}: ${d.data.value} (${percentage}%)`);
+          .text(`${d.data.category}: ${d.data.value.toFixed(2)} (${percentage}%)`);
         d3.select(this).transition().duration(200).attr("transform", liftSlice(d));
       })
       .on("mouseout", function () {
