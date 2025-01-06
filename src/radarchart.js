@@ -5,60 +5,63 @@ function RadarChart({ data }) {
     const svgRef = useRef();
 
     useEffect(() => {
-        // Dimensions and margins
         const width = 600;
         const height = 600;
         const margin = 100;
         const radius = Math.min(width, height) / 2 - margin;
 
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const years = Array.from(new Set(data.map(d => d.Year))); // Get unique years
+        const years = Array.from(new Set(data.map(d => d.Year)));
 
-        // Color scale for years
         const colorScale = d3.scaleSequential([0, years.length - 1], d3.interpolateTurbo);
 
-        // Scales
         const angleScale = d3.scaleBand()
             .domain(months)
             .range([0, 2 * Math.PI])
-            .padding(0.1); // Add padding between the months to avoid overlap
+            .padding(0.1);
 
-        // Aggregate data by year and month
         const aggregatedData = years.map(year => {
             const yearData = data.filter(d => d.Year === year);
             return {
                 year,
                 data: months.map((month, i) => {
-                    const monthData = yearData.filter(d => d.Month === i + 1); // Match month number
+                    const monthData = yearData.filter(d => d.Month === i + 1);
                     return {
                         month,
-                        mean: monthData.length > 0 ? d3.mean(monthData, d => d["Average Temperature"]) : 0, // Average temperature per month
+                        mean: monthData.length > 0 ? d3.mean(monthData, d => d["Average Temperature"]) : 0,
                     };
                 }),
             };
         });
 
-        // Determine the max mean temperature for proper scaling
         const maxMean = d3.max(aggregatedData, yearData =>
             d3.max(yearData.data, d => d.mean)
         );
 
         const valueScale = d3.scaleLinear()
-            .domain([0, maxMean]) // Set domain for all years
+            .domain([0, maxMean])
             .range([0, radius]);
 
-        // Clear previous SVG
         const svg = d3.select(svgRef.current)
             .attr("viewBox", `0 0 ${width} ${height}`)
             .style("overflow", "visible");
 
-        svg.selectAll("g").remove(); // Remove previous chart elements
+        svg.selectAll("g").remove();
 
         const g = svg.append("g")
             .attr("transform", `translate(${width / 2},${height / 2})`);
 
-        // Draw gridlines and labels
-        const gridLevels = 4; // Reduce the number of grid levels
+        const tooltip = d3.select(svgRef.current.parentNode)
+            .append("div")
+            .style("position", "absolute")
+            .style("background", "rgba(255, 255, 255, 0.8)")
+            .style("padding", "4px")
+            .style("border", "1px solid #ccc")
+            .style("border-radius", "4px")
+            .style("pointer-events", "none")
+            .style("opacity", 0);
+
+        const gridLevels = 4;
         const gridLayer = g.append("g");
 
         Array.from({ length: gridLevels }).forEach((_, i) => {
@@ -78,7 +81,6 @@ function RadarChart({ data }) {
                 .text(Math.round((r / radius) * maxMean));
         });
 
-        // Draw axes
         const axisLayer = g.append("g");
 
         months.forEach(month => {
@@ -94,7 +96,7 @@ function RadarChart({ data }) {
                 .attr("stroke", "gray");
 
             axisLayer.append("text")
-                .attr("x", x * 1.15) // Add more space here
+                .attr("x", x * 1.15)
                 .attr("y", y * 1.15)
                 .attr("text-anchor", "middle")
                 .attr("alignment-baseline", "middle")
@@ -102,7 +104,8 @@ function RadarChart({ data }) {
                 .text(month);
         });
 
-        // Draw lines for each year
+        const paths = [];
+
         aggregatedData.forEach((yearData, index) => {
             const dataWithClosingPoint = [...yearData.data, yearData.data[0]];
 
@@ -110,22 +113,48 @@ function RadarChart({ data }) {
                 .angle(d => angleScale(d.month))
                 .radius(d => valueScale(d.mean));
 
-            g.append("path")
+            const path = g.append("path")
                 .datum(dataWithClosingPoint)
                 .attr("fill", "none")
                 .attr("stroke", colorScale(index))
                 .attr("stroke-width", 2)
                 .attr("d", lineGenerator);
+
+            paths.push(path);
+
+            const points = g.selectAll(`circle-${yearData.year}`)
+                .data(yearData.data)
+                .enter()
+                .append("circle")
+                .attr("cx", d => valueScale(d.mean) * Math.sin(angleScale(d.month)))
+                .attr("cy", d => -valueScale(d.mean) * Math.cos(angleScale(d.month)))
+                .attr("r", 4)
+                .attr("fill", colorScale(index))
+                .on("mouseover", (event, d) => {
+                    tooltip.transition().duration(200).style("opacity", 1);
+                    tooltip.html(`Year: ${yearData.year}<br>Month: ${d.month}<br>Temperature: ${d.mean.toFixed(2)} °F`)
+                        .style("left", `${event.pageX + 10}px`)
+                        .style("top", `${event.pageY - 20}px`);
+
+                    paths.forEach(p => p.style("opacity", 0.2));
+                    path.style("opacity", 1);
+                })
+                .on("mousemove", (event) => {
+                    tooltip.style("left", `${event.pageX + 10}px`)
+                           .style("top", `${event.pageY - 20}px`);
+                })
+                .on("mouseout", () => {
+                    tooltip.transition().duration(200).style("opacity", 0);
+                    paths.forEach(p => p.style("opacity", 1));
+                });
         });
 
-        // Add the legend below the radar chart
         const legendWidth = 300;
         const legendHeight = 20;
         const legendMargin = 50;
         const legend = svg.append("g")
             .attr("transform", `translate(${(width - legendWidth) / 2}, ${height - margin + legendMargin})`);
 
-        // Add color rectangles for each year
         years.sort().forEach((year, index) => {
             const rectWidth = legendWidth / years.length;
             legend.append("rect")
@@ -135,7 +164,6 @@ function RadarChart({ data }) {
                 .attr("height", legendHeight)
                 .attr("fill", colorScale(index));
 
-            // Add text for extremes
             if(index === 0 || index === years.length-1){
                 legend.append("text")
                     .attr("x", rectWidth * index + rectWidth / 2)
@@ -145,6 +173,7 @@ function RadarChart({ data }) {
                     .text(year);
             }
         });
+
     }, [data]);
 
     return <svg ref={svgRef}></svg>;
