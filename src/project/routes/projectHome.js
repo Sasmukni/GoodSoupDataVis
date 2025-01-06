@@ -19,7 +19,8 @@ function ProjectHome() {
             <h2 className="h5 text-secondary mt-3">Linechart showing max, average and min temperature over time</h2>
         </header>
         <div className="container my-3">
-            <h2>First Section</h2>
+            <h2 className="text-primary fw-bold mb-3">Introduction</h2>
+            <h4>A general view of the data</h4>
             <div className='row'>
                 <div className='col-12'>
                     <StackedBarChart/>
@@ -37,13 +38,15 @@ function ProjectHome() {
                     <TreeMapChart/>
                 </div>
             </div>
-            <h2>Second Section</h2>
+            <h2 className="text-primary fw-bold mb-3">Main visualization</h2>
+            <h4>A detailed view for each European country</h4>
             <div className='row'>
                 <div className='col-12'>
                     <ChoroplethMap width={window.innerWidth - 0.3 * window.innerWidth} height={window.innerHeight* 3/4}/>
                 </div>
             </div>
-            <h2>Third Section</h2>
+            <h2 className="text-primary fw-bold mb-3">Getting into the details</h2>
+            <h4>More specific visualizations</h4>
             <div className='row'>
                 <div className='col-12'>
                     <AlluvialChart/>
@@ -57,7 +60,7 @@ function ProjectHome() {
             </div>
         </div>
         <div className="container my-3">
-            <h2 className="text-center my-4 fw-semibold fs-4">Understanding the data</h2>
+            <h2 className="text-primary fw-bold mb-3">Understanding the data</h2>
             <p className="text-muted text-start fs-5 px-3">
              As expected, the temperatures in Texas are consistently higher during the months corresponding to the Northern hemisphere summer (June to August) and decrease during winter (December to February).
              It is also possible to notice that most the recent years' temperatures were overall higher when compared to previous years, although it was not always the case.
