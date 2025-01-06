@@ -64,7 +64,7 @@ export default function StackedAreaChart({
           tooltip.style("visibility", "visible")
             .style("top", `${event.pageY + 10}px`)
             .style("left", `${event.pageX + 10}px`)
-            .text(`Year: ${year}, Females: ${value}`);
+            .text(`Year: ${year}, Females: ${Intl.NumberFormat().format(value)}`);
         }
       })
       .on("mouseout", () => tooltip.style("visibility", "hidden"));
@@ -82,7 +82,7 @@ export default function StackedAreaChart({
           tooltip.style("visibility", "visible")
             .style("top", `${event.pageY + 10}px`)
             .style("left", `${event.pageX + 10}px`)
-            .text(`Year: ${year}, Males: ${value}`);
+            .text(`Year: ${year}, Males: ${Intl.NumberFormat().format(value)}`);
         }
       })
       .on("mouseout", () => tooltip.style("visibility", "hidden"));

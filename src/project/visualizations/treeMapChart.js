@@ -94,6 +94,7 @@ export default function TreeMapChart({
       .selectAll("g")
       .data(root.leaves())
       .join("g")
+      .attr("class", "my-tree") // Apply 'my-tree' class
       .attr("transform", (d) => `translate(${d.x0},${d.y0})`);
 
     // Add rectangles for each node
@@ -107,15 +108,25 @@ export default function TreeMapChart({
         // Change color on hover
         d3.select(this).attr(
           "fill",
-          d3.color(colors[d.parent.data.name === "Male" ? 0 : 1]).brighter(-1)
+          d3.color(colors[d.parent.data.name === "Male" ? 0 : 1])
         );
 
         // Show the tooltip
         tooltip
+          .style("position", "absolute")
+          .style("background", "black")
+          .style("color", "white")
+          .style("padding", "5px")
+          .style("border-radius", "5px")
+          .style("pointer-events", "none")
           .style("opacity", 1)
-          .html(`${d.parent.data.name} - ${d.data.name}: ${d.data.value.toFixed(2)}`)
+          .html(`${d.parent.data.name} - ${d.data.name}: ${Intl.NumberFormat().format(d.data.value.toFixed(0))}`)
           .style("left", `${event.pageX + 10}px`)
           .style("top", `${event.pageY - 20}px`);
+
+        // Reduce opacity of other bars except the hovered one
+        d3.selectAll(".my-tree rect").style("opacity", 0.2);
+        d3.select(this).style("opacity", 1);
       })
       .on("mousemove", (event) => {
         // Update tooltip position
@@ -132,16 +143,19 @@ export default function TreeMapChart({
 
         // Hide the tooltip
         tooltip.style("opacity", 0);
+
+        // Reset opacity for all bars
+        d3.selectAll(".my-tree rect").style("opacity", 1); // Reset opacity
       });
 
     // Add text labels
     nodes
       .append("text")
       .attr("x", 4)
-      .attr("y", 14)
+      .attr("y", 20)
       .attr("fill", "white")
-      .style("font-size", "12px")
-      .text((d) => `${d.parent.data.name} - ${d.data.name}: ${d.data.value.toFixed(2)}`);
+      .style("font-size", "20px")
+      .text((d) => `${d.parent.data.name} - ${d.data.name}`);
   }, [width, height, colors]);
 
   return (
