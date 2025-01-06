@@ -1,30 +1,9 @@
 import * as d3 from "d3";
 import { useRef, useEffect, useState } from "react";
 import Select from "react-select";
+import studentData from "../data/Project_barchart_data";
 
 export default function HorizontalBarChart({
-  data = [
-    { nation: "Türkiye", tot_females: 35874640 },
-    { nation: "United Kingdom", tot_females: 19151118 },
-    { nation: "France", tot_females: 17184408 },
-    { nation: "Germany", tot_females: 15167897 },
-    { nation: "Spain", tot_females: 13569595 },
-    { nation: "Italy", tot_females: 12283927 },
-    { nation: "Poland", tot_females: 11963447 },
-    { nation: "Netherlands", tot_females: 5167361 },
-    { nation: "Belgium", tot_females: 4596883 },
-    { nation: "Greece", tot_females: 3703638 },
-    { nation: "Romania", tot_females: 3480525 },
-    { nation: "Sweden", tot_females: 2883439 },
-    { nation: "Portugal", tot_females: 2330086 },
-    { nation: "Finland", tot_females: 2313678 },
-    { nation: "Czechia", tot_females: 2305125 },
-    { nation: "Austria", tot_females: 2290963 },
-    { nation: "Hungary", tot_females: 2033894 },
-    { nation: "Norway", tot_females: 1934306 },
-    { nation: "Denmark", tot_females: 1775822 },
-    { nation: "Switzerland", tot_females: 1761003 },
-  ],
   width = 800,
   height = 600,
   marginTop = 50,
@@ -34,15 +13,16 @@ export default function HorizontalBarChart({
   colors = ["pink"],
 }) {
   const svgRef = useRef();
-  const [topCount, setTopCount] = useState(10); // Default to top 10
+  const tooltipRef = useRef(); // Ref for the tooltip
+  const [topCount, setTopCount] = useState(5);
   const [additionalCountries, setAdditionalCountries] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
-  // Update filtered data whenever `topCount` or `additionalCountries` changes
+  // Update filtered data whenever the top countries or additional categories changes
   useEffect(() => {
-    const sortedData = [...data].sort((a, b) => b.tot_females - a.tot_females);
+    const sortedData = [...studentData].sort((a, b) => b.tot_females - a.tot_females);
     const topData = sortedData.slice(0, topCount);
-    const additionalData = data.filter((d) =>
+    const additionalData = studentData.filter((d) =>
       additionalCountries.includes(d.nation)
     );
 
@@ -93,27 +73,41 @@ export default function HorizontalBarChart({
 
     // Append bars
     chart
-      .selectAll(".bar")
+      .selectAll(".my-bar")
       .data(filteredData)
       .join("rect")
-      .attr("class", "bar")
+      .attr("class", "my-bar")
       .attr("y", (d) => yScale(d.nation))
       .attr("x", 0)
       .attr("height", yScale.bandwidth())
       .attr("width", (d) => xScale(d.tot_females))
       .attr("fill", colors[0])
       .on("mouseover", function (event, d) {
-        d3.select(this).attr("fill", d3.color("pink").brighter(-1));
-        const tooltip = svg
-          .append("text")
-          .attr("x", event.pageX - marginLeft)
-          .attr("y", event.pageY - marginTop - 10)
-          .attr("class", "tooltip")
-          .text(`${d.nation}: ${d.tot_females}`);
+        // Change opacity of bars only in this specific chart
+        d3.selectAll(".my-bar").style("opacity", 0.2);
+        d3.select(this).style("opacity", 1);
+
+        // Show the tooltip
+        const tooltip = d3.select(tooltipRef.current);
+        tooltip
+          .style("position", "absolute")
+          .style("background", "black")
+          .style("color", "white")
+          .style("padding", "5px")
+          .style("border-radius", "5px")
+          .style("pointer-events", "none")
+          .style("opacity", 1)
+          .html(`<strong>${d.nation}</strong><br/>Females: ${Intl.NumberFormat().format(d.tot_females)}`)
+          .style("left", `${event.pageX + 10}px`)
+          .style("top", `${event.pageY - 20}px`);
       })
       .on("mouseout", function () {
-        d3.select(this).attr("fill", colors[0]);
-        svg.selectAll(".tooltip").remove();
+        // Reset the opacity for all bars
+        d3.selectAll(".my-bar").style("opacity", 1);
+
+        // Hide the tooltip
+        const tooltip = d3.select(tooltipRef.current);
+        tooltip.style("opacity", 0);
       });
   }, [filteredData, width, height, marginTop, marginRight, marginBottom, marginLeft, colors]);
 
@@ -123,7 +117,7 @@ export default function HorizontalBarChart({
     { value: 20, label: "Top 20" },
   ];
 
-  const stateOptions = data.map((d) => ({
+  const stateOptions = studentData.map((d) => ({
     value: d.nation,
     label: d.nation,
   }));
@@ -135,7 +129,7 @@ export default function HorizontalBarChart({
           <div className={window.innerWidth > 1024 ? "w-25" : "w-50"}>
             <Select
               options={topOptions}
-              defaultValue={topOptions[1]} // Default to Top 10
+              defaultValue={topOptions[0]}
               onChange={(e) => {
                 setTopCount(Number(e.value));
               }}
@@ -156,7 +150,23 @@ export default function HorizontalBarChart({
           </div>
         </div>
       </div>
+
       <svg ref={svgRef} width={width} height={height}></svg>
+
+      <div
+        ref={tooltipRef}
+        style={{
+          position: "absolute",
+          background: "#333",
+          color: "#fff",
+          padding: "5px 10px",
+          borderRadius: "4px",
+          fontSize: "12px",
+          pointerEvents: "none",
+          opacity: 0,
+          transition: "opacity 0.2s",
+        }}
+      ></div>
     </div>
   );
 }
