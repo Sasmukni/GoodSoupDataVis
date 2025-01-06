@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import studentData from '../data/Project_piechart_data';
 
 export default function PieChart({
@@ -16,13 +16,18 @@ export default function PieChart({
   }
 }) {
   const svgRef = useRef();
+  const [selectedYear, setSelectedYear] = useState("average");
+
+  const years = ["average", ...new Set(data.map(d => d.year.toString()))];
 
   useEffect(() => {
-    const totalYears = data.length;
-    const averageMaleFullTime = d3.mean(data, d => d.tot_male_full_time);
-    const averageMalePartTime = d3.mean(data, d => d.tot_male_part_time);
-    const averageFemaleFullTime = d3.mean(data, d => d.tot_female_full_time);
-    const averageFemalePartTime = d3.mean(data, d => d.tot_female_part_time);
+    const filteredData = selectedYear === "average" ? data : data.filter(d => d.year.toString() === selectedYear);
+    const totalYears = filteredData.length;
+
+    const averageMaleFullTime = d3.mean(filteredData, d => d.tot_male_full_time);
+    const averageMalePartTime = d3.mean(filteredData, d => d.tot_male_part_time);
+    const averageFemaleFullTime = d3.mean(filteredData, d => d.tot_female_full_time);
+    const averageFemalePartTime = d3.mean(filteredData, d => d.tot_female_part_time);
 
     const totalMales = averageMaleFullTime + averageMalePartTime;
     const totalFemales = averageFemaleFullTime + averageFemalePartTime;
@@ -39,6 +44,8 @@ export default function PieChart({
     const svg = d3.select(svgRef.current)
       .attr("width", width)
       .attr("height", height);
+
+    svg.selectAll("g").remove(); // Clear previous content
 
     const tooltip = d3.select("body")
       .append("div")
@@ -127,7 +134,21 @@ export default function PieChart({
     return () => {
       tooltip.remove();
     };
-  }, [data, width, height, colors]);
+  }, [data, width, height, colors, selectedYear]);
 
-  return <svg ref={svgRef} />;
+  return (
+    <div style={{ textAlign: "center" }}>
+      <label htmlFor="year-select">Select Year: </label>
+      <select
+        id="year-select"
+        value={selectedYear}
+        onChange={(e) => setSelectedYear(e.target.value)}
+      >
+        {years.map(year => (
+          <option key={year} value={year}>{year}</option>
+        ))}
+      </select>
+      <svg ref={svgRef} />
+    </div>
+  );
 }
