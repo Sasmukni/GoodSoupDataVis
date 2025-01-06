@@ -42,7 +42,7 @@ function ProjectHome() {
             <h4>A detailed view for each European country</h4>
             <div className='row'>
                 <div className='col-12'>
-                    <ChoroplethMap width={window.innerWidth - 0.3 * window.innerWidth} height={window.innerHeight* 3/4}/>
+                    <ChoroplethMap width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 3/4}/>
                 </div>
             </div>
             <h2 className="text-primary fw-bold mb-3">Getting into the details</h2>
