@@ -15,7 +15,7 @@ export default function BubbleChart({
   const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
   const [hoveredCircle, setHoveredCircle] = useState(null);
   const [selectedYear, setSelectedYear] = useState(2013);
-  
+
   const bubbleData = numData.filter(d => d.year === selectedYear).map(d => ({
     nation: d.nation,
     femaleDoctoral: d.fem_doctoral_type
@@ -30,50 +30,10 @@ export default function BubbleChart({
     .domain([0, d3.max(bubbleData, d => d.femaleDoctoral)])
     .range([0, 50]);
 
-  const allSvgPaths = filteredGeoData.map((shape) => {
-    const countryName = shape.properties?.NAME_ENGL ?? 'No Data';
-    const bubble = bubbleData.find(d => d.nation === countryName);
-   
-    const bubbleSize = bubble ? sizeScale(bubble.femaleDoctoral) : 0;
-    const centroid = geoPathGenerator.centroid(shape); 
-
-    const adjustedX = Math.max(marginLeft, Math.min(width - marginRight, centroid[0]));
-    const adjustedY = Math.max(marginTop, Math.min(height - marginBottom, centroid[1]));
-
-    return (
-      <g key={shape.id}>
-        <path
-          d={geoPathGenerator(shape.geometry)}
-          stroke={focused === countryName ? "black" : "lightgrey"}
-          strokeWidth={focused === countryName ? 1 : 0.5}
-          fill="lightgrey"
-          fillOpacity={1}
-        />
-        {bubbleSize > 0 && (
-          <circle
-            cx={adjustedX}
-            cy={adjustedY}
-            r={bubbleSize}
-            fill="purple"
-            fillOpacity={hoveredCircle === countryName ? 2 : 0.6}
-            onMouseOver={(e) => {
-              setHoveredCircle(countryName);
-              setTooltip({
-                visible: true,
-                value: `${countryName}: ${bubble.femaleDoctoral} women in doctoral level`,
-                x: e.pageX,
-                y: e.pageY
-              });
-            }}
-            onMouseLeave={() => {
-              setHoveredCircle(null);
-              setTooltip({ ...tooltip, visible: false });
-            }}
-          />
-        )}
-      </g>
-    );
-  });
+  const opacityScale = d3.scaleLinear()
+    .domain([0, d3.max(bubbleData, d => d.femaleDoctoral)])
+    .range([0.3, 1]);
+  
 
   return (
     <div style={{ flex: 1 }}>
@@ -95,7 +55,49 @@ export default function BubbleChart({
 
       {/* SVG to render the map and bubbles */}
       <svg width={width} height={height}>
-        {allSvgPaths}
+        <g>
+          {filteredGeoData.map((shape) => (
+            <path
+              key={shape.id}
+              d={geoPathGenerator(shape.geometry)}
+              stroke={focused === shape.properties.NAME_ENGL ? "black" : "lightgrey"}
+              strokeWidth={focused === shape.properties.NAME_ENGL ? 1 : 0.5}
+              fill="lightgrey"
+              fillOpacity={1}
+            />
+          ))}
+        </g>
+        <g>
+          {bubbleData.map(({ nation, femaleDoctoral }) => {
+            const shape = filteredGeoData.find((d) => d.properties.NAME_ENGL === nation);
+            if (!shape) return null;
+            const centroid = geoPathGenerator.centroid(shape);
+            const bubbleSize = sizeScale(femaleDoctoral);
+            return (
+              <circle
+                key={nation}
+                cx={centroid[0]}
+                cy={centroid[1]}
+                r={bubbleSize}
+                fill="purple"
+                fillOpacity={opacityScale(femaleDoctoral)}
+                onMouseOver={(e) => {
+                  setHoveredCircle(nation);
+                  setTooltip({
+                    visible: true,
+                    value: `${nation}: ${femaleDoctoral} women in doctoral level`,
+                    x: e.pageX,
+                    y: e.pageY,
+                  });
+                }}
+                onMouseLeave={() => {
+                  setHoveredCircle(null);
+                  setTooltip({ ...tooltip, visible: false });
+                }}
+              />
+            );
+          })}
+        </g>
       </svg>
 
       {/* Tooltip */}

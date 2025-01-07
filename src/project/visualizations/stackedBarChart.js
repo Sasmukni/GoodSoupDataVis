@@ -14,10 +14,9 @@ export default function StackedBarChart({
   const svgRef = useRef();
   const [category, setCategory] = useState("gender");
   const [selectedYear, setSelectedYear] = useState(2013);
-
-  const margin = { top: marginTop, right: marginRight, bottom: marginBottom, left: marginLeft };
-  const innerWidth = width - margin.left - margin.right;
-  const innerHeight = height - margin.top - margin.bottom;
+;
+  const innerWidth = width - marginLeft - marginRight;
+  const innerHeight = height - marginTop - marginBottom;
 
   const colorScheme = {
     gender: ["blue", "pink"],
@@ -122,10 +121,10 @@ export default function StackedBarChart({
     svg
       .append("g")
       .attr("transform", `translate(0,0)`)
-      .call(d3.axisLeft(yScale).tickSize(0)) // Aggiunta tickSize per evitare linee di separazione tra le etichette
+      .call(d3.axisLeft(yScale).tickSize(0))
       .selectAll("text")
       .style("text-anchor", "end")
-      .style("font-size", "12px"); // Modificata la dimensione del testo per adattarsi meglio
+      .style("font-size", "12px");
 
     svg
       .append("g")
@@ -137,10 +136,10 @@ export default function StackedBarChart({
       .selectAll("text")
       .data(filteredData)
       .join("text")
-      .attr("x", -5)
+      .attr("x", (d) => xScale(0) )
       .attr("y", (d) => yScale(d.nation) + yScale.bandwidth() / 2)
       .attr("dy", ".35em")
-      .attr("text-anchor", "end") // Allineato a destra per un miglior posizionamento
+      .attr("text-anchor", "start")
       .style("font-size", "12px")
       .text((d) => d.nation);
 
@@ -195,7 +194,7 @@ export default function StackedBarChart({
         </select>
       </div>
       <svg ref={svgRef} width={width} height={height}>
-        <g transform={`translate(${margin.left},${margin.top})`} />
+        <g transform={`translate(${marginLeft},${marginTop})`} />
       </svg>
     </div>
   );
