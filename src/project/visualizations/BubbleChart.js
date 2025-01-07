@@ -1,82 +1,119 @@
 import * as d3 from "d3";
-
-import {useState} from "react";
+import { useState } from "react";
 import { geoData } from "../data/europegeodata";
-import  numData from "../data/Project_secondsection_data.json";
+import numData from "../data/Project_secondsection_data.json";
 
 export default function BubbleChart({
-  data = [230,420,690,880,400],
-  width = 640,
-  height = 400,
+  width = 800,
+  height = 800,
   marginTop = 20,
   marginRight = 30,
   marginBottom = 30,
   marginLeft = 10,
-  colors = ["steelblue"]
 }) {
   const [focused, setFocused] = useState(null);
   const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
-  var nations = numData.map(d => d.nation);
-  var newGeoData = geoData;
-  newGeoData.features = newGeoData.features.filter((feat)=> nations.includes(feat.properties.NAME_ENGL));
-  var myGeoData = newGeoData.features;
-  const projection = d3.geoMercator().fitSize([width, height], newGeoData);///.center([0,62]).scale(500)//.
+  const [hoveredCircle, setHoveredCircle] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(2013);
+  
+  const bubbleData = numData.filter(d => d.year === selectedYear).map(d => ({
+    nation: d.nation,
+    femaleDoctoral: d.fem_doctoral_type
+  }));
+
+  const nations = bubbleData.map(d => d.nation);
+  const filteredGeoData = geoData.features.filter((feat) => nations.includes(feat.properties.NAME_ENGL));
+  const projection = d3.geoMercator().fitSize([width - marginLeft - marginRight, height - marginTop - marginBottom], geoData);
   const geoPathGenerator = d3.geoPath().projection(projection);
-  const allSvgPaths = myGeoData.sort((a,b)=> {if(a.properties.NAME_ENGL === focused) return 1; if (b.properties.NAME_ENGL === focused) return -1; return a.properties.NAME_ENGL-b.properties.NAME_ENGL})
-    .map((shape) => {
-      //const regionData = data.find((region) => region.Code === shape.id);
-      const color =  'lightgrey';//regionData ? colorScale(nthRoot(regionData?.Emissions ?? regionData?.Tot_Emissions,3)) :
-      const countryName = shape.properties?.NAME_ENGL ?? 'No Data'; 
-      return (
+
+  const sizeScale = d3.scaleSqrt()
+    .domain([0, d3.max(bubbleData, d => d.femaleDoctoral)])
+    .range([0, 50]);
+
+  const allSvgPaths = filteredGeoData.map((shape) => {
+    const countryName = shape.properties?.NAME_ENGL ?? 'No Data';
+    const bubble = bubbleData.find(d => d.nation === countryName);
+   
+    const bubbleSize = bubble ? sizeScale(bubble.femaleDoctoral) : 0;
+    const centroid = geoPathGenerator.centroid(shape); 
+
+    const adjustedX = Math.max(marginLeft, Math.min(width - marginRight, centroid[0]));
+    const adjustedY = Math.max(marginTop, Math.min(height - marginBottom, centroid[1]));
+
+    return (
+      <g key={shape.id}>
         <path
-          key={shape.id}
           d={geoPathGenerator(shape.geometry)}
-          stroke={focused === shape.properties.NAME_ENGL? "black": "lightGrey"}
-          strokeWidth={focused === shape.properties.NAME_ENGL? 1: 0.5}
-          fill={color}
+          stroke={focused === countryName ? "black" : "lightgrey"}
+          strokeWidth={focused === countryName ? 1 : 0.5}
+          fill="lightgrey"
           fillOpacity={1}
-          onMouseOver={(e)=>{
-            setFocused(shape.properties.NAME_ENGL);
-            var label = "CIAO";
-            /*var label = `${regionData?.Emissions ?? Intl.NumberFormat().format(regionData?.Tot_Emissions)} tonnes ${(regionData?.Emissions? " per person":"")}`;
-            if(!(regionData?.Emissions ?? regionData?.Tot_Emissions))
-              label = "no data"*/
-           label = `${countryName}: ${label}`;
-            setTooltip({
-                  visible: true,
-                  value: label,
-                  x: e.pageX,
-                  y: e.pageY
-              });
-          }}
-          onMouseLeave={(e)=>{
-            setFocused(null);
-            setTooltip({ ...tooltip, visible: false });
-          }}
         />
-      );
-    })
+        {bubbleSize > 0 && (
+          <circle
+            cx={adjustedX}
+            cy={adjustedY}
+            r={bubbleSize}
+            fill="purple"
+            fillOpacity={hoveredCircle === countryName ? 2 : 0.6}
+            onMouseOver={(e) => {
+              setHoveredCircle(countryName);
+              setTooltip({
+                visible: true,
+                value: `${countryName}: ${bubble.femaleDoctoral} women in doctoral level`,
+                x: e.pageX,
+                y: e.pageY
+              });
+            }}
+            onMouseLeave={() => {
+              setHoveredCircle(null);
+              setTooltip({ ...tooltip, visible: false });
+            }}
+          />
+        )}
+      </g>
+    );
+  });
+
   return (
-     <div style={{ flex: 1 }}>
-          <h4 className='mb-4'>Third Grade Students in Europe</h4>
-          <svg width={width} height={height}>
-            {allSvgPaths}
-          </svg>
-          {tooltip.visible && (
-            <div
-              style={{
-                position: 'absolute',
-                left: tooltip.x,
-                top: tooltip.y,
-                background: 'white',
-                border: '1px solid black',
-                padding: '5px',
-                pointerEvents: 'none',
-              }}
-            >
-              {tooltip.value}
-            </div>
-          )}
+    <div style={{ flex: 1 }}>
+      <h4 className="mb-4">Female Doctoral Students in Europe (Bubble Chart)</h4>
+
+      {/* Year Selector */}
+      <div>
+        <label htmlFor="yearSelect">Select Year: </label>
+        <select
+          id="yearSelect"
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(Number(e.target.value))}
+        >
+          {Array.from({ length: 10 }, (_, i) => 2013 + i).map((year) => (
+            <option key={year} value={year}>{year}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* SVG to render the map and bubbles */}
+      <svg width={width} height={height}>
+        {allSvgPaths}
+      </svg>
+
+      {/* Tooltip */}
+      {tooltip.visible && (
+        <div
+          style={{
+            position: "absolute",
+            left: tooltip.x,
+            top: tooltip.y,
+            background: "white",
+            border: "1px solid black",
+            padding: "5px",
+            pointerEvents: "none",
+          }}
+        >
+          {tooltip.value}
         </div>
+      )}
+    </div>
   );
 }
