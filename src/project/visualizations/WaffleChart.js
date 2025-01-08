@@ -79,8 +79,8 @@ export default function WaffleChart({
         .text(`${label}: ${percentage.toFixed(1)}%`);
     };
 
-    createWaffle(maleFullSquares, malePartialSquare, malePercentage, totalSquares, marginLeft, colors[0], "Male NEET");
-    createWaffle(femaleFullSquares, femalePartialSquare, femalePercentage, totalSquares, width / 2 + marginLeft + 20, colors[1], "Female NEET");
+    createWaffle(maleFullSquares, malePartialSquare, malePercentage, totalSquares, marginLeft -12 , colors[0], "Male NEET");
+    createWaffle(femaleFullSquares, femalePartialSquare, femalePercentage, totalSquares, width / 2+ 5, colors[1], "Female NEET");
   }, [data, width, height, marginTop, marginRight, marginBottom, marginLeft, colors, grayColor, rows, columns]);
 
   return (
