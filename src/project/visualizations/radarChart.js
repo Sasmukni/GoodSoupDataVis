@@ -1,60 +1,30 @@
 import * as d3 from "d3";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import studentData from '../data/Project_radarchart_data';
 
-function calculateMeanMale(data) {
-  // Initialize an object to hold the totals for each category
-  const totals = {
-    short_cycle: 0,
-    bachelor: 0,
-    master: 0,
-    doctoral: 0,
-  };
-
-  // Iterate through the data to sum up the values for each category
-  data.forEach((entry) => {
-    totals.short_cycle += entry.tot_male_short_cycle;
-    totals.bachelor += entry.tot_male_bachelor;
-    totals.master += entry.tot_male_master;
-    totals.doctoral += entry.tot_male_doctoral;
-  });
+function calculateMeanMale(data, selectedYear) {
+  const filteredData = selectedYear === "average" ? data : data.filter(d => d.year.toString() === selectedYear);
 
   // Calculate the mean for each category
-  const yearsCount = data.length;
   const means = {
-    short_cycle_mean: totals.short_cycle / yearsCount,
-    bachelor_mean: totals.bachelor / yearsCount,
-    master_mean: totals.master / yearsCount,
-    doctoral_mean: totals.doctoral / yearsCount,
+    short_cycle_mean: d3.mean(filteredData, d => d.tot_male_short_cycle),
+    bachelor_mean: d3.mean(filteredData, d => d.tot_male_bachelor),
+    master_mean: d3.mean(filteredData, d => d.tot_male_master),
+    doctoral_mean: d3.mean(filteredData, d => d.tot_male_doctoral)
   };
 
   return [means.short_cycle_mean, means.bachelor_mean, means.master_mean, means.doctoral_mean];
 }
 
-function calculateMeanFemale(data) {
-  // Initialize an object to hold the totals for each category
-  const totals = {
-    short_cycle: 0,
-    bachelor: 0,
-    master: 0,
-    doctoral: 0,
-  };
-
-  // Iterate through the data to sum up the values for each category
-  data.forEach((entry) => {
-    totals.short_cycle += entry.tot_fem_short_cycle;
-    totals.bachelor += entry.tot_fem_bachelor;
-    totals.master += entry.tot_fem_master;
-    totals.doctoral += entry.tot_fem_doctoral;
-  });
+function calculateMeanFemale(data, selectedYear) {
+  const filteredData = selectedYear === "average" ? data : data.filter(d => d.year.toString() === selectedYear);
 
   // Calculate the mean for each category
-  const yearsCount = data.length;
   const means = {
-    short_cycle_mean: totals.short_cycle / yearsCount,
-    bachelor_mean: totals.bachelor / yearsCount,
-    master_mean: totals.master / yearsCount,
-    doctoral_mean: totals.doctoral / yearsCount,
+    short_cycle_mean: d3.mean(filteredData, d => d.tot_fem_short_cycle),
+    bachelor_mean: d3.mean(filteredData, d => d.tot_fem_bachelor),
+    master_mean: d3.mean(filteredData, d => d.tot_fem_master),
+    doctoral_mean: d3.mean(filteredData, d => d.tot_fem_doctoral)
   };
 
   return [means.short_cycle_mean, means.bachelor_mean, means.master_mean, means.doctoral_mean];
@@ -71,8 +41,11 @@ export default function RadarChart({
 }) {
   const svgRef = useRef();
 
-  const dataMale = calculateMeanMale(studentData);
-  const dataFem = calculateMeanFemale(studentData);
+  const [selectedYear, setSelectedYear] = useState("average");
+  const years = ["average", ...new Set(studentData.map(d => d.year.toString()))];
+
+  const dataMale = calculateMeanMale(studentData, selectedYear);
+  const dataFem = calculateMeanFemale(studentData, selectedYear);
   const labels = ["Short Cycle", "Bachelor", "Master", "Doctoral"];
 
   useEffect(() => {
@@ -226,6 +199,18 @@ export default function RadarChart({
   }, [width, height, marginTop, marginRight, marginBottom, marginLeft, colors]);
 
   return (
-    <svg ref={svgRef} width={width} height={height}></svg>
+    <>
+      <label htmlFor="year-select">Select Year: </label>
+      <select
+          id="year-select"
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(e.target.value)}
+        >
+        {years.map(year => (
+          <option key={year} value={year}>{year}</option>
+        ))}
+      </select>
+      <svg ref={svgRef} width={width} height={height}></svg>
+    </>
   );
 }

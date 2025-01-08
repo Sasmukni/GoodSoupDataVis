@@ -1,30 +1,16 @@
 import * as d3 from "d3";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import studentData from "../data/Project_treemapchart_data";
 
-function calculteMean(data) {
-  const totals = {
-    fem_public_sector: 0,
-    male_public_sector: 0,
-    fem_private_sector: 0,
-    male_private_sector: 0,
-  };
-
-  // Iterate through the data to sum up the values for each category
-  data.forEach((entry) => {
-    totals.fem_public_sector += entry.fem_public_sector;
-    totals.male_public_sector += entry.male_public_sector;
-    totals.fem_private_sector += entry.fem_private_sector;
-    totals.male_private_sector += entry.male_private_sector;
-  });
+function calculteMean(data, selectedYear) {
+  const filteredData = selectedYear === "average" ? data : data.filter(d => d.year.toString() === selectedYear);
 
   // Calculate the mean for each category
-  const yearsCount = data.length;
   const means = {
-    fem_public_sector_mean: totals.fem_public_sector / yearsCount,
-    male_public_sector_mean: totals.male_public_sector / yearsCount,
-    fem_private_sector_mean: totals.fem_private_sector / yearsCount,
-    male_private_sector_mean: totals.male_private_sector / yearsCount,
+    fem_public_sector_mean: d3.mean(filteredData, d => d.fem_public_sector),
+    male_public_sector_mean: d3.mean(filteredData, d => d.male_public_sector),
+    fem_private_sector_mean: d3.mean(filteredData, d => d.fem_private_sector),
+    male_private_sector_mean: d3.mean(filteredData, d => d.male_private_sector),
   };
 
   const newData = {
@@ -61,8 +47,11 @@ export default function TreeMapChart({
   const svgRef = useRef();
   const tooltipRef = useRef();
 
+  const [selectedYear, setSelectedYear] = useState("average");
+  const years = ["average", ...new Set(studentData.map(d => d.year.toString()))];
+
   useEffect(() => {
-    const data = calculteMean(studentData);
+    const data = calculteMean(studentData, selectedYear);
 
     // Clear previous render
     d3.select(svgRef.current).selectAll("*").remove();
@@ -160,6 +149,16 @@ export default function TreeMapChart({
 
   return (
     <>
+      <label htmlFor="year-select">Select Year: </label>
+      <select
+        id="year-select"
+        value={selectedYear}
+        onChange={(e) => setSelectedYear(e.target.value)}
+      >
+        {years.map(year => (
+          <option key={year} value={year}>{year}</option>
+        ))}
+      </select>
       <svg ref={svgRef}></svg>
       <div
         ref={tooltipRef}

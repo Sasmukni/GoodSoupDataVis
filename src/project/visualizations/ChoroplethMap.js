@@ -47,7 +47,7 @@ export default function ChoroplethMap({
           fillOpacity={1}
           onMouseOver={(e)=>{
             setFocused(shape.properties.NAME_ENGL);
-            var label = `${regionData?.tot_students} total students`;
+            var label = `${Intl.NumberFormat().format(regionData?.tot_students)} total students`;
             if(!(regionData?.tot_students))
               label = "no data"
             label = `${countryName}: ${label}`;

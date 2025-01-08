@@ -15,9 +15,9 @@ function Home() {
         <header className="App-header py-0">
           <div class="jumbotron jumbotron-fluid">
             <div class="container">
-              <h1 className="display-4 fw-bold text-primary">Final Project Name</h1>
+              <h1 className="display-4 fw-bold text-primary">Global Warming in Data</h1>
               <p className="lead text-secondary">By <Link to="/aboutus" style={{ textDecoration: 'none' }}><b>Good Soup</b></Link></p>
-              {<p className="text-secondary">Visualizing CO₂ emmissions data</p>}
+              {<p className="text-secondary">Visualizing CO₂ emmissions and temperatures</p>}
               {<p class="lead">
                 <div class="btn btn-primary btn-lg" onClick={()=>goToAssignments()} to="/assignment1">Check out our work!</div>
               </p>}

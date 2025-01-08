@@ -85,7 +85,7 @@ export default function BubbleChart({
                   setHoveredCircle(nation);
                   setTooltip({
                     visible: true,
-                    value: `${nation}: ${femaleDoctoral} women in doctoral level`,
+                    value: `${nation}: ${Intl.NumberFormat().format(femaleDoctoral)} women in doctoral level`,
                     x: e.pageX,
                     y: e.pageY,
                   });
