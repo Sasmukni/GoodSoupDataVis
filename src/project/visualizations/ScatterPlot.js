@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import { useRef, useState, useEffect } from "react";
-import studentData from "../data/Project_scatterplot_data.json"; // Assuming data is in JSON format
+import studentData from "../data/Project_scatterplot_data.json";
 
 export default function ScatterPlot({
   width = 640,
@@ -12,11 +12,11 @@ export default function ScatterPlot({
   colors = ["steelblue"]
 }) {
   const svgRef = useRef();
-  const [year, setYear] = useState(2013); // State for selected year
+  const [year, setYear] = useState(2013);
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
-    svg.selectAll("*").remove(); // Clear previous renderings
+    svg.selectAll("*").remove();
 
     const filteredData = studentData.filter(d => d.year === year);
 
@@ -48,7 +48,7 @@ export default function ScatterPlot({
 
     svg.append("text")
       .attr("x", -height / 2)
-      .attr("y", marginLeft - 30)
+      .attr("y", marginLeft - 31)
       .attr("transform", "rotate(-90)")
       .attr("text-anchor", "middle")
       .style("font-size", "12px")
@@ -65,30 +65,32 @@ export default function ScatterPlot({
       .append("title")
       .text(d => `${d.nation}: Males ${d.tot_males}%, Females ${d.tot_females}%`);
 
-    // Hover effect: Darken the hovered circle and fade others
-    circles
+    svg.selectAll("circle")
       .on("mouseover", function (event, d) {
         d3.selectAll("circle")
-          .attr("fill", (d) => (d === event.target.__data__ ? "darkslateblue" : "lightsteelblue"));
+          .transition().duration(200)
+          .attr("opacity", 0.3);
         d3.select(this)
+          .transition().duration(200)
+          .attr("opacity", 1)
           .attr("fill", "darkslateblue");
         svg.append("text")
           .attr("id", "tooltip")
           .attr("x", width / 2)
           .attr("y", height - 10)
           .attr("text-anchor", "middle")
-          .style("font-size", "14px")
-          .text(d.nation);
+          .style("font-size", "14px");          
       })
       .on("mouseout", function () {
         d3.selectAll("circle")
-          .attr("fill", colors[0]); // Reset to original color
+          .transition().duration(200)
+          .attr("opacity", 1)
+          .attr("fill", colors[0]);
         d3.select("#tooltip").remove();
       });
 
   }, [width, height, marginTop, marginRight, marginBottom, marginLeft, year, colors]);
 
-  // Year selection handler
   const handleYearChange = (event) => {
     setYear(Number(event.target.value));
   };

@@ -8,7 +8,7 @@ export default function Histogram({
   height = 400,
   marginTop = 20,
   marginRight = 30,
-  marginBottom = 30,
+  marginBottom = 80,
   marginLeft = 50,
   colors = ["steelblue", "orange"],
 }) {
@@ -47,7 +47,7 @@ export default function Histogram({
     const tooltip = d3.select("body").append("div")
       .style("position", "absolute")
       .style("background", "#f9f9f9")
-      .style("border", "1px solid #d3d3d3")
+      .style("border", "1px white")
       .style("padding", "5px")
       .style("display", "none")
       .style("pointer-events", "none");
@@ -97,7 +97,7 @@ export default function Histogram({
 
     svg.append("text")
       .attr("x", width / 2)
-      .attr("y", height - marginBottom + 20) // Aumentato per spostare il testo più in basso
+      .attr("y", height - marginBottom + 55)
       .attr("text-anchor", "middle")
       .text("NEET Percentage Bins (10% intervals)");
 

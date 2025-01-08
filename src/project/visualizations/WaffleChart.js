@@ -85,18 +85,20 @@ export default function WaffleChart({
 
   return (
     <div>
-      <label htmlFor="year-selector">Select Year: </label>
-      <select
-        id="year-selector"
-        value={selectedYear}
-        onChange={(e) => setSelectedYear(Number(e.target.value))}
-      >
-        {studentData.map((d) => (
-          <option key={d.year} value={d.year}>
-            {d.year}
-          </option>
-        ))}
-      </select>
+      <div style={{ marginBottom: "10px" }}>
+        <label htmlFor="year-selector">Select Year: </label>
+        <select
+          id="year-selector"
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(Number(e.target.value))}
+        >
+          {studentData.map((d) => (
+            <option key={d.year} value={d.year}>
+              {d.year}
+            </option>
+          ))}
+        </select>
+      </div>
       <svg ref={svgRef} width={width} height={height + 50} />
     </div>
   );
