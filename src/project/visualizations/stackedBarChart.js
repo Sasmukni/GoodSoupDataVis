@@ -7,9 +7,9 @@ export default function StackedBarChart({
   width = 800,
   height = 400,
   marginTop = 20,
-  marginRight = 50,
+  marginRight = 100,
   marginBottom = 30,
-  marginLeft = 150
+  marginLeft = 100
 }) {
   const svgRef = useRef();
   const [category, setCategory] = useState("gender");
@@ -92,7 +92,8 @@ export default function StackedBarChart({
       .attr("y", (d) => yScale(d.data.nation))
       .attr("x", (d) => xScale(d[0]))
       .attr("width", (d) => xScale(d[1]) - xScale(d[0]))
-      .attr("height", yScale.bandwidth());
+      .attr("height", yScale.bandwidth())
+      .attr("transform", `translate(${marginLeft},0)`);
 
     rects
       .on("mousemove", (event, d) => {
@@ -120,7 +121,7 @@ export default function StackedBarChart({
 
     svg
       .append("g")
-      .attr("transform", `translate(0,0)`)
+      .attr("transform", `translate(${marginLeft},0)`)
       .call(d3.axisLeft(yScale).tickSize(0))
       .selectAll("text")
       .style("text-anchor", "end")
@@ -128,24 +129,12 @@ export default function StackedBarChart({
 
     svg
       .append("g")
-      .attr("transform", `translate(0,${innerHeight})`)
+      .attr("transform", `translate(${marginLeft},${innerHeight})`)
       .call(d3.axisBottom(xScale).tickSizeOuter(0));
-
-    svg
-      .append("g")
-      .selectAll("text")
-      .data(filteredData)
-      .join("text")
-      .attr("x", (d) => xScale(0) )
-      .attr("y", (d) => yScale(d.nation) + yScale.bandwidth() / 2)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "start")
-      .style("font-size", "12px")
-      .text((d) => d.nation);
 
     const legend = svg
       .append("g")
-      .attr("transform", `translate(${innerWidth + 10}, 0)`);
+      .attr("transform", `translate(${innerWidth + marginLeft + 10}, 0)`);
 
     legend
       .selectAll("rect")

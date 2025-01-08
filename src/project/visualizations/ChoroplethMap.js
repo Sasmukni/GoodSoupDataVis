@@ -3,6 +3,7 @@ import {useState} from "react";
 import { geoData } from "../data/europegeodata";
 import  numData from "../data/Project_secondsection_data.json";
 import Select from "react-select";
+import MapSubsection from "./MapSubsection";
 //import { geoData } from "../../data/geodata";
 
 export default function ChoroplethMap({
@@ -84,7 +85,7 @@ export default function ChoroplethMap({
           <div className='row' style={{width:width}}>
             <div className='col-4' style={{border:"1px solid",borderRadius:"25px", marginTop:"20px", marginBottom:"20px", height:height}}>
               {selected?
-                <div>TO DO: {selected}</div>
+                <div><MapSubsection data={yearFilteredNumData.filter(d => d.nation === selected)} nation={selected}/></div>
                 :
                 <div className="align-middle">
                   Click on a nation to see details

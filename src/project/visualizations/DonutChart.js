@@ -9,22 +9,22 @@ export default function DonutChart({
   marginBottom = 30,
   marginLeft = 10,
   colors = ["pink", "blue"],
+  data = [
+    { label: "Female", value: 600 },
+    { label: "Male", value: 400 }, 
+  ]
 }) {
   const svgRef = useRef();
   const tooltipRef = useRef();
 
   useEffect(() => {
-    // Fake data for the ratio of male and female students
-    const data = [
-      { label: "Female", value: 600 },
-      { label: "Male", value: 400 }, 
-    ];
-
     const totalStudents = data.reduce((acc, curr) => acc + curr.value, 0);
 
     // Create SVG canvas
-    const svg = d3.select(svgRef.current)
-      .attr("width", width)
+    const svg = d3.select(svgRef.current);
+      svg.selectAll("*").remove();
+      
+    svg.attr("width", width)
       .attr("height", height)
       .style("font-family", "sans-serif");
 
