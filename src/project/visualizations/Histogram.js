@@ -24,13 +24,20 @@ export default function Histogram({
     const innerWidth = width - marginLeft - marginRight;
     const innerHeight = height - marginTop - marginBottom;
 
-    const maleData = filteredData.map((d) => d.tot_males);
-    const femaleData = filteredData.map((d) => d.tot_females);
+    const maleData = filteredData.map((d) => ({ value: d.tot_males, nation: d.nation }));
+    const femaleData = filteredData.map((d) => ({ value: d.tot_females, nation: d.nation }));
 
     const binThresholds = d3.range(0, 101, 10);
 
-    const maleBins = d3.histogram().domain([0, 100]).thresholds(binThresholds)(maleData);
-    const femaleBins = d3.histogram().domain([0, 100]).thresholds(binThresholds)(femaleData);
+    const maleBins = d3.bin()
+      .value(d => d.value)
+      .domain([0, 100])
+      .thresholds(binThresholds)(maleData);
+
+    const femaleBins = d3.bin()
+      .value(d => d.value)
+      .domain([0, 100])
+      .thresholds(binThresholds)(femaleData);
 
     const xScale = d3.scaleBand()
       .domain(binThresholds.map((d, i) => `${d}-${binThresholds[i + 1] || 100}%`))
@@ -47,7 +54,7 @@ export default function Histogram({
     const tooltip = d3.select("body").append("div")
       .style("position", "absolute")
       .style("background", "#f9f9f9")
-      .style("border", "1px white")
+      .style("border", "1px solid white")
       .style("padding", "5px")
       .style("display", "none")
       .style("pointer-events", "none");
@@ -62,7 +69,8 @@ export default function Histogram({
       .attr("height", (d) => innerHeight - yScale(d.length))
       .attr("fill", colors[0])
       .on("mouseover", (event, d) => {
-        tooltip.style("display", "block").html(`Male: ${d.length}`);
+        const nationList = d.map(item => item.nation).join(", ");
+        tooltip.style("display", "block").html(`Male: ${d.length}<br>Countries: ${nationList}`);
       })
       .on("mousemove", (event) => {
         tooltip.style("left", `${event.pageX + 5}px`).style("top", `${event.pageY - 28}px`);
@@ -79,7 +87,8 @@ export default function Histogram({
       .attr("height", (d) => innerHeight - yScale(d.length))
       .attr("fill", colors[1])
       .on("mouseover", (event, d) => {
-        tooltip.style("display", "block").html(`Female: ${d.length}`);
+        const nationList = d.map(item => item.nation).join(", ");
+        tooltip.style("display", "block").html(`Female: ${d.length}<br>Countries: ${nationList}`);
       })
       .on("mousemove", (event) => {
         tooltip.style("left", `${event.pageX + 5}px`).style("top", `${event.pageY - 28}px`);
