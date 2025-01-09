@@ -10,6 +10,7 @@ import PieChart from '../visualizations/pieChart';
 import TreeMapChart from '../visualizations/treeMapChart';
 import DonutChart from '../visualizations/DonutChart';
 import ChoroplethMap from '../visualizations/ChoroplethMap';
+import GaugeChart from '../visualizations/GaugeChart';
 
 function ProjectHome() {
     return(
@@ -33,6 +34,9 @@ function ProjectHome() {
                 </div>
                 <div className='col-12'>
                     <PieChart/>
+                </div>
+                <div className='col-12'>
+                    <GaugeChart/>
                 </div>
                 <div className='col-12'>
                     <TreeMapChart/>
