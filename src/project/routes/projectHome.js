@@ -76,10 +76,10 @@ function ProjectHome() {
             </div>
             <div className='barrier'></div>
             <div className='row'>
-                <div className='col-12'>
-                    <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.12 * window.innerWidth} height={window.innerHeight* 4/10}/>
+                <div className='col-8'>
+                    <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 4/10}/>
                 </div>
-                <div className='col_4'>
+                <div className='col-4'>
                     <p>
                         Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                         Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
@@ -88,12 +88,10 @@ function ProjectHome() {
                         Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.
                         Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                         Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.
                     </p>
                 </div>
             </div>
+            <div className='barrier'></div>
             <div className='row'>
                 <div className='col-12'>
                     <RadarChart colors={colorsType}/>
