@@ -8,6 +8,30 @@ import MultipleStackedBarchart from '../visualizations/MultipleStackedBarChart';
 import GaugeChart from '../visualizations/GaugeChart';
 import ChoroplethMap from '../visualizations/ChoroplethMap';
 
+const colorsType = {
+    Neutral: "#D6D6D7",
+    Males: "#0AD3FF",
+    Females: "#FFC3F5",
+    "Males-opaque": "#00B7E0",
+    "Females-opaque": "#FF85EB",
+    "Full time": "#fedb72",
+    "Part time": "#DB504A",
+    "Short cycle" : "#D7F2BA",
+    Bachelor : "#BDE4A8",
+    Master : "#679436",
+    Doctoral : "#45503B",
+    Public: "#cff27e",
+    Private: "#faa300",
+    Privategovdep: "#e57c04",
+    Privategovind: "#ff6201",
+    Nation1 : "#E3F2FD",//used in d3scale function nation1 > nation2 
+    Nation2 : "#0D47A1",
+    male: ["#0AD3FF","#0D47A1"],
+    female: ["#FFC3F5", "purple"],
+    gender: ["#0AD3FF", "#FFC3F5"],
+    arc: ["#D6D6D7", "red"]
+}
+
 function SubsidiaryPage() {
     return(
     <div className="App">
@@ -20,29 +44,29 @@ function SubsidiaryPage() {
             <h4>A general view of the data</h4>
             <div className='row'>
                 <div className='col-12'>
-                    <WaffleChart/>
+                    <WaffleChart colors={colorsType}/>
                 </div>
                 <div className='col-12'>
-                    <Histogram/>
+                    <Histogram colors={colorsType}/>
                 </div>
                 <div className='col-12'>
-                    <ScatterPlot/>
+                    <ScatterPlot colors={colorsType}/>
                 </div>
                 <div className='col-12'>
-                    <DualLineChart/>
+                    <DualLineChart colors={colorsType}/>
                 </div>
                 <div className='col-12'>
-                    <MultipleStackedBarchart/>
+                    <MultipleStackedBarchart colors={colorsType}/>
                 </div>
             </div>
             <h2 className="text-primary fw-bold mb-3">Main visualization</h2>
             <h4>A detailed view for each European country</h4>
             <div className='row'>
                 <div className='col-4'>
-                    <GaugeChart/>
+                    <GaugeChart colors={colorsType}/>
                 </div>
                 <div className='col-8'>
-                    <ChoroplethMap/>
+                    <ChoroplethMap colors={colorsType}/>
                 </div>
             </div>
         </div>

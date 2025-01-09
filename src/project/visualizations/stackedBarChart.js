@@ -9,7 +9,8 @@ export default function StackedBarChart({
   marginTop = 20,
   marginRight = 100,
   marginBottom = 30,
-  marginLeft = 100
+  marginLeft = 100,
+  colors = ["pink"]
 }) {
   const svgRef = useRef();
   const [category, setCategory] = useState("gender");
@@ -19,10 +20,10 @@ export default function StackedBarChart({
   const innerHeight = height - marginTop - marginBottom;
 
   const colorScheme = {
-    gender: ["blue", "pink"],
-    sector: ["green", "orange"],
-    workingTime: ["green", "orange"],
-    educationLevel: ["green", "orange", "red", "purple"]
+    gender: [colors["Males"], colors["Females"]],
+    sector: [colors["Public"], colors["Private"]],
+    workingTime: [colors["Full time"], colors["Part time"]],
+    educationLevel: [colors["Short cycle"], colors["Bachelor"], colors["Master"], colors["Doctoral"]]
   };
 
   useEffect(() => {

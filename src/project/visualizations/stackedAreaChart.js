@@ -9,7 +9,7 @@ export default function StackedAreaChart({
   marginRight = 30,
   marginBottom = 30,
   marginLeft = 60,
-  colors = ["blue", "pink"]
+  colors = ["blue"]
 }) {
   const svgRef = useRef();
 
@@ -53,7 +53,7 @@ export default function StackedAreaChart({
 
     svg.append("path")
       .datum(data)
-      .attr("fill", colors[1])
+      .attr("fill", colors["Females"])
       .attr("d", femaleArea)
       .on("mousemove", (event, d) => {
         const [x] = d3.pointer(event);
@@ -71,7 +71,7 @@ export default function StackedAreaChart({
 
     svg.append("path")
       .datum(data)
-      .attr("fill", colors[0])
+      .attr("fill", colors["Males"])
       .attr("d", maleArea)
       .on("mousemove", (event, d) => {
         const [x] = d3.pointer(event);
@@ -103,7 +103,7 @@ export default function StackedAreaChart({
       .attr("y", 0)
       .attr("width", 20)
       .attr("height", 20)
-      .attr("fill", colors[0]);
+      .attr("fill", colors["Males"]);
 
     legend.append("text")
       .attr("x", 30)
@@ -117,7 +117,7 @@ export default function StackedAreaChart({
       .attr("y", 30)
       .attr("width", 20)
       .attr("height", 20)
-      .attr("fill", colors[1]);
+      .attr("fill", colors["Females"]);
 
     legend.append("text")
       .attr("x", 30)
