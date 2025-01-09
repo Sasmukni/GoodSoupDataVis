@@ -119,12 +119,12 @@ export default function Heatmap({
   
           const totalLegend = legendGroup.append('g')
               .attr('class', 'legend total-legend')
-              .attr('transform', `translate(${2 * (innerWidth / 3)}, 0)`);
+              .attr('transform', `translate(${1 * (innerWidth / 3)}, 0)`);
   
           totalLegend.append('text')
               .attr('x', 0)
               .attr('y', +15) 
-              .text('Total')
+              .text('Students')
               .style('font-size', '12px')
               .style('font-weight', 'bold');
   
@@ -138,14 +138,14 @@ export default function Heatmap({
           totalLegend.append('text')
               .attr('x', 2)
               .attr('y', legendHeight + 32)
-              .text(minValue + " students")
+              .text(minValue)
               .style('font-size', '10px')
               .style('text-anchor', 'start');
   
           totalLegend.append('text')
               .attr('x', (innerWidth / 3) - 2)
               .attr('y', legendHeight + 32)
-              .text(maxValue+" students")
+              .text(maxValue)
               .style('font-size', '10px')
               .style('text-anchor', 'end');
   

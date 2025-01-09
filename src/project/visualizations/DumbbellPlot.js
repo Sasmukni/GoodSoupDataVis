@@ -75,7 +75,7 @@ export default function DumbbellPlot({
       .attr("cx", (d) => xScale(d.value1))
       .attr("cy", (d) => yScale(d.gender) + yScale.bandwidth() / 2)
       .attr("r", 6)
-      .attr("fill", colors["Part time"]);
+      .attr("fill", colors[0]);
 
     // Circles for value2
     chartGroup
@@ -85,7 +85,7 @@ export default function DumbbellPlot({
       .attr("cx", (d) => xScale(d.value2))
       .attr("cy", (d) => yScale(d.gender) + yScale.bandwidth() / 2)
       .attr("r", 6)
-      .attr("fill", colors["Full time"]);
+      .attr("fill", colors[1]);
 
     // Labels for value1
     chartGroup
@@ -93,7 +93,7 @@ export default function DumbbellPlot({
       .data(data)
       .join("text")
       .attr("x", (d) => xScale(d.value1) - 10)
-      .attr("y", (d) => yScale(d.gender) + yScale.bandwidth() / 2)
+      .attr("y", (d) => yScale(d.gender) + 5 + yScale.bandwidth() / 2)
       .attr("dy", "0.35em")
       .attr("text-anchor", "end")
       .style("font-size", "10px")
@@ -105,7 +105,7 @@ export default function DumbbellPlot({
       .data(data)
       .join("text")
       .attr("x", (d) => xScale(d.value2) + 10)
-      .attr("y", (d) => yScale(d.gender) + yScale.bandwidth() / 2)
+      .attr("y", (d) => yScale(d.gender) + 5 + yScale.bandwidth() / 2)
       .attr("dy", "0.35em")
       .attr("text-anchor", "start")
       .style("font-size", "10px")

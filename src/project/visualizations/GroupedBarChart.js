@@ -64,7 +64,7 @@ export default function GroupedBarChart({
         .join("rect")
         .attr("class", "grouped-bar")
         .attr("y", (d) => yScale(d.level) + ySubScale(d.group))
-        .attr("x", 0)
+        .attr("x", 1)
         .attr("height", ySubScale.bandwidth())
         .attr("width", (d) => xScale(d.value))
         .attr("fill", (d)=> d.group==="Female"?colors[0]:colors[1])
