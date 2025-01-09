@@ -3,8 +3,8 @@ import { useRef, useEffect } from "react";
 import studentData from '../data/Project_stackedareachart_data';
 
 export default function StackedAreaChart({
-  width = 640,
-  height = 400,
+  width = 600,
+  height = 300,
   marginTop = 20,
   marginRight = 30,
   marginBottom = 30,
