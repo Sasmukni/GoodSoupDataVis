@@ -10,11 +10,7 @@ export default function PieChart({
   marginRight = 30,
   marginBottom = 30,
   marginLeft = 10,
-  colors = {
-    male: ["blue", "lightblue"],
-    female: ["pink", "purple"]
-  }
-}) {
+  colors = ["pink"]}) {
   const svgRef = useRef();
   const [selectedYear, setSelectedYear] = useState("average");
 

@@ -27,7 +27,7 @@ import links_2022 from '../data/Project_alluvial_links_2022_data.json'
 export default function AlluvialChart({
   data = [230,420,690,880,400],
   width = 1040,
-  height = 600,
+  height = 700,
   marginTop = 20,
   marginRight = 60,
   marginBottom = 10,

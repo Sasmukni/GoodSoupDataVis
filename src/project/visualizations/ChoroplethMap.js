@@ -85,7 +85,7 @@ export default function ChoroplethMap({
           <div className='row' style={{width:width}}>
             <div className='col-4' style={{border:"1px solid",borderRadius:"25px", marginTop:"20px", marginBottom:"20px", height:height}}>
               {selected?
-                <div><MapSubsection data={yearFilteredNumData.filter(d => d.nation === selected)} nation={selected}/></div>
+                <div><MapSubsection data={yearFilteredNumData.filter(d => d.nation === selected)} nation={selected} width={width * 1/3}/></div>
                 :
                 <div className="align-middle">
                   Click on a nation to see details

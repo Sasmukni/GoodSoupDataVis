@@ -61,7 +61,7 @@ export default function ScatterPlot({
       .attr("cx", d => xScale(d.tot_males))
       .attr("cy", d => yScale(d.tot_females))
       .attr("r", 5)
-      .attr("fill", colors[0])
+      .attr("fill", colors["Nation2"])
       .append("title")
       .text(d => `${d.nation}: Males ${d.tot_males}%, Females ${d.tot_females}%`);
 
@@ -85,7 +85,7 @@ export default function ScatterPlot({
         d3.selectAll("circle")
           .transition().duration(200)
           .attr("opacity", 1)
-          .attr("fill", colors[0]);
+          .attr("fill", colors["Nation2"]);
         d3.select("#tooltip").remove();
       });
 

@@ -10,6 +10,7 @@ export default function BubbleChart({
   marginRight = 30,
   marginBottom = 30,
   marginLeft = 10,
+  colors = ["pink"]
 }) {
   const [focused, setFocused] = useState(null);
   const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
@@ -62,7 +63,7 @@ export default function BubbleChart({
               d={geoPathGenerator(shape.geometry)}
               stroke={focused === shape.properties.NAME_ENGL ? "black" : "lightgrey"}
               strokeWidth={focused === shape.properties.NAME_ENGL ? 1 : 0.5}
-              fill="lightgrey"
+              fill={colors["Neutral"]}
               fillOpacity={1}
             />
           ))}
@@ -79,7 +80,7 @@ export default function BubbleChart({
                 cx={centroid[0]}
                 cy={centroid[1]}
                 r={bubbleSize}
-                fill="purple"
+                fill={"purple"}
                 fillOpacity={opacityScale(femaleDoctoral)}
                 onMouseOver={(e) => {
                   setHoveredCircle(nation);
