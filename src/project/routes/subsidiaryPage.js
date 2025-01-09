@@ -7,6 +7,7 @@ import DualLineChart from '../visualizations/DualLineChart';
 import MultipleStackedBarchart from '../visualizations/MultipleStackedBarChart';
 import GaugeChart from '../visualizations/GaugeChart';
 import ChoroplethMap from '../visualizations/ChoroplethMap';
+import ChoroplethMapNEET from '../visualizations/ChoroplethMapNEET';
 
 const colorsType = {
     Neutral: "#D6D6D7",
@@ -62,11 +63,8 @@ function SubsidiaryPage() {
             <h2 className="text-primary fw-bold mb-3">Main visualization</h2>
             <h4>A detailed view for each European country</h4>
             <div className='row'>
-                <div className='col-4'>
-                    <GaugeChart colors={colorsType}/>
-                </div>
                 <div className='col-8'>
-                    <ChoroplethMap colors={colorsType}/>
+                    <ChoroplethMapNEET width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 3/4} colors={colorsType}/>
                 </div>
             </div>
         </div>

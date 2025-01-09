@@ -15,7 +15,7 @@ export default function GaugeChart({
     svg.selectAll("*").remove();
 
     const radius = Math.min(width, height) / 2 - 10;
-    const innerRadius = radius * 0.8;
+    const innerRadius = radius * 0.7;
 
     const centerX = width/2;
     const centerY = height/2;
@@ -86,7 +86,7 @@ export default function GaugeChart({
 
     svg.append("text")
       .attr("x", centerX)
-      .attr("y", centerY)
+      .attr("y", centerY-50)
       .attr("text-anchor", "middle")
       .style("font-size", "15px")
       .style("font-weight", "bold")
@@ -110,13 +110,13 @@ export default function GaugeChart({
     svg.append("path")
       .attr("d", backgroundArcFemale())
       .attr("fill", colors.arc[0])
-      .attr("transform", `translate(${centerX + 2*radius},${centerY})`);
+      .attr("transform", `translate(${centerX },${centerY+ radius})`);
 
     // Active gauge arc
     svg.append("path")
       .attr("d", arcFemale())
       .attr("fill", colors.gender[1])
-      .attr("transform", `translate(${centerX + 2*radius},${centerY})`)
+      .attr("transform", `translate(${centerX },${centerY+ radius})`)
       .on("mouseover", function (event, d) {
         // Show tooltip
         tooltip
@@ -138,25 +138,25 @@ export default function GaugeChart({
 
      // Red vertical line at 50%
      svg.append("line")
-       .attr("x1", centerX + 2*radius)
-       .attr("y1", centerY - radius)
-       .attr("x2", centerX + 2*radius)
-       .attr("y2", (radius - innerRadius) * 2)
+       .attr("x1", centerX)
+       .attr("y1", centerY)
+       .attr("x2", centerX)
+       .attr("y2", radius + (radius - innerRadius) * 2)
        .attr("stroke", colors.arc[1])
        .attr("stroke-width", 2)
        .attr("stroke-dasharray", "4,2");
     
     // Percentage labels
     svg.append("text")
-      .attr("x", centerX + 2*radius)
-      .attr("y", (radius - innerRadius) * 2 + 10)
+      .attr("x", centerX )
+      .attr("y", radius + (radius - innerRadius) * 2 + 10)
       .attr("text-anchor", "middle")
       .style("font-size", "10px")
       .text("50%");
  
     svg.append("text")
-      .attr("x", centerX + 2*radius)
-      .attr("y", centerY)
+      .attr("x", centerX)
+      .attr("y", centerY + radius - 30)
       .attr("text-anchor", "middle")
       .style("font-size", "15px")
       .style("font-weight", "bold")
