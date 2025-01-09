@@ -5,7 +5,7 @@ export default function DonutChart({
   width = 640,
   height = 400,
   marginTop = 20,
-  marginRight = 30,
+  marginRight = 10,
   marginBottom = 30,
   marginLeft = 10,
   colors = ["pink", "blue"],
