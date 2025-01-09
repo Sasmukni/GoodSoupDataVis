@@ -11,6 +11,7 @@ export default function GaugeChart({
   },
 }) {
   const svgRef = useRef();
+  const tooltipRef = useRef();
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
@@ -35,21 +36,41 @@ export default function GaugeChart({
       .startAngle(-Math.PI / 2)
       .endAngle(Math.PI / 2);
 
-    // Append the gauge background
+    // Gauge background
     svg.append("path")
       .attr("d", backgroundArc())
       .attr("fill", colors.arc[0])
       .attr("transform", `translate(${centerX},${centerY})`);
 
-    // Append the active gauge arc
+    // Select the tooltip element
+    const tooltip = d3.select(tooltipRef.current);
+
+    // Active gauge arc
     svg.append("path")
       .attr("d", arc())
       .attr("fill", colors.gender[0])
-      .attr("transform", `translate(${centerX},${centerY})`);
-
- 
-     // Append the red vertical marker line at 50%
-     svg.append("line")
+      .attr("transform", `translate(${centerX},${centerY})`)
+      .on("mouseover", function (event, d) {
+        // Show tooltip
+        tooltip
+          .style("position", "absolute")
+          .style("background", "black")
+          .style("color", "white")
+          .style("padding", "5px")
+          .style("border-radius", "5px")
+          .style("pointer-events", "none")
+          .style("opacity", 1)
+          .text(`Male: ${data.male}%`)
+          .style("left", `${event.pageX + 10}px`)
+          .style("top", `${event.pageY - 20}px`);;
+      })
+      .on("mouseout", function (event, d) {
+        // Hide the tooltip
+        tooltip.style("opacity", 0);
+      });
+      
+    // Red vertical line at 50%
+    svg.append("line")
        .attr("x1", centerX)
        .attr("y1", centerY - radius)
        .attr("x2", centerX)
@@ -58,7 +79,7 @@ export default function GaugeChart({
        .attr("stroke-width", 2)
        .attr("stroke-dasharray", "4,2");
     
-    // Add percentage labels
+    // Percentage labels
     svg.append("text")
       .attr("x", centerX)
       .attr("y", (radius - innerRadius) * 2 + 10)
@@ -70,9 +91,9 @@ export default function GaugeChart({
       .attr("x", centerX)
       .attr("y", centerY)
       .attr("text-anchor", "middle")
-      .style("font-size", "20px")
+      .style("font-size", "15px")
       .style("font-weight", "bold")
-      .text(`${data.male}%`);
+      .text(`Male: ${data.male}%`);
 
     // Female gauge
 
@@ -88,19 +109,37 @@ export default function GaugeChart({
       .startAngle(-Math.PI / 2)
       .endAngle(Math.PI / 2);
 
-    // Append the gauge background
+    // Gauge background
     svg.append("path")
       .attr("d", backgroundArcFemale())
       .attr("fill", colors.arc[0])
       .attr("transform", `translate(${centerX + 2*radius},${centerY})`);
 
-    // Append the active gauge arc
+    // Active gauge arc
     svg.append("path")
       .attr("d", arcFemale())
       .attr("fill", colors.gender[1])
-      .attr("transform", `translate(${centerX + 2*radius},${centerY})`);
+      .attr("transform", `translate(${centerX + 2*radius},${centerY})`)
+      .on("mouseover", function (event, d) {
+        // Show tooltip
+        tooltip
+          .style("position", "absolute")
+          .style("background", "black")
+          .style("color", "white")
+          .style("padding", "5px")
+          .style("border-radius", "5px")
+          .style("pointer-events", "none")
+          .style("opacity", 1)
+          .text(`Female: ${data.female}%`)
+          .style("left", `${event.pageX + 10}px`)
+          .style("top", `${event.pageY - 20}px`);;
+      })
+      .on("mouseout", function (event, d) {
+        // Hide the tooltip
+        tooltip.style("opacity", 0);
+      });
 
-     // Append the red vertical marker line at 50%
+     // Red vertical line at 50%
      svg.append("line")
        .attr("x1", centerX + 2*radius)
        .attr("y1", centerY - radius)
@@ -110,7 +149,7 @@ export default function GaugeChart({
        .attr("stroke-width", 2)
        .attr("stroke-dasharray", "4,2");
     
-    // Add percentage labels
+    // Percentage labels
     svg.append("text")
       .attr("x", centerX + 2*radius)
       .attr("y", (radius - innerRadius) * 2 + 10)
@@ -122,10 +161,26 @@ export default function GaugeChart({
       .attr("x", centerX + 2*radius)
       .attr("y", centerY)
       .attr("text-anchor", "middle")
-      .style("font-size", "20px")
+      .style("font-size", "15px")
       .style("font-weight", "bold")
-      .text(`${data.female}%`);
+      .text(`Female: ${data.female}%`);
   }, [data, width, height, colors]);
 
-  return <svg ref={svgRef} width={width} height={height} />;
+  return <>
+      <svg ref={svgRef} width={width} height={height} />
+      <div
+      ref={tooltipRef}
+      style={{
+        position: "absolute",
+        background: "#333",
+        color: "#fff",
+        padding: "5px 10px",
+        borderRadius: "4px",
+        fontSize: "12px",
+        pointerEvents: "none",
+        opacity: 0,
+        transition: "opacity 0.2s",
+      }}
+    ></div>
+  </>;
 }
