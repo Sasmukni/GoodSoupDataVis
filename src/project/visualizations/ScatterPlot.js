@@ -12,6 +12,7 @@ export default function ScatterPlot({
   colors = ["steelblue"]
 }) {
   const svgRef = useRef();
+  const tooltipRef = useRef();
   const [year, setYear] = useState(2013);
 
   useEffect(() => {
@@ -61,9 +62,7 @@ export default function ScatterPlot({
       .attr("cx", d => xScale(d.tot_males))
       .attr("cy", d => yScale(d.tot_females))
       .attr("r", 5)
-      .attr("fill", colors["Nation2"])
-      .append("title")
-      .text(d => `${d.nation}: Males ${d.tot_males}%, Females ${d.tot_females}%`);
+      .attr("fill", colors["Nation2"]);
 
     svg.selectAll("circle")
       .on("mouseover", function (event, d) {
@@ -74,19 +73,25 @@ export default function ScatterPlot({
           .transition().duration(200)
           .attr("opacity", 1)
           .attr("fill", "darkslateblue");
-        svg.append("text")
-          .attr("id", "tooltip")
-          .attr("x", width / 2)
-          .attr("y", height - 10)
-          .attr("text-anchor", "middle")
-          .style("font-size", "14px");          
+        const tooltip = d3.select(tooltipRef.current);
+        tooltip
+          .style("position", "absolute")
+          .style("background", "black")
+          .style("color", "white")
+          .style("padding", "5px")
+          .style("border-radius", "5px")
+          .style("pointer-events", "none")
+          .style("opacity", 1)
+          .html( `${d.nation}: Males ${d.tot_males}%, Females ${d.tot_females}%`)
+          .style("left", `${event.pageX + 10}px`)
+          .style("top", `${event.pageY - 20}px`);
       })
       .on("mouseout", function () {
         d3.selectAll("circle")
           .transition().duration(200)
           .attr("opacity", 1)
           .attr("fill", colors["Nation2"]);
-        d3.select("#tooltip").remove();
+        d3.select(tooltipRef.current).style("opacity", 0);
       });
 
   }, [width, height, marginTop, marginRight, marginBottom, marginLeft, year, colors]);
@@ -111,6 +116,20 @@ export default function ScatterPlot({
         </select>
       </div>
       <svg ref={svgRef} width={width} height={height}></svg>
+      <div
+        ref={tooltipRef}
+        style={{
+          position: "absolute",
+          background: "#333",
+          color: "#fff",
+          padding: "5px 10px",
+          borderRadius: "4px",
+          fontSize: "12px",
+          pointerEvents: "none",
+          opacity: 0,
+          transition: "opacity 0.2s",
+        }}
+      ></div>
     </div>
   );
 }
