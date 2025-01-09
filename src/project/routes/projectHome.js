@@ -12,6 +12,19 @@ import DonutChart from '../visualizations/DonutChart';
 import ChoroplethMap from '../visualizations/ChoroplethMap';
 import GaugeChart from '../visualizations/GaugeChart';
 
+const colorsType = {
+    Males: "#0AD3FF",
+    Females: "#FFC3F5",
+    "Full time": "#FBFF12",
+    "Part time": "#DB504A",
+    "Short cycle" : "#D7F2BA",
+    Bachelor : "#BDE4A8",
+    Master : "#679436",
+    Doctoral : "#45503B",
+    Nation1 : "#E3F2FD",//used in d3scale function nation1 > nation2 
+    Nation2 : "#0D47A1"
+}
+
 function ProjectHome() {
     return(
     <div className="App">
@@ -53,7 +66,7 @@ function ProjectHome() {
             <h4>More specific visualizations</h4>
             <div className='row'>
                 <div className='col-12'>
-                    <AlluvialChart/>
+                    <AlluvialChart colors={colorsType}/>
                 </div>
                 <div className='col-12'>
                     <BubbleChart/>

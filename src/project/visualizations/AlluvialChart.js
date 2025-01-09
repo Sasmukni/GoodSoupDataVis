@@ -107,8 +107,8 @@ const layers = ["nation", "sex", "study_type","working_time"];
 
 const sexColor =
 {
-    Males: "Blue",
-    Females: "Pink"
+    Males: colors["Males"],
+    Females: colors["Females"]
 }
 
 const sexType =
@@ -118,20 +118,24 @@ const sexType =
 }
 const workColor = 
 {
-    "Full time": "green",
-    "Part time": "red"
+    "Full time": colors["Full time"],
+    "Part time": colors["Part time"]
 }
 const studyColor = 
 {
-    "Short cycle" : "yellow",
-    Bachelor : "orange",
-    Master : "purple",
-    Doctoral : "green"
+    "Short cycle" : colors["Short cycle"],
+    Bachelor : colors["Bachelor"],
+    Master : colors["Master"],
+    Doctoral : colors["Doctoral"]
 }
 
-const layerColors= (layer, name, continent) => {
+var colorScale = d3.scaleLinear()
+      .domain([0,8600000])
+      .range([colors["Nation1"], colors["Nation2"]]);
+
+const layerColors= (layer, name, value) => {
     switch(layer){
-        case "nation" : return "purple";
+        case "nation" : return colorScale(value);
         case "sex" : return sexColor[name];
         case "study_type" : return studyColor[name];
         case "working_time" : return workColor[name]
@@ -312,7 +316,7 @@ const links = svg.append("g")
         const sourceNode = topSelected.nodes.find(n => n.name === d.source);
         const targetNode = topSelected.nodes.find(n => n.name === d.target);
 
-        return layerColors(sourceNode.layer,sourceNode.name, sourceNode.continent);
+        return layerColors(sourceNode.layer,sourceNode.name, sourceNode.value);
     })
     .attr("stroke-width", d => Math.max((yScale(d.value_perc)- marginTop),2))
     .attr("stroke-opacity", d => (d.value_perc / maxLinkValue) * 0.7 + 0.3);
@@ -397,7 +401,7 @@ const nodes = svg.append("g")
     .attr("y", d => d.y)
     .attr("width", d => d.width)
     .attr("height", d => d.height)
-    .attr("fill", d => layerColors(d.layer, d.name, d.continent))
+    .attr("fill", d => layerColors(d.layer, d.name, d.value))
     .attr("stroke", "#000")
     .attr("stroke-width", 0.5)
     .attr("opacity", 1);
