@@ -1,3 +1,4 @@
+import HeatMap from "./Heatmap";
 import DonutChart from "./DonutChart";
 import GroupedBarChart from "./GroupedBarChart";
 
@@ -20,13 +21,20 @@ export default function MapSubsection({
         ]
     })): null;
 
+    var dataForHeatMap = data? data.map(d => ({data:[
+        {gender:"Male", partTime:d.male_full_time, fullTime:d.male_part_time},
+        {gender:"Female", partTime:d.fem_full_time, fullTime:d.fem_part_time}
+    ]})):null;
     return (
     <div>
         {dataForDonut.length && 0 &&
             <DonutChart data={dataForDonut[0].data}/>
         }
-        {dataForGroupedBarChart.length && 1 &&
+        {dataForGroupedBarChart.length && 0 &&
             <GroupedBarChart data={dataForGroupedBarChart[0].data}/>
+        }
+        {dataForHeatMap.length && 1 &&
+            <HeatMap data={dataForHeatMap[0].data}/>
         }
     </div>
 );
