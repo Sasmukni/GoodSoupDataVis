@@ -81,7 +81,7 @@ export default function HorizontalBarChart({
       .attr("x", 0)
       .attr("height", yScale.bandwidth())
       .attr("width", (d) => xScale(d.tot_females))
-      .attr("fill", colors[0])
+      .attr("fill", colors["Females"])
       .on("mouseover", function (event, d) {
         // Change opacity of bars only in this specific chart
         d3.selectAll(".my-bar").style("opacity", 0.2);

@@ -3,8 +3,8 @@ import { useRef, useEffect, useState } from "react";
 import studentData from "../data/Project_wafflechart_data";
 
 export default function WaffleChart({
-  width = 800,
-  height = 400,
+  width = 600,
+  height = 300,
   marginTop = 20, 
   marginRight = 10,
   marginBottom = 30,
@@ -49,7 +49,7 @@ export default function WaffleChart({
             .attr("y", y)
             .attr("width", squareWidth)
             .attr("height", squareHeight)
-            .attr("fill", grayColor);
+            .attr("fill", colors["Neutral"]);
 
           if (d === 1) {
             d3.select(this)
@@ -79,8 +79,8 @@ export default function WaffleChart({
         .text(`${label}: ${percentage.toFixed(1)}%`);
     };
 
-    createWaffle(maleFullSquares, malePartialSquare, malePercentage, totalSquares, marginLeft -12 , colors[0], "Male NEET");
-    createWaffle(femaleFullSquares, femalePartialSquare, femalePercentage, totalSquares, width / 2+ 5, colors[1], "Female NEET");
+    createWaffle(maleFullSquares, malePartialSquare, malePercentage, totalSquares, marginLeft -12 , colors["Males"], "Male NEET");
+    createWaffle(femaleFullSquares, femalePartialSquare, femalePercentage, totalSquares, width / 2+ 5, colors["Females"], "Female NEET");
   }, [data, width, height, marginTop, marginRight, marginBottom, marginLeft, colors, grayColor, rows, columns]);
 
   return (

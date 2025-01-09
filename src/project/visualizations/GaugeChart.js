@@ -5,10 +5,7 @@ export default function GaugeChart({
   data = {male: 30, female: 25},
   width = 1200,
   height = 400,
-  colors = {
-    gender: ["blue", "pink"],
-    arc: ["lightgray", "red"]
-  },
+  colors = {},
 }) {
   const svgRef = useRef();
 

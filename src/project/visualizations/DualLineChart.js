@@ -58,14 +58,14 @@ export default function DualLineChart({
     g.append("path")
       .datum(studentData)
       .attr("fill", "none")
-      .attr("stroke", colors[0])
+      .attr("stroke", colors["Females"])
       .attr("stroke-width", 2)
       .attr("d", lineFemales);
 
     g.append("path")
       .datum(studentData)
       .attr("fill", "none")
-      .attr("stroke", colors[1])
+      .attr("stroke", colors["Males"])
       .attr("stroke-width", 2)
       .attr("d", lineMales);
 
@@ -96,7 +96,7 @@ export default function DualLineChart({
       .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
       .attr("cy", d => yScale(d.tot_females))
       .attr("r", 3)
-      .attr("fill", colors[0])
+      .attr("fill", colors["Females-opaque"])
       .on("mouseover", (event, d) => showTooltip(event, d, d.tot_females))
       .on("mouseout", hideTooltip);
 
@@ -108,7 +108,7 @@ export default function DualLineChart({
       .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
       .attr("cy", d => yScale(d.tot_males))
       .attr("r", 3)
-      .attr("fill", colors[1])
+      .attr("fill", colors["Males-opaque"])
       .on("mouseover", (event, d) => showTooltip(event, d, d.tot_males))
       .on("mouseout", hideTooltip);
 
@@ -116,8 +116,8 @@ export default function DualLineChart({
       .attr("transform", `translate(${width - marginRight - 100}, ${marginTop})`);
 
     const legendData = [
-      { label: "Females", color: colors[0] },
-      { label: "Males", color: colors[1] }
+      { label: "Females", color: colors["Females"] },
+      { label: "Males", color: colors["Males"] }
     ];
 
     legend.selectAll(".legend-item")

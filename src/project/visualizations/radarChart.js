@@ -37,7 +37,7 @@ export default function RadarChart({
   marginRight = 30,
   marginBottom = 30,
   marginLeft = 10,
-  colors = ["blue", "pink"]
+  colors = ["blue"]
 }) {
   const svgRef = useRef();
 
@@ -126,7 +126,7 @@ export default function RadarChart({
       .datum(radarDataMale)
       .attr("d", radarLineMale)
       .attr("fill", "none")
-      .attr("stroke", colors[0])
+      .attr("stroke", colors["Males"])
       .attr("stroke-width", 2);
 
     // Points male
@@ -137,7 +137,7 @@ export default function RadarChart({
       .attr("cx", (d) => Math.cos(d.angle - Math.PI / 2) * scaleRadius(d.value))
       .attr("cy", (d) => Math.sin(d.angle - Math.PI / 2) * scaleRadius(d.value))
       .attr("r", 3)
-      .attr("fill", colors[0]);
+      .attr("fill", colors["Males"]);
 
     // Radar area female
     const radarLineFem = d3.lineRadial()
@@ -151,7 +151,7 @@ export default function RadarChart({
       .datum(radarDataFem)
       .attr("d", radarLineFem)
       .attr("fill", "none")
-      .attr("stroke", colors[1])
+      .attr("stroke", colors["Females"])
       .attr("stroke-width", 2);
 
     // Points female
@@ -162,7 +162,7 @@ export default function RadarChart({
       .attr("cx", (d) => Math.cos(d.angle - Math.PI / 2) * scaleRadius(d.value))
       .attr("cy", (d) => Math.sin(d.angle - Math.PI / 2) * scaleRadius(d.value))
       .attr("r", 3)
-      .attr("fill", colors[1]);
+      .attr("fill", colors["Females"]);
     
     // Legend
     const legend = svg.append("g")
@@ -173,7 +173,7 @@ export default function RadarChart({
       .attr("y", 0)
       .attr("width", 20)
       .attr("height", 20)
-      .attr("fill", colors[0]);
+      .attr("fill", colors["Males"]);
 
     legend.append("text")
       .attr("x", 30)
@@ -187,7 +187,7 @@ export default function RadarChart({
       .attr("y", 30)
       .attr("width", 20)
       .attr("height", 20)
-      .attr("fill", colors[1]);
+      .attr("fill", colors["Females"]);
 
     legend.append("text")
       .attr("x", 30)

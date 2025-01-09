@@ -91,13 +91,13 @@ export default function TreeMapChart({
       .append("rect")
       .attr("width", (d) => d.x1 - d.x0)
       .attr("height", (d) => d.y1 - d.y0)
-      .attr("fill", (d) => colors[d.parent.data.name === "Male" ? 0 : 1]) // Base color
+      .attr("fill", (d) => colors[d.parent.data.name === "Male" ? "Males" : "Females"]) // Base color
       .attr("stroke", "#fff")
       .on("mouseover", function (event, d) {
         // Change color on hover
         d3.select(this).attr(
           "fill",
-          d3.color(colors[d.parent.data.name === "Male" ? 0 : 1])
+          d3.color(colors[d.parent.data.name === "Male" ? "Males" : "Females"])
         );
 
         // Show the tooltip
@@ -127,7 +127,7 @@ export default function TreeMapChart({
         // Revert to base color
         d3.select(this).attr(
           "fill",
-          colors[d.parent.data.name === "Male" ? 0 : 1]
+          colors[d.parent.data.name === "Male" ? "Males" : "Females"]
         );
 
         // Hide the tooltip

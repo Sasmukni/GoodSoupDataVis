@@ -13,16 +13,27 @@ import ChoroplethMap from '../visualizations/ChoroplethMap';
 import GaugeChart from '../visualizations/GaugeChart';
 
 const colorsType = {
+    Neutral: "#D6D6D7",
     Males: "#0AD3FF",
     Females: "#FFC3F5",
-    "Full time": "#FBFF12",
+    "Males-opaque": "#00B7E0",
+    "Females-opaque": "#FF85EB",
+    "Full time": "#fedb72",
     "Part time": "#DB504A",
     "Short cycle" : "#D7F2BA",
     Bachelor : "#BDE4A8",
     Master : "#679436",
     Doctoral : "#45503B",
+    Public: "#cff27e",
+    Private: "#faa300",
+    Privategovdep: "#e57c04",
+    Privategovind: "#ff6201",
     Nation1 : "#E3F2FD",//used in d3scale function nation1 > nation2 
-    Nation2 : "#0D47A1"
+    Nation2 : "#0D47A1",
+    male: ["#0AD3FF","#0D47A1"],
+    female: ["#FFC3F5", "purple"],
+    gender: ["#0AD3FF", "#FFC3F5"],
+    arc: ["#D6D6D7", "red"]
 }
 
 function ProjectHome() {
@@ -37,42 +48,42 @@ function ProjectHome() {
             <h4>A general view of the data</h4>
             <div className='row'>
                 <div className='col-12'>
-                    <StackedBarChart/>
+                    <StackedBarChart colors={colorsType}/>
                 </div>
                 <div className='col-12'>
-                    <StackedAreaChart/>
+                    <StackedAreaChart colors={colorsType}/>
                 </div>
                 <div className='col-12'>
-                    <RadarChart/>
+                    <RadarChart colors={colorsType}/>
                 </div>
                 <div className='col-12'>
-                    <PieChart/>
+                    <PieChart colors={colorsType}/>
                 </div>
                 <div className='col-12'>
-                    <GaugeChart/>
+                    <GaugeChart colors={colorsType}/>
                 </div>
                 <div className='col-12'>
-                    <TreeMapChart/>
+                    <TreeMapChart colors={colorsType} />
                 </div>
             </div>
             <h2 className="text-primary fw-bold mb-3">Main visualization</h2>
             <h4>A detailed view for each European country</h4>
             <div className='row'>
                 <div className='col-12'>
-                    <ChoroplethMap width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 3/4}/>
+                    <ChoroplethMap width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 3/4} colors={colorsType}/>
                 </div>
             </div>
             <h2 className="text-primary fw-bold mb-3">Getting into the details</h2>
             <h4>More specific visualizations</h4>
             <div className='row'>
                 <div className='col-12'>
-                    <AlluvialChart colors={colorsType}/>
+                    <AlluvialChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 7/8}/>
                 </div>
                 <div className='col-12'>
-                    <BubbleChart/>
+                    <BubbleChart colors={colorsType}/>
                 </div>
                 <div className='col-12'>
-                    <BarChart/>
+                    <BarChart colors={colorsType}/>
                 </div>
             </div>
         </div>

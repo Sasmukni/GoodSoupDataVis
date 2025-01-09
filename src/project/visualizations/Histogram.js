@@ -67,7 +67,7 @@ export default function Histogram({
       .attr("y", (d) => yScale(d.length))
       .attr("width", xScale.bandwidth() / 2)
       .attr("height", (d) => innerHeight - yScale(d.length))
-      .attr("fill", colors[0])
+      .attr("fill", colors["Males"])
       .on("mouseover", (event, d) => {
         const nationList = d.map(item => item.nation).join(", ");
         tooltip.style("display", "block").html(`Male: ${d.length}<br>Countries: ${nationList}`);
@@ -85,7 +85,7 @@ export default function Histogram({
       .attr("y", (d) => yScale(d.length))
       .attr("width", xScale.bandwidth() / 2)
       .attr("height", (d) => innerHeight - yScale(d.length))
-      .attr("fill", colors[1])
+      .attr("fill", colors["Females"])
       .on("mouseover", (event, d) => {
         const nationList = d.map(item => item.nation).join(", ");
         tooltip.style("display", "block").html(`Female: ${d.length}<br>Countries: ${nationList}`);
@@ -122,7 +122,7 @@ export default function Histogram({
     legend.append("rect")
       .attr("width", 15)
       .attr("height", 15)
-      .attr("fill", colors[0]);
+      .attr("fill", colors["Males"]);
 
     legend.append("text")
       .attr("x", 20)
@@ -134,7 +134,7 @@ export default function Histogram({
       .attr("y", 20)
       .attr("width", 15)
       .attr("height", 15)
-      .attr("fill", colors[1]);
+      .attr("fill", colors["Females"]);
 
     legend.append("text")
       .attr("x", 20)
