@@ -10,7 +10,7 @@ export default function MapSubsection({
     width= 10
 })
 {
-    const [category, setCategory] = useState("donut");
+    const [category, setCategory] = useState("Donut");
 
     var dataForDonut = data? data.map(d => ({data:[{label:"Female",value:d.tot_females},{label:"Male",value:d.tot_males}]})):null;
     var dataForGroupedBarChart = data? data.map(d => ({
