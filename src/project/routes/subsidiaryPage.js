@@ -12,9 +12,9 @@ import ChoroplethMapNEET from '../visualizations/ChoroplethMapNEET';
 const colorsType = {
     Neutral: "#D6D6D7",
     Males: "#0AD3FF",
-    Females: "#FFC3F5",
+    Females: "#FF85EB",
     "Males-opaque": "#00B7E0",
-    "Females-opaque": "#FF85EB",
+    "Females-opaque": "#FFC3F5",
     "Full time": "#fedb72",
     "Part time": "#DB504A",
     "Short cycle" : "#D7F2BA",
