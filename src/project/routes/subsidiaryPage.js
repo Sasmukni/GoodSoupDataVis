@@ -36,9 +36,11 @@ const colorsType = {
 function SubsidiaryPage() {
     return(
     <div className="App">
-        <header className="text-center py-4">
+        <header className=" Project-header text-left py-4">
+            <div className='col-12'>
             <h1 className="display-4 fw-bold text-primary mb-3">Temperature timeline</h1>
             <h2 className="h5 text-secondary mt-3">Linechart showing max, average and min temperature over time</h2>
+            </div>
         </header>
         <div className="container my-3">
             <h2 className="h2 fw-bold text-primary mb-3">Introduction</h2>
