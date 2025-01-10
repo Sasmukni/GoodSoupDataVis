@@ -36,7 +36,31 @@ const colorsType = {
     arc: ["#D6D6D7", "red"]
 }
 
+function SwitchDiag(chart){
+    if(chart===0){
+        return(
+            <div class="col-9">
+            <RadarChart colors={colorsType} width={window.innerWidth - 0.5 * window.innerWidth} height={window.innerHeight* 3/8}/>
+            </div>         
+        );
+    }else if(chart===1){
+        return(
+        <div class="col-9 ">
+        <PieChart colors={colorsType} width={window.innerWidth - 0.5 * window.innerWidth} height={window.innerHeight* 3/8}/>
+        </div>);
+    }else{
+        return(
+        <div class="col-9 ">
+        <TreeMapChart colors={colorsType} width={window.innerWidth - 0.5 * window.innerWidth} height={window.innerHeight* 3/8}/>
+        </div>);
+    }
+};
+
 function ProjectHome() {
+    var numero = 5;
+    function setNum(n){
+        numero = n;
+    }
     return(
     <div className="App">
         
@@ -92,6 +116,36 @@ function ProjectHome() {
                 </div>
             </div>
             <div className='barrier'></div>
+            <div className='row'>
+                <div className='col-3'>
+                <div className="card">
+                    <div className="card-body " >
+                        <h5 className="card-title text text-primary">Radar chart</h5>
+                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <button className="btn btn-primary" onClick={setNum(0)}>Show me</button>
+                        <p id="demo1">{numero}</p>
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="card-body">
+                        <h5 className="card-title">Pie charts</h5>
+                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <button className="btn btn-primary" onClick={setNum(1)}>Show</button>
+                        <p id="demo2">{numero}</p>
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="card-body">
+                        <h5 className="card-title">Tre map chart</h5>
+                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <button className="btn btn-primary" onClick={setNum(1)}>Show</button>
+                        <p id="demo3">{numero}</p>
+                    </div>
+                </div>
+                </div>
+                <SwitchDiag chart={numero}/>
+                        
+            </div>
             <div className='row'>
                 <div className='col-12'>
                     <RadarChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 7/8}/>
