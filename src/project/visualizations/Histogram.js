@@ -115,6 +115,7 @@ export default function Histogram({
       .attr("x", width / 2)
       .attr("y", height - marginBottom + 55)
       .attr("text-anchor", "middle")
+      .style("font-size", "12px")
       .text("NEET Percentage Bins (10% intervals)");
 
     svg.append("text")
@@ -122,6 +123,7 @@ export default function Histogram({
       .attr("y", marginLeft / 3)
       .attr("transform", "rotate(-90)")
       .attr("text-anchor", "middle")
+      .style("font-size", "12px")
       .text("Number of Countries");
 
     const legend = svg.append("g").attr("transform", `translate(${width - 120}, 20)`);

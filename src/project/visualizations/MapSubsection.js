@@ -38,16 +38,12 @@ export default function MapSubsection({
     ]})):null;
     return (
         
-    <div>
-        <h3>{nation}</h3>
+    <div style={{
+        textAlign: "center",
+      }}>
+        <h3 className="fw-bold mb-3 mt-1">{nation}</h3>
         {data.length?
         <>
-        {/*<div>
-            <button onClick={() => setCategory("Donut")}>Total Students</button>
-            <button onClick={() => setCategory("Barchart")}>Education Level</button>
-            <button onClick={() => setCategory("Heatmap")}>Working Time</button>
-            <button onClick={() => setCategory("Dumbell")}>Sector</button>
-        </div>*/}
         <div style={{ display: "flex", gap: "10px", justifyContent: "center", margin: "20px 0" }}>
             <button
                 style={{
