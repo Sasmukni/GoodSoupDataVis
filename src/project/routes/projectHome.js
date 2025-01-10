@@ -48,14 +48,9 @@ function ProjectHome() {
         </header>
         <div className="container-fluid my-3">
             <div className='row white'>
-                <div className='col-8'>
-                    <h2 className="text-primary fw-bold mb-3">Introduction</h2>
-                    <h4>A general view of the data</h4>
-                </div>
-                <div className='col-4'></div>
-            </div>
-            <div className='row white'>
-                <div className='col-4'>
+                <div className='col-4 border_right'>
+                <h2 className="text-primary fw-bold mb-3">Introduction</h2>
+                <h4>A general view of the data</h4>
                     <p>
                     Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                     Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
@@ -75,7 +70,7 @@ function ProjectHome() {
             </div>
             <div className='barrier'></div>
             <div className='row white'>
-                <div className='col-8'>
+                <div className='col-8 border_right'>
                     <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.35 * window.innerWidth} height={window.innerHeight* 4/10}/>
                 </div>
                 <div className='col-4'>
@@ -109,7 +104,7 @@ function ProjectHome() {
                 <h3 className="h5 text-secondary mt-3">More specific visualizations</h3>
             </div>
             <div className='row white'>
-                <div className='col-3'>
+                <div className='col-3 border_right'>
                     <h3 className=" h2 text-secondary mt-3">Alluvial</h3>
                     <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                         Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
@@ -123,7 +118,7 @@ function ProjectHome() {
             </div>
             <div className='barrier'></div>
             <div className='row white'>
-                <div className='col-8'>
+                <div className='col-8 border_right'>
                     <BubbleChart colors={colorsType} width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 8/10}/>
                 </div>
                 <div className='col-4'>
@@ -138,7 +133,7 @@ function ProjectHome() {
             </div>
             <div className='barrier'></div>
             <div className='row white'>
-            <div className='col-3'>
+            <div className='col-3 border_right'>
                     <h4 className="h2 text-secondary mt-3">Female Doctoral Students in Europe (Bubble Chart)</h4>
                     <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                         Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
