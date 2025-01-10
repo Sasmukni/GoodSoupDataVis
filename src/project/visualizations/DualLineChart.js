@@ -8,7 +8,7 @@ export default function DualLineChart({
   marginTop = 20,
   marginRight = 30,
   marginBottom = 30,
-  marginLeft = 40,
+  marginLeft = 50,
   colors = ["pink", "blue"]
 }) {
   const svgRef = useRef();
@@ -111,6 +111,21 @@ export default function DualLineChart({
       .attr("fill", colors["Males-opaque"])
       .on("mouseover", (event, d) => showTooltip(event, d, d.tot_males))
       .on("mouseout", hideTooltip);
+    
+    svg.append("text")
+      .attr("x", width / 2)
+      .attr("y", height)
+      .attr("text-anchor", "middle")
+      .style("font-size", "12px")
+      .text("Years");
+    
+    svg.append("text")
+      .attr("x", -height / 2)
+      .attr("y", marginLeft*0.2)
+      .attr("transform", "rotate(-90)")
+      .attr("text-anchor", "middle")
+      .style("font-size", "12px")
+      .text("NEET %");
 
     const legend = svg.append("g")
       .attr("transform", `translate(${width - marginRight - 100}, ${marginTop})`);

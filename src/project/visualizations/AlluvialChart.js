@@ -329,14 +329,14 @@ const links = svg.append("g")
 
         if (sourceNode.layer === "nation" && targetNode.layer === "sex") {
           if (targetNode.name === "Males") {
-            tooltip.html(`${d.value.toFixed(0)} students from ${d.source} are Males, <br> 
+            tooltip.html(`${Intl.NumberFormat().format(d.value.toFixed(0))} students from ${d.source} are Males, <br> 
                           they rappresents ${((d.value_perc/sourceNode.value_perc)*100).toFixed(2)}% of ${d.source} students, <br>
                           they are ${d.value_perc.toFixed(2)}% of the European students.`)
                 .style("left", `${event.pageX + 5}px`)
                 .style("top", `${event.pageY - 28}px`)
                 .style("opacity", 1);
           } else if (targetNode.name === "Females") {
-            tooltip.html(`${d.value.toFixed(0)} students from ${d.source} are Females, <br> 
+            tooltip.html(`${Intl.NumberFormat().format(d.value.toFixed(0))} students from ${d.source} are Females, <br> 
                           they rappresents ${((d.value_perc/sourceNode.value_perc)*100).toFixed(2)}% of ${d.source} students, <br>
                           they are ${d.value_perc.toFixed(2)}% of the European students.`)
                 .style("left", `${event.pageX + 5}px`)
@@ -410,25 +410,25 @@ nodes.on("mouseover", function(event, d) {
     d3.select(this).attr("fill-opacity", 0.3);
 
 if (d.layer === "nation") {
-    tooltip.html(`Total students of nation ${d.name}: ${d.value.toFixed(0)} <br>
+    tooltip.html(`Total students of nation ${d.name}: ${Intl.NumberFormat().format(d.value.toFixed(0))} <br>
                   That are ${d.value_perc.toFixed(2)}% of total European students.`)
         .style("left", `${event.pageX + 5}px`)
         .style("top", `${event.pageY - 28}px`)
         .style("opacity", 1);
 } else if (d.layer === "sex") {
-    tooltip.html(`Total ${sexType[d.name]} students in Europe: ${d.value.toFixed(0)} <br>
+    tooltip.html(`Total ${sexType[d.name]} students in Europe: ${Intl.NumberFormat().format(d.value.toFixed(0))} <br>
                   That are ${d.value_perc.toFixed(2)}% of the total.`)
         .style("left", `${event.pageX + 5}px`)
         .style("top", `${event.pageY - 28}px`)
         .style("opacity", 1);
 } else if (d.layer === "study_type") {
-  tooltip.html(`Total ${d.name} students in Europe: ${d.value.toFixed(0)} <br>
+  tooltip.html(`Total ${d.name} students in Europe: ${Intl.NumberFormat().format(d.value.toFixed(0))} <br>
                 That are ${d.value_perc.toFixed(2)}% of the total.`)
       .style("left", `${event.pageX + 5}px`)
       .style("top", `${event.pageY - 28}px`)
       .style("opacity", 1);
 }else{
-    tooltip.html(`Total students in ${d.name}: ${d.value.toFixed(0)}<br> 
+    tooltip.html(`Total students in ${d.name}: ${Intl.NumberFormat().format(d.value.toFixed(0))}<br> 
                   That are ${d.value_perc.toFixed(2)}% of the total European`)
         .style("left", `${event.pageX + 5}px`)
         .style("top", `${event.pageY - 28}px`)
