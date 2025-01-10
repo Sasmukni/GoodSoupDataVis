@@ -43,10 +43,11 @@ function SubsidiaryPage() {
             </div>
         </header>
         <div className="container-fluid my-3">
-            <h2 className="h2 fw-bold text-primary mb-3">Introduction</h2>
-            <h3 className="h5 text-secondary mt-3">A general view of the data</h3>
+            
             <div className='row white'>
                 <div className='col-4 border_right border_external_left'>
+                <h2 className="h2 fw-bold text-primary mb-3">Introduction</h2>
+                <h3 className="h5 text-secondary mt-3">A general view of the data</h3>
                 <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                         Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
                         sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
