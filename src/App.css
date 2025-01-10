@@ -128,3 +128,15 @@
   border-top-style: solid;
   border-top-width: 8px;
 }
+
+.border_external_right{
+  border-right-color: aliceblue;
+  border-right-style: solid;
+  border-right-width: 16px;
+}
+
+.border_external_left{
+  border-left-color: aliceblue;
+  border-left-style: solid;
+  border-left-width: 16px;
+}

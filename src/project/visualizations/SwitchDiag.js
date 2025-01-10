@@ -43,7 +43,7 @@ export default function SwitchDiag({
     {diag!==null && 
         <>
         {diag===0 &&
-            <div className="col-9 white">
+            <div className="col-9 white border_external_right">
                 <RadarChart colors={colorsType} width={window.innerWidth - 0.5 * window.innerWidth} height={window.innerHeight* 4/8}/>
                 <h5 className="card-title text text-primary">Radar chart</h5>
                 <h6 className="card-title">Radar chart</h6>
@@ -60,7 +60,7 @@ export default function SwitchDiag({
             </div>   
         }
         {diag===1 &&
-            <div className="col-9 white">
+            <div className="col-9 white border_external_right">
                 <PieChart colors={colorsType} width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 5/8}/>
                 <h5 className="card-title text text-primary">Pie charts</h5>
                 <h6 className="card-title">Pie charts</h6>
@@ -77,7 +77,7 @@ export default function SwitchDiag({
             </div>   
         }
         {diag===2 &&
-            <div className="col-9 white">
+            <div className="col-9 white border_external_right">
                 <TreeMapChart colors={colorsType} width={window.innerWidth - 0.5 * window.innerWidth} height={window.innerHeight* 4/8}/>
                 <h5 className="card-title text text-primary">Treemap chart</h5>
                 <h6 className="card-title">Treemap chart</h6>

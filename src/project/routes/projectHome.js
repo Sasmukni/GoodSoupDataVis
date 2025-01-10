@@ -47,8 +47,8 @@ function ProjectHome() {
             </div>
         </header>
         <div className="container-fluid my-3">
-            <div className='row white'>
-                <div className='col-4 border_right'>
+            <div className='row white '>
+                <div className='col-4  border_right border_external_left'>
                 <h2 className="text-primary fw-bold mb-3">Introduction</h2>
                 <h4>A general view of the data</h4>
                     <p>
@@ -64,16 +64,16 @@ function ProjectHome() {
                     Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.
                     </p>
                 </div>
-                <div className='col-8'>
+                <div className='col-8 border_external_right'>
                     <StackedBarChart colors={colorsType} width={window.innerWidth - 0.35 * window.innerWidth}/>
                 </div>
             </div>
             <div className='barrier'></div>
             <div className='row white'>
-                <div className='col-8 border_right'>
+                <div className='col-8 border_right border_external_left'>
                     <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.35 * window.innerWidth} height={window.innerHeight* 4/10}/>
                 </div>
-                <div className='col-4'>
+                <div className='col-4 border_external_right'>
                     <p>
                         Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                         Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
@@ -104,7 +104,7 @@ function ProjectHome() {
                 <h3 className="h5 text-secondary mt-3">More specific visualizations</h3>
             </div>
             <div className='row white'>
-                <div className='col-3 border_right'>
+                <div className='col-3 border_right border_external_left'>
                     <h3 className=" h2 text-secondary mt-3">Alluvial</h3>
                     <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                         Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
@@ -112,16 +112,16 @@ function ProjectHome() {
                         amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
                         Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
                 </div>
-                <div className='col-9'>
+                <div className='col-9 border_external_right'>
                     <AlluvialChart colors={colorsType} width={window.innerWidth - 0.35 * window.innerWidth} height={window.innerHeight* 7/10}/>
                 </div>
             </div>
             <div className='barrier'></div>
             <div className='row white'>
-                <div className='col-8 border_right'>
+                <div className='col-8 border_right border_external_left'>
                     <BubbleChart colors={colorsType} width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 8/10}/>
                 </div>
-                <div className='col-4'>
+                <div className='col-4 border_external_right'>
                     <h4 className="h2 text-secondary mt-3">Female Doctoral Students in Europe (Bubble Chart)</h4>
                     <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                         Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
@@ -133,7 +133,7 @@ function ProjectHome() {
             </div>
             <div className='barrier'></div>
             <div className='row white'>
-            <div className='col-3 border_right'>
+            <div className='col-3 border_right border_external_left'>
                     <h4 className="h2 text-secondary mt-3">Female Doctoral Students in Europe (Bubble Chart)</h4>
                     <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                         Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
@@ -142,7 +142,7 @@ function ProjectHome() {
                         Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
 
                 </div>
-                <div className='col-9'>
+                <div className='col-9 border_external_right'>
                     <BarChart colors={colorsType} width={window.innerWidth - 0.33 * window.innerWidth} height={window.innerHeight* 5/8}/>
                 </div>
             </div>
