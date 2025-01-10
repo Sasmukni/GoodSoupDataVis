@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { useRef, useState, useEffect } from "react";
 import studentData from "../data/Project_scatterplot_data.json";
+import Select from "react-select";
 
 export default function ScatterPlot({
   width = 640,
@@ -15,6 +16,12 @@ export default function ScatterPlot({
   const tooltipRef = useRef();
   const [year, setYear] = useState(2013);
 
+  const years = [
+      ...[...new Set(studentData.map(d => d.year))].map(year => ({
+        value: year,
+        label: year.toString(),
+      })),
+    ];
   useEffect(() => {
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
@@ -96,24 +103,18 @@ export default function ScatterPlot({
 
   }, [width, height, marginTop, marginRight, marginBottom, marginLeft, year, colors]);
 
-  const handleYearChange = (event) => {
-    setYear(Number(event.target.value));
-  };
-
   return (
     <div>
       <div>
         <label htmlFor="year-select">Select Year: </label>
-        <select id="year-select" value={year} onChange={handleYearChange}>
-          {[...Array(2023 - 2013).keys()].map(i => {
-            const yearOption = 2013 + i;
-            return (
-              <option key={yearOption} value={yearOption}>
-                {yearOption}
-              </option>
-            );
-          })}
-        </select>
+        <Select
+          style={{ marginBottom: '10px' }}
+          className={window.innerWidth > 1024 ? "w-25" : "w-50"}
+          defaultValue={years.find(y => y.value === year)}
+          onChange={(e) => setYear(e.value)}
+          options={years}
+        />
+       
       </div>
       <svg ref={svgRef} width={width} height={height}></svg>
       <div
