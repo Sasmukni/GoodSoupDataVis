@@ -41,30 +41,68 @@ function SubsidiaryPage() {
             <h2 className="h5 text-secondary mt-3">Linechart showing max, average and min temperature over time</h2>
         </header>
         <div className="container my-3">
-            <h2 className="text-primary fw-bold mb-3">Introduction</h2>
-            <h4>A general view of the data</h4>
-            <div className='row'>
-                <div className='col-12'>
+            <h2 className="h2 fw-bold text-primary mb-3">Introduction</h2>
+            <h3 className="h5 text-secondary mt-3">A general view of the data</h3>
+            <div className='row white'>
+                <div className='col-4'>
+                <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
+                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
+                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
+                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
+                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                </div>
+                <div className='col-8'>
                     <WaffleChart colors={colorsType}/>
                 </div>
-                <div className='col-12'>
-                    <Histogram colors={colorsType}/>
+            </div>
+           
+            <div className='row white'>
+                <div className='col-9'>
+                    <DualLineChart width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 1.5/4} colors={colorsType}/>
                 </div>
-                <div className='col-12'>
-                    <ScatterPlot colors={colorsType}/>
-                </div>
-                <div className='col-12'>
-                    <DualLineChart colors={colorsType}/>
-                </div>
-                <div className='col-12'>
-                    <MultipleStackedBarchart colors={colorsType}/>
+                <div className='col-3'>
+                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
+                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
+                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
+                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
+                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
                 </div>
             </div>
-            <h2 className="text-primary fw-bold mb-3">Main visualization</h2>
-            <h4>A detailed view for each European country</h4>
+            <div className='barrier'></div>
+            <div className='row white'>
+                <div className='col-12'>
+                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
+                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
+                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
+                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
+                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                </div>
+                <div className='col-6'>
+                    <Histogram width={window.innerWidth - 0.6 * window.innerWidth} height={window.innerHeight* 1.7/4} colors={colorsType}/>
+                </div>
+                <div className='col-6'>
+                    <ScatterPlot width={window.innerWidth - 0.6 * window.innerWidth} height={window.innerHeight* 1.5/4} colors={colorsType}/>
+                </div>
+            </div>
+            
+            <h2 className="h2 fw-bold text-primary mb-3">Main visualization</h2>
+            <h3 className="h5 text-secondary mt-3">A detailed view for each European country</h3>
             <div className='row'>
                 <div className='col-12'>
                     <ChoroplethMapNEET width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 3/4} colors={colorsType}/>
+                </div>
+            </div>
+            <div className='barrier'></div>
+            <div className='row white'>
+                <div className='col-4'>
+                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
+                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
+                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
+                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
+                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                </div>
+                <div className='col-8'>
+                    <MultipleStackedBarchart width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 3/4} colors={colorsType}/>
                 </div>
             </div>
         </div>
