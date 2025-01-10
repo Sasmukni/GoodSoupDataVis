@@ -14,7 +14,7 @@ export default function MapSubsectionNEET({
     colors = {}
 })
 {
-    const [category, setCategory] = useState("Donut");
+    const [category, setCategory] = useState("Gauge");
 
     var dataForGauge = data? data.map(d => ({data:[{male:d.tot_males, female:d.tot_females}]})):null;
    

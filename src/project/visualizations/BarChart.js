@@ -78,7 +78,7 @@ export default function HorizontalBarChart({
       .join("rect")
       .attr("class", "my-bar")
       .attr("y", (d) => yScale(d.nation))
-      .attr("x", 0)
+      .attr("x", 1)
       .attr("height", yScale.bandwidth())
       .attr("width", (d) => xScale(d.tot_females))
       .attr("fill", colors["Females"])
