@@ -20,10 +20,10 @@ export default function ChoroplethMap({
   const [focused, setFocused] = useState(null);
   const [selected, setSelected] = useState(null);
   const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
-  const [year, setYear] = useState(2022);
+  const [year, setYear] = useState(2013);
 
-  var yearFilteredNumData = numData.filter(d => d.year === year);
   var nations = numData.map(d => d.nation);
+  var yearFilteredNumData = numData.filter(d => d.year === year);
   var colorScale = d3.scaleLinear()
       .domain(d3.extent([...yearFilteredNumData.map(d=>d.tot_students)]))
       .range(['#AAAAFF', '#0000FF']);
