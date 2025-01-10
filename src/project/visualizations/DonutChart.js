@@ -69,7 +69,7 @@ export default function DonutChart({
           .style("border-radius", "5px")
           .style("pointer-events", "none")
           .style("opacity", 1)
-          .html(`${d.data.label}: ${d.data.value}`)
+          .html(`${d.data.label}: ${Intl.NumberFormat().format(d.data.value)}`)
           .style("left", `${event.pageX + 10}px`)
           .style("top", `${event.pageY - 20}px`);
       })
