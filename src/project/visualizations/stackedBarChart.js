@@ -139,6 +139,13 @@ export default function StackedBarChart({
       .append("g")
       .attr("transform", `translate(${marginLeft},${innerHeight})`)
       .call(d3.axisBottom(xScale).tickSizeOuter(0));
+      
+      svg
+      .append("text")
+      .attr("transform", `translate(${marginLeft + innerWidth / 2}, ${innerHeight + marginBottom})`)
+      .style("text-anchor", "middle")
+      .style("font-size", "14px")
+      .text("Total Number of Students");
 
     const legend = svg
       .append("g")

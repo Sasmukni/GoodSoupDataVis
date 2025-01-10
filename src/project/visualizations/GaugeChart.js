@@ -71,7 +71,7 @@ export default function GaugeChart({
        .attr("x1", centerX)
        .attr("y1", centerY - radius)
        .attr("x2", centerX)
-       .attr("y2", (radius - innerRadius) * 2)
+       .attr("y2", centerY - (radius - innerRadius) * 2)
        .attr("stroke", colors.arc[1])
        .attr("stroke-width", 2)
        .attr("stroke-dasharray", "4,2");
@@ -79,14 +79,14 @@ export default function GaugeChart({
     // Percentage labels
     svg.append("text")
       .attr("x", centerX)
-      .attr("y", (radius - innerRadius) * 2 + 10)
+      .attr("y", centerY - (radius - innerRadius) * 2 + 10)
       .attr("text-anchor", "middle")
       .style("font-size", "10px")
       .text("50%");
 
     svg.append("text")
       .attr("x", centerX)
-      .attr("y", centerY-50)
+      .attr("y", centerY-radius/10)
       .attr("text-anchor", "middle")
       .style("font-size", "15px")
       .style("font-weight", "bold")
@@ -141,7 +141,7 @@ export default function GaugeChart({
        .attr("x1", centerX)
        .attr("y1", centerY)
        .attr("x2", centerX)
-       .attr("y2", radius + (radius - innerRadius) * 2)
+       .attr("y2", centerY + radius - (radius - innerRadius) * 2)
        .attr("stroke", colors.arc[1])
        .attr("stroke-width", 2)
        .attr("stroke-dasharray", "4,2");
@@ -149,14 +149,14 @@ export default function GaugeChart({
     // Percentage labels
     svg.append("text")
       .attr("x", centerX )
-      .attr("y", radius + (radius - innerRadius) * 2 + 10)
+      .attr("y", centerY + radius - (radius - innerRadius) * 2 + 10)
       .attr("text-anchor", "middle")
       .style("font-size", "10px")
       .text("50%");
  
     svg.append("text")
       .attr("x", centerX)
-      .attr("y", centerY + radius - 30)
+      .attr("y", centerY + 9/10*radius)
       .attr("text-anchor", "middle")
       .style("font-size", "15px")
       .style("font-weight", "bold")

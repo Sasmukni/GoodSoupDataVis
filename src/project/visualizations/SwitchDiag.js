@@ -18,7 +18,7 @@ export default function SwitchDiag({
                 <div className="card-body " >
                     <h5 className="card-title text text-primary">Radar chart</h5>
                     <h6 className="card-title">Radar chart</h6>
-                    <img class="card-img-top img-small" src={radarchartimg} alt="Card image cap"></img>
+                    <img class="card-img-top img-small" src={radarchartimg} alt="Card image cap" style={{maxWidth:"250px"}}/>
                     <button className="btn btn-primary" onClick={()=>setDiag(0)}>Show me</button>
                 </div>
             </div>
@@ -26,7 +26,7 @@ export default function SwitchDiag({
                 <div className="card-body">
                     <h5 className="card-title text text-primary">Pie charts</h5>
                     <h6 className="card-title">Pie charts</h6>
-                    <img class="card-img-top" src={piechartimg} alt="Card image cap"></img>
+                    <img class="card-img-top" src={piechartimg} alt="Card image cap" style={{maxWidth:"250px"}}/>
                     <button className="btn btn-primary" onClick={()=>setDiag(1)}>Show me</button>
                 </div>
             </div>
@@ -34,7 +34,7 @@ export default function SwitchDiag({
                 <div className="card-body">
                     <h5 className="card-title text text-primary">Tree map chart</h5>
                     <h6 className="card-title">Tree map chart</h6>
-                    <img class="card-img-top" src={treemapimg} alt="Card image cap"></img>
+                    <img class="card-img-top" src={treemapimg} alt="Card image cap" style={{maxWidth:"250px"}}/>
                     <button className="btn btn-primary" onClick={()=>setDiag(2)}>Show me</button>
                 </div>
             </div>
