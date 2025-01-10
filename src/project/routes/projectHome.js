@@ -46,7 +46,7 @@ function ProjectHome() {
                 <h2 className="h5 text-secondary mt-3">Linechart showing max, average and min temperature over time</h2>
             </div>
         </header>
-        <div className="container my-3">
+        <div className="container-fluid my-3">
             <div className='row white'>
                 <div className='col-8'>
                     <h2 className="text-primary fw-bold mb-3">Introduction</h2>
