@@ -8,7 +8,7 @@ export default function StackedAreaChart({
   marginTop = 20,
   marginRight = 30,
   marginBottom = 30,
-  marginLeft = 60,
+  marginLeft = 80,
   colors = ["blue"]
 }) {
   const svgRef = useRef();
@@ -91,9 +91,25 @@ export default function StackedAreaChart({
       .attr("transform", `translate(0,${height - marginBottom})`)
       .call(d3.axisBottom(xScale).ticks(data.length).tickFormat(d3.format("d")));
 
+      svg.append("text")
+      .attr("x", (width - marginLeft - marginRight) / 2 + marginLeft)
+      .attr("y", height - 5)
+      .attr("text-anchor", "middle")
+      .style("font-size", "12px")
+      .text("Year");
+
       svg.append("g")
       .attr("transform", `translate(${marginLeft},0)`)
-      .call(d3.axisLeft(yScale).ticks(10).tickFormat(d => d3.format(",.0f")(d)));    
+      .call(d3.axisLeft(yScale).ticks(10).tickFormat(d => d3.format(",.0f")(d)));  
+      
+      svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 10)
+      .attr("x", -(height - marginTop - marginBottom) / 2 - marginTop)
+      .attr("text-anchor", "middle")
+      .style("font-size", "12px")
+      .text("Total Students");
+
 
     const legend = svg.append("g")
       .attr("transform", `translate(${width - marginRight - 120},${marginTop})`);
