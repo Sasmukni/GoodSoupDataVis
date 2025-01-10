@@ -145,7 +145,7 @@ export default function RadarChart({
       .attr("class", "radar-point")
       .attr("cx", (d) => Math.cos(d.angle - Math.PI / 2) * scaleRadius(d.value))
       .attr("cy", (d) => Math.sin(d.angle - Math.PI / 2) * scaleRadius(d.value))
-      .attr("r", 3)
+      .attr("r", 8)
       .attr("fill", colors["Males"])
       .on("mouseover", function (event, d) {
         const tooltip = d3.select(tooltipRef.current);
@@ -187,7 +187,7 @@ export default function RadarChart({
       .attr("class", "radar-point")
       .attr("cx", (d) => Math.cos(d.angle - Math.PI / 2) * scaleRadius(d.value))
       .attr("cy", (d) => Math.sin(d.angle - Math.PI / 2) * scaleRadius(d.value))
-      .attr("r", 3)
+      .attr("r", 8)
       .attr("fill", colors["Females"])
       .on("mouseover", function (event, d) {
         const tooltip = d3.select(tooltipRef.current);

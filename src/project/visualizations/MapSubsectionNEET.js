@@ -22,9 +22,45 @@ export default function MapSubsectionNEET({
         <h3>{nation}</h3>
         {data.length?
         <>
-        <div>
+        {/*<div>
             <button onClick={() => setCategory("Gauge")}>Male/Female</button>
             <button onClick={() => setCategory("Slope")}>Years</button>
+        </div>*/}
+        <div style={{ display: "flex", gap: "10px", justifyContent: "center", margin: "20px 0" }}>
+            <button
+                style={{
+                backgroundColor: "#007bff",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                padding: "10px 20px",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.3s, transform 0.2s",
+                }}
+                onClick={() => setCategory("Gauge")}
+                onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+                onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+            >
+                Male/Female
+            </button>
+            <button
+                style={{
+                backgroundColor: "#007bff",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                padding: "10px 20px",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.3s, transform 0.2s",
+                }}
+                onClick={() => setCategory("Slope")}
+                onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+                onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+            >
+                Years
+            </button>
         </div>
         {dataForGauge.length && category === "Gauge" &&
             <GaugeChart data={dataForGauge[0].data[0]} width={width-30} colors={colors}/>

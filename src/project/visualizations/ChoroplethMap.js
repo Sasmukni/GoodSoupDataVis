@@ -76,7 +76,7 @@ export default function ChoroplethMap({
           <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
             <Select
               style={{ marginBottom: '10px' }}
-              className={window.innerWidth > 1024 ? "w-25" : "w-100"}
+              className={window.innerWidth > 1024 ? "w-25" : "w-50"}
               defaultValue={year}
               onChange={(e) => setYear(e.value)}
               options={yearOptions}
@@ -106,10 +106,10 @@ export default function ChoroplethMap({
               </defs>
               <rect x="0" y="0" width="300" height="20" fill="url(#gradient)" />
               <text x="0" y="40" fontSize="12" textAnchor="start">
-                {d3.min(yearFilteredNumData.map(d => d.tot_students))}
+                {Intl.NumberFormat().format(d3.min(yearFilteredNumData.map(d => d.tot_students)))}
               </text>
               <text x="300" y="40" fontSize="12" textAnchor="end">
-                {d3.max(yearFilteredNumData.map(d => d.tot_students))}
+                {Intl.NumberFormat().format(d3.max(yearFilteredNumData.map(d => d.tot_students)))}
               </text>
             </svg>
             <p>Number of Students</p>

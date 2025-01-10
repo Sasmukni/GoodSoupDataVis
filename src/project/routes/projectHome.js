@@ -77,7 +77,7 @@ function ProjectHome() {
             <div className='barrier'></div>
             <div className='row'>
                 <div className='col-8'>
-                    <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 4/10}/>
+                    <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.5 * window.innerWidth} height={window.innerHeight* 4/10}/>
                 </div>
                 <div className='col-4'>
                     <p>
