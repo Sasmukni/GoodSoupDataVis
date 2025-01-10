@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { useRef, useEffect, useState } from "react";
 import studentData from "../data/Project_wafflechart_data";
+import Select from "react-select";
 
 export default function WaffleChart({
   width = 600,
@@ -17,6 +18,12 @@ export default function WaffleChart({
   const svgRef = useRef();
   const [selectedYear, setSelectedYear] = useState(studentData[0].year);
 
+  const years = [
+      ...[...new Set(studentData.map(d => d.year))].map(year => ({
+        value: year,
+        label: year.toString(),
+      })),
+    ];
   const data = studentData.find((d) => d.year === selectedYear) || studentData[0];
 
   useEffect(() => {
@@ -87,17 +94,13 @@ export default function WaffleChart({
     <div>
       <div style={{ marginBottom: "10px" }}>
         <label htmlFor="year-selector">Select Year: </label>
-        <select
-          id="year-selector"
-          value={selectedYear}
-          onChange={(e) => setSelectedYear(Number(e.target.value))}
-        >
-          {studentData.map((d) => (
-            <option key={d.year} value={d.year}>
-              {d.year}
-            </option>
-          ))}
-        </select>
+        <Select
+          style={{ marginBottom: '10px' }}
+          className={window.innerWidth > 1024 ? "w-25" : "w-50"}
+          defaultValue={years.find(y => y.value === selectedYear)}
+          onChange={(e) => setSelectedYear(e.value)}
+          options={years}
+        />
       </div>
       <svg ref={svgRef} width={width} height={height + 50} />
     </div>

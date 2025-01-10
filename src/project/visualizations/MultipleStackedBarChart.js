@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { useRef, useEffect, useState } from "react";
 import studentData from "../data/Project_multistackedbarchart_data";
+import Select from "react-select";
 
 export default function StackedMultipleBarPlot({
   data = studentData,
@@ -15,7 +16,15 @@ export default function StackedMultipleBarPlot({
   const [tooltip, setTooltip] = useState({ visible: false, value: '', nation: '', x: 0, y: 0 });
   const svgRef = useRef();
 
+  const years = [
+      ...[...new Set(studentData.map(d => d.year))].map(year => ({
+        value: year,
+        label: year.toString(),
+      })),
+    ];
+
   const filteredData = data.filter(d => d.year === year);
+
 
   useEffect(() => {
     const mouseleave = function () {
@@ -93,11 +102,13 @@ export default function StackedMultipleBarPlot({
     <>
       <div>
         <label htmlFor="year-selector">Select Year: </label>
-        <select id="year-selector" value={year} onChange={e => setYear(+e.target.value)}>
-          {[...new Set(data.map(d => d.year))].map(y => (
-            <option key={y} value={y}>{y}</option>
-          ))}
-        </select>
+        <Select
+          style={{ marginBottom: '10px' }}
+          className={window.innerWidth > 1024 ? "w-25" : "w-50"}
+          defaultValue={years.find(y => y.value === year)}
+          onChange={(e) => setYear(e.value)}
+          options={years}
+        />
       </div>
       <svg width={width} height={height} ref={svgRef} />
       {tooltip.visible && (

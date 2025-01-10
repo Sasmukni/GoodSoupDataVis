@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { useRef, useEffect, useState } from "react";
 import studentData from "../data/Project_multistackedbarchart_data";
+import Select from "react-select";
 
 export default function Histogram({
   data = studentData,
@@ -15,6 +16,12 @@ export default function Histogram({
   const svgRef = useRef();
   const [year, setYear] = useState(2013);
 
+  const years = [
+      ...[...new Set(studentData.map(d => d.year))].map(year => ({
+        value: year,
+        label: year.toString(),
+      })),
+    ];
   const filteredData = data.filter(d => d.year === year);
 
   useEffect(() => {
@@ -145,17 +152,13 @@ export default function Histogram({
   return (
     <div>
       <label htmlFor="year-selector">Select Year: </label>
-      <select
-        id="year-selector"
-        value={year}
-        onChange={(e) => setYear(parseInt(e.target.value, 10))}
-      >
-        {[...new Set(data.map((d) => d.year))].sort().map((yearOption) => (
-          <option key={yearOption} value={yearOption}>
-            {yearOption}
-          </option>
-        ))}
-      </select>
+      <Select
+          style={{ marginBottom: '10px' }}
+          className={window.innerWidth > 1024 ? "w-25" : "w-50"}
+          defaultValue={years.find(y => y.value === year)}
+          onChange={(e) => setYear(e.value)}
+          options={years}
+        />
       <svg ref={svgRef} width={width} height={height} />
     </div>
   );
