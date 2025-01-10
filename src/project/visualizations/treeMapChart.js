@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { useRef, useEffect, useState } from "react";
 import studentData from "../data/Project_treemapchart_data";
+import Select from "react-select";
 
 function calculteMean(data, selectedYear) {
   const filteredData = selectedYear === "average" ? data : data.filter(d => d.year.toString() === selectedYear);
@@ -48,7 +49,13 @@ export default function TreeMapChart({
   const tooltipRef = useRef();
 
   const [selectedYear, setSelectedYear] = useState("average");
-  const years = ["average", ...new Set(studentData.map(d => d.year.toString()))];
+  const years = [
+    { value: "average", label: "Average" },
+    ...[...new Set(studentData.map(d => d.year.toString()))].map(year => ({
+      value: year,
+      label: year,
+    })),
+  ];
 
   useEffect(() => {
     const data = calculteMean(studentData, selectedYear);
@@ -145,21 +152,22 @@ export default function TreeMapChart({
       .attr("fill", "white")
       .style("font-size", "20px")
       .text((d) => `${d.parent.data.name} - ${d.data.name}`);
-  }, [width, height, colors]);
+  }, [selectedYear, width, height, colors]);
 
   return (
-    <>
-      <label htmlFor="year-select">Select Year: </label>
-      <select
-        id="year-select"
-        value={selectedYear}
-        onChange={(e) => setSelectedYear(e.target.value)}
-      >
-        {years.map(year => (
-          <option key={year} value={year}>{year}</option>
-        ))}
-      </select>
-      <svg ref={svgRef}></svg>
+    <div>
+      <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
+        <Select
+          style={{ marginBottom: '10px' }}
+          className={window.innerWidth > 1024 ? "w-25" : "w-50"}
+          defaultValue={years.find(y => y.value === selectedYear)}
+          onChange={(e) => setSelectedYear(String(e.value))}
+          options={years}
+        />
+      </div>
+      <div className='container d-flex justify-content-center'>
+        <svg ref={svgRef} width={width} height={height}></svg>
+      </div>
       <div
         ref={tooltipRef}
         style={{
@@ -174,6 +182,7 @@ export default function TreeMapChart({
           transition: "opacity 0.2s",
         }}
       ></div>
-    </>
+    </div>
   );
 }
+

@@ -163,12 +163,76 @@ export default function StackedBarChart({
 
   return (
     <div>
-      <div>
-        <button onClick={() => setCategory("gender")}>Gender</button>
-        <button onClick={() => setCategory("sector")}>Sector</button>
-        <button onClick={() => setCategory("workingTime")}>Working Time</button>
-        <button onClick={() => setCategory("educationLevel")}>Education Level</button>
-      </div>
+      <div style={{ display: "flex", gap: "10px", justifyContent: "center", margin: "20px 0" }}>
+      <button
+        style={{
+          backgroundColor: "#007bff",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          padding: "10px 20px",
+          cursor: "pointer",
+          fontSize: "16px",
+          transition: "background-color 0.3s, transform 0.2s",
+        }}
+        onClick={() => setCategory("gender")}
+        onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+        onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+      >
+        Gender
+      </button>
+      <button
+        style={{
+          backgroundColor: "#007bff",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          padding: "10px 20px",
+          cursor: "pointer",
+          fontSize: "16px",
+          transition: "background-color 0.3s, transform 0.2s",
+        }}
+        onClick={() => setCategory("sector")}
+        onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+        onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+      >
+        Sector
+      </button>
+      <button
+        style={{
+          backgroundColor: "#007bff",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          padding: "10px 20px",
+          cursor: "pointer",
+          fontSize: "16px",
+          transition: "background-color 0.3s, transform 0.2s",
+        }}
+        onClick={() => setCategory("workingTime")}
+        onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+        onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+      >
+        Working Time
+      </button>
+      <button
+        style={{
+          backgroundColor: "#007bff",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          padding: "10px 20px",
+          cursor: "pointer",
+          fontSize: "16px",
+          transition: "background-color 0.3s, transform 0.2s",
+        }}
+        onClick={() => setCategory("educationLevel")}
+        onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+        onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+      >
+        Education Level
+      </button>
+    </div>
       <div>
         <label htmlFor="year-select">Select Year: </label>
         <select

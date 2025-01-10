@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import logo from "./goodsoup-removebg.png"
 const Navbar =()=>{
       return (
-            <div className="navbar sticky-top navbar-expand-lg navbar-dark bg-primary shadow-sm py-0">
+            <div className="navbar sticky-top navbar-expand-lg navbar-dark bg-primary shadow-sm py-0" id="navbarContainer">
                   <div className="container-fluid">
                         <a class="navbar-brand" href="#/">
                               <img 

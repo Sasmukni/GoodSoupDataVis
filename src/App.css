@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -13,11 +13,18 @@
   }
 }
 
+.Project-header{
+  background-color: aliceblue;
+  text-align: left;
+  padding-left: 5%;
+}
+
 .App-header {
-  /*background-color: #282c34;*/
+  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  text-align: center;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -92,4 +99,15 @@
 
 .back-button:focus {
   outline: none;
+}
+
+#navbarContainer {
+  border-bottom-color: #E16036;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
+}
+
+.barrier{
+  height: 50px;
+  background-color: aliceblue;
 }

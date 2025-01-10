@@ -41,11 +41,81 @@ export default function MapSubsection({
         <h3>{nation}</h3>
         {data.length?
         <>
-        <div>
+        {/*<div>
             <button onClick={() => setCategory("Donut")}>Total Students</button>
             <button onClick={() => setCategory("Barchart")}>Education Level</button>
             <button onClick={() => setCategory("Heatmap")}>Working Time</button>
             <button onClick={() => setCategory("Dumbell")}>Sector</button>
+        </div>*/}
+        <div style={{ display: "flex", gap: "10px", justifyContent: "center", margin: "20px 0" }}>
+            <button
+                style={{
+                backgroundColor: "#007bff",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                padding: "10px 20px",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.3s, transform 0.2s",
+                }}
+                onClick={() => setCategory("Donut")}
+                onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+                onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+            >
+                Total Students
+            </button>
+            <button
+                style={{
+                backgroundColor: "#007bff",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                padding: "10px 20px",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.3s, transform 0.2s",
+                }}
+                onClick={() => setCategory("Barchart")}
+                onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+                onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+            >
+                Education Level
+            </button>
+            <button
+                style={{
+                backgroundColor: "#007bff",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                padding: "10px 20px",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.3s, transform 0.2s",
+                }}
+                onClick={() => setCategory("Heatmap")}
+                onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+                onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+            >
+                Working Time
+            </button>
+            <button
+                style={{
+                backgroundColor: "#007bff",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                padding: "10px 20px",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.3s, transform 0.2s",
+                }}
+                onClick={() => setCategory("Dumbell")}
+                onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+                onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+            >
+                Sector
+            </button>
         </div>
         {dataForDonut.length && category === "Donut" &&
             <DonutChart data={dataForDonut[0].data} width={width-30}/>

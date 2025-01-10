@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { useRef, useEffect, useState } from "react";
 import studentData from '../data/Project_piechart_data';
+import Select from "react-select";
 
 export default function PieChart({
   data = studentData,
@@ -14,7 +15,13 @@ export default function PieChart({
   const svgRef = useRef();
   const [selectedYear, setSelectedYear] = useState("average");
 
-  const years = ["average", ...new Set(data.map(d => d.year.toString()))];
+  const years = [
+      { value: "average", label: "Average" },
+      ...[...new Set(studentData.map(d => d.year.toString()))].map(year => ({
+        value: year,
+        label: year,
+      })),
+    ];
 
   useEffect(() => {
     const filteredData = selectedYear === "average" ? data : data.filter(d => d.year.toString() === selectedYear);
@@ -135,15 +142,15 @@ export default function PieChart({
   return (
     <div style={{ textAlign: "center" }}>
       <label htmlFor="year-select">Select Year: </label>
-      <select
-        id="year-select"
-        value={selectedYear}
-        onChange={(e) => setSelectedYear(e.target.value)}
-      >
-        {years.map(year => (
-          <option key={year} value={year}>{year}</option>
-        ))}
-      </select>
+      <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
+        <Select
+          style={{ marginBottom: '10px' }}
+          className={window.innerWidth > 1024 ? "w-25" : "w-50"}
+          defaultValue={years.find(y => y.value === selectedYear)}
+          onChange={(e) => setSelectedYear(String(e.value))}
+          options={years}
+        />
+      </div>
       <svg ref={svgRef} />
     </div>
   );
