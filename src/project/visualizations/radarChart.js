@@ -242,7 +242,7 @@ export default function RadarChart({
   }, [width, height, marginTop, marginRight, marginBottom, marginLeft, colors, selectedYear]);
 
   return (
-    <>
+    <div  style={{ textAlign: "center" }}>
       <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
       <Select
           style={{ marginBottom: '10px' }}
@@ -269,6 +269,6 @@ export default function RadarChart({
           transition: "opacity 0.2s",
         }}
       ></div>
-    </>
+    </div>
   );
 }

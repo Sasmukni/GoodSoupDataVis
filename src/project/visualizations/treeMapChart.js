@@ -155,7 +155,7 @@ export default function TreeMapChart({
   }, [selectedYear, width, height, colors]);
 
   return (
-    <div>
+    <div  style={{ textAlign: "center" }}>
       <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
         <Select
           style={{ marginBottom: '10px' }}

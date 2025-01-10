@@ -46,7 +46,6 @@ export default function BubbleChart({
 
   return (
     <div style={{ flex: 1 }}>
-      <h4 className="mb-4">Female Doctoral Students in Europe (Bubble Chart)</h4>
 
       {/* Year Selector */}
       {/*<div>
