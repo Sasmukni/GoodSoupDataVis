@@ -199,23 +199,6 @@ export default function StackedBarChart({
           fontSize: "16px",
           transition: "background-color 0.3s, transform 0.2s",
         }}
-        onClick={() => setCategory("sector")}
-        onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
-        onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
-      >
-        Sector
-      </button>
-      <button
-        style={{
-          backgroundColor: "#007bff",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          padding: "10px 20px",
-          cursor: "pointer",
-          fontSize: "16px",
-          transition: "background-color 0.3s, transform 0.2s",
-        }}
         onClick={() => setCategory("workingTime")}
         onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
         onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
@@ -240,20 +223,6 @@ export default function StackedBarChart({
         Education Level
       </button>
     </div>
-      {/*<div>
-        <label htmlFor="year-select">Select Year: </label>
-        <select
-          id="year-select"
-          value={selectedYear}
-          onChange={(e) => setSelectedYear(Number(e.target.value))}
-        >
-          {[...Array(10).keys()].map((i) => (
-            <option key={i} value={2013 + i}>
-              {2013 + i}
-            </option>
-          ))}
-        </select>
-      </div>*/}
       <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
         <Select
           style={{ marginBottom: '10px' }}
