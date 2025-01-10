@@ -32,7 +32,7 @@ const colorsType = {
     Nation2 : "#0D47A1",
     male: ["#0AD3FF","#0D47A1"],
     female: ["#FFC3F5", "purple"],
-    gender: ["#0AD3FF", "#FFC3F5"],
+    gender: ["#0AD3FF", "#FF85EB"],
     arc: ["#D6D6D7", "red"]
 }
 

@@ -115,8 +115,8 @@ export default function SlopeChart({
       .text(`${rightYear}`)
       .attr("fill", "black");
         
-    drawLine(malePoints, colors.Males);
-    drawLine(femalePoints, colors.Females);
+    drawLine(malePoints, colors["Males"]);
+    drawLine(femalePoints, colors["Females"]);
 
     const legendX = width - marginRight + 20;
     const legendY = 20;
@@ -125,7 +125,7 @@ export default function SlopeChart({
       .attr("cx", legendX)
       .attr("cy", legendY)
       .attr("r", 5)
-      .attr("fill", colors.Males);
+      .attr("fill", colors["Males"]);
 
     svg.append("text")
       .attr("x", legendX + 10)
@@ -137,7 +137,7 @@ export default function SlopeChart({
       .attr("cx", legendX)
       .attr("cy", legendY + 20)
       .attr("r", 5)
-      .attr("fill", colors.Females);
+      .attr("fill", colors["Females"]);
 
     svg.append("text")
       .attr("x", legendX + 10)

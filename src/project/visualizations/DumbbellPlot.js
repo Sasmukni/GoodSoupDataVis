@@ -64,7 +64,7 @@ export default function DumbbellPlot({
       .attr("x2", (d) => xScale(d.value2))
       .attr("y1", (d) => yScale(d.gender) + yScale.bandwidth() / 2)
       .attr("y2", (d) => yScale(d.gender) + yScale.bandwidth() / 2)
-      .attr("stroke", "gray")
+      .attr("stroke", colors["Neutral"])
       .attr("stroke-width", 2);
 
     // Circles for value1
@@ -75,7 +75,7 @@ export default function DumbbellPlot({
       .attr("cx", (d) => xScale(d.value1))
       .attr("cy", (d) => yScale(d.gender) + yScale.bandwidth() / 2)
       .attr("r", 6)
-      .attr("fill", colors[0]);
+      .attr("fill", colors["Public"]);
 
     // Circles for value2
     chartGroup
@@ -85,7 +85,7 @@ export default function DumbbellPlot({
       .attr("cx", (d) => xScale(d.value2))
       .attr("cy", (d) => yScale(d.gender) + yScale.bandwidth() / 2)
       .attr("r", 6)
-      .attr("fill", colors[1]);
+      .attr("fill", colors["Private"]);
 
     // Labels for value1
     chartGroup
@@ -120,12 +120,12 @@ export default function DumbbellPlot({
     .attr("y", 0)
     .attr("width", 20)
     .attr("height", 20)
-    .attr("fill", colors[0]);
+    .attr("fill", colors["Public"]);
 
   legend.append("text")
     .attr("x", 30)
     .attr("y", 15)
-    .text("Full Time")
+    .text("Public")
     .style("font-size", "12px")
     .attr("alignment-baseline", "middle");
 
@@ -134,12 +134,12 @@ export default function DumbbellPlot({
     .attr("y", 30)
     .attr("width", 20)
     .attr("height", 20)
-    .attr("fill", colors[1]);
+    .attr("fill", colors["Private"]);
 
   legend.append("text")
     .attr("x", 30)
     .attr("y", 45)
-    .text("Part Time")
+    .text("Private")
     .style("font-size", "12px")
     .attr("alignment-baseline", "middle");
   }, [data, width, height, marginTop, marginRight, marginBottom, marginLeft, colors]);
