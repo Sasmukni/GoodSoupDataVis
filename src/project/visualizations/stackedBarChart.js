@@ -148,8 +148,8 @@ export default function StackedBarChart({
       .selectAll("rect")
       .data(labels)
       .join("rect")
-      .attr("x", 0)
-      .attr("y", (d, i) => i * 20)
+      .attr("x", -innerWidth/3)
+      .attr("y", (d, i) => i * 20 + (2*innerHeight/3))
       .attr("width", 18)
       .attr("height", 18)
       .attr("fill", (d, i) => color(i));
@@ -158,8 +158,8 @@ export default function StackedBarChart({
       .selectAll("text")
       .data(labels)
       .join("text")
-      .attr("x", 24)
-      .attr("y", (d, i) => i * 20 + 9)
+      .attr("x", -innerWidth/3 + 20)
+      .attr("y", (d, i) => i * 20 + (2*innerHeight/3) + 9)
       .attr("dy", "0.35em")
       .text((d) => d);
 
