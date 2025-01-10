@@ -14,7 +14,7 @@ export default function HorizontalBarChart({
 }) {
   const svgRef = useRef();
   const tooltipRef = useRef(); // Ref for the tooltip
-  const [topCount, setTopCount] = useState(5);
+  const [topCount, setTopCount] = useState(10);
   const [additionalCountries, setAdditionalCountries] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
@@ -137,7 +137,7 @@ export default function HorizontalBarChart({
           <div className={window.innerWidth > 1024 ? "w-25" : "w-50"}>
             <Select
               options={topOptions}
-              defaultValue={topOptions[0]}
+              defaultValue={topOptions[1]}
               onChange={(e) => {
                 setTopCount(Number(e.value));
               }}

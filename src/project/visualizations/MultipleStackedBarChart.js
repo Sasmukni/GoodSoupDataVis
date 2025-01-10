@@ -89,7 +89,7 @@ export default function StackedMultipleBarPlot({
 
           setTooltip({
             visible: true,
-            value: `${d[group.key]}%`,
+            value: `${d[group.key]}% NEETs`,
             nation: d.nation,
             x: event.pageX,
             y: event.pageY,
