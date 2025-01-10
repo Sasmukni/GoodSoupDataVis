@@ -82,6 +82,7 @@ export default function ChoroplethMapNEET({
             />
           </div>
           <div className='row' style={{width:width}}>
+            <div className="col-1"></div>
             <div className='col-4' style={{border:"1px solid",borderRadius:"25px", marginTop:"20px", marginBottom:"20px", height:height}}>
               {selected?
                 <div><MapSubsectionNEET data={yearFilteredNumData.filter(d => d.nation === selected)} nation={selected} year={year} width={width * 1/3} colors={colors}/></div>
@@ -91,7 +92,7 @@ export default function ChoroplethMapNEET({
                 </div>
               }
             </div>
-            <div className='col-8'>
+            <div className='col-7'>
               <svg width={mapWidth} height={height}>
                 {allSvgPaths}
               </svg>
