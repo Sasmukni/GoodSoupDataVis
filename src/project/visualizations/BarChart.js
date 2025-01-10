@@ -71,6 +71,14 @@ export default function HorizontalBarChart({
 
     chart.append("g").call(yAxis);
 
+    chart
+      .append("text")
+      .attr("x", chartWidth / 2)
+      .attr("y", chartHeight + marginBottom - 3)
+      .attr("text-anchor", "middle")
+      .style("font-size", "12px")
+      .text("Number of Females students");
+
     // Append bars
     chart
       .selectAll(".my-bar")
