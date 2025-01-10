@@ -46,7 +46,7 @@ function SubsidiaryPage() {
             <h2 className="h2 fw-bold text-primary mb-3">Introduction</h2>
             <h3 className="h5 text-secondary mt-3">A general view of the data</h3>
             <div className='row white'>
-                <div className='col-4'>
+                <div className='col-4 border_right'>
                 <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                         Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
                         sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
@@ -54,12 +54,12 @@ function SubsidiaryPage() {
                         Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
                 </div>
                 <div className='col-8'>
-                    <WaffleChart colors={colorsType}/>
+                    <WaffleChart width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 1.4/4} colors={colorsType}/>
                 </div>
             </div>
            
-            <div className='row white'>
-                <div className='col-9'>
+            <div className='row white border_top'>
+                <div className='col-9 border_right'>
                     <DualLineChart width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 1.5/4} colors={colorsType}/>
                 </div>
                 <div className='col-3'>
@@ -79,10 +79,10 @@ function SubsidiaryPage() {
                         amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
                         Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
                 </div>
-                <div className='col-6'>
+                <div className='col-6 border_right border_top'>
                     <Histogram width={window.innerWidth - 0.6 * window.innerWidth} height={window.innerHeight* 1.7/4} colors={colorsType}/>
                 </div>
-                <div className='col-6'>
+                <div className='col-6 border_top'>
                     <ScatterPlot width={window.innerWidth - 0.6 * window.innerWidth} height={window.innerHeight* 1.5/4} colors={colorsType}/>
                 </div>
             </div>
@@ -96,7 +96,7 @@ function SubsidiaryPage() {
             </div>
             <div className='barrier'></div>
             <div className='row white'>
-                <div className='col-4'>
+                <div className='col-4 border_right'>
                     <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                         Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
                         sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 

@@ -72,7 +72,7 @@ export default function Heatmap({
                       .attr('y', yScale(d.gender) - 3)
                       .style('opacity', 1)
                       .raise();
-                  setTooltip({ visible: true, value: `${d.gender} ${d.category}: ${d.value} students`, x: event.pageX, y: event.pageY });
+                  setTooltip({ visible: true, value: `${d.gender} ${d.category}: ${Intl.NumberFormat().format(d.value)} students`, x: event.pageX, y: event.pageY });
               })
               .on('mouseout', function (event, d) {
                   const originalWidth = xScale.bandwidth();
