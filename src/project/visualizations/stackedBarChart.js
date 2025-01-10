@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { useRef, useEffect, useState } from "react";
 import studentData from '../data/Project_stackedbarchart_data';
+import Select from "react-select";
 
 export default function StackedBarChart({
   data = studentData,
@@ -14,8 +15,14 @@ export default function StackedBarChart({
 }) {
   const svgRef = useRef();
   const [category, setCategory] = useState("gender");
-  const [selectedYear, setSelectedYear] = useState(2013);
-;
+  const [selectedYear, setSelectedYear] = useState("2013");
+  const years = [
+      ...[...new Set(studentData.map(d => d.year.toString()))].map(year => ({
+        value: year,
+        label: year,
+      })),
+  ];
+  
   const innerWidth = width - marginLeft - marginRight;
   const innerHeight = height - marginTop - marginBottom;
 
@@ -27,7 +34,7 @@ export default function StackedBarChart({
   };
 
   useEffect(() => {
-    const filteredData = data.filter(d => d.year === selectedYear);
+    const filteredData = data.filter(d => String(d.year) === selectedYear);
 
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
@@ -233,7 +240,7 @@ export default function StackedBarChart({
         Education Level
       </button>
     </div>
-      <div>
+      {/*<div>
         <label htmlFor="year-select">Select Year: </label>
         <select
           id="year-select"
@@ -246,6 +253,15 @@ export default function StackedBarChart({
             </option>
           ))}
         </select>
+      </div>*/}
+      <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
+        <Select
+          style={{ marginBottom: '10px' }}
+          className={window.innerWidth > 1024 ? "w-25" : "w-50"}
+          defaultValue={years.find(y => y.value === selectedYear)}
+          onChange={(e) => setSelectedYear(String(e.value))}
+          options={years}
+        />
       </div>
       <svg ref={svgRef} width={width} height={height}>
         <g transform={`translate(${marginLeft},${marginTop})`} />

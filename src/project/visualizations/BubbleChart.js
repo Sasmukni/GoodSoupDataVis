@@ -2,6 +2,7 @@ import * as d3 from "d3";
 import { useState } from "react";
 import { geoData } from "../data/europegeodata";
 import numData from "../data/Project_secondsection_data.json";
+import Select from "react-select";
 
 export default function BubbleChart({
   width = 800,
@@ -15,9 +16,16 @@ export default function BubbleChart({
   const [focused, setFocused] = useState(null);
   const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
   const [hoveredCircle, setHoveredCircle] = useState(null);
-  const [selectedYear, setSelectedYear] = useState(2013);
+  const [selectedYear, setSelectedYear] = useState("2013");
 
-  const bubbleData = numData.filter(d => d.year === selectedYear).map(d => ({
+  const years = [
+    ...[...new Set(numData.map(d => d.year.toString()))].map(year => ({
+      value: year,
+      label: year,
+    })),
+  ];
+
+  const bubbleData = numData.filter(d => String(d.year) === selectedYear).map(d => ({
     nation: d.nation,
     femaleDoctoral: d.fem_doctoral_type
   }));
@@ -41,7 +49,7 @@ export default function BubbleChart({
       <h4 className="mb-4">Female Doctoral Students in Europe (Bubble Chart)</h4>
 
       {/* Year Selector */}
-      <div>
+      {/*<div>
         <label htmlFor="yearSelect">Select Year: </label>
         <select
           id="yearSelect"
@@ -52,6 +60,15 @@ export default function BubbleChart({
             <option key={year} value={year}>{year}</option>
           ))}
         </select>
+      </div>*/}
+      <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
+        <Select
+          style={{ marginBottom: '10px' }}
+          className={window.innerWidth > 1024 ? "w-25" : "w-50"}
+          defaultValue={years.find(y => y.value === selectedYear)}
+          onChange={(e) => setSelectedYear(String(e.value))}
+          options={years}
+        />
       </div>
 
       {/* SVG to render the map and bubbles */}
