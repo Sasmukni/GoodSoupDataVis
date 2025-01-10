@@ -4,7 +4,7 @@ import studentData from "../data/Project_wafflechart_data";
 import Select from "react-select";
 
 export default function WaffleChart({
-  width = 600,
+  width = 800,
   height = 300,
   marginTop = 20, 
   marginRight = 10,
@@ -33,10 +33,14 @@ export default function WaffleChart({
     const totalSquares = rows * columns;
     const malePercentage = data.tot_males;
     const femalePercentage = data.tot_females;
+    const totalPercentage = data.tot_neets;
+
     const maleFullSquares = Math.floor((malePercentage / 100) * totalSquares);
     const malePartialSquare = ((malePercentage / 100) * totalSquares) % 1;
     const femaleFullSquares = Math.floor((femalePercentage / 100) * totalSquares);
     const femalePartialSquare = ((femalePercentage / 100) * totalSquares) % 1;
+    const totalFullSquares = Math.floor((totalPercentage / 100) * totalSquares);
+    const totalPartialSquare = ((totalPercentage / 100) * totalSquares) % 1;
 
     const createWaffle = (fullSquares, partialSquare, percentage, totalSquares, xOffset, color, label) => {
       const waffleData = Array.from({ length: totalSquares }, (_, i) => (i < fullSquares ? 1 : 0));
@@ -45,9 +49,9 @@ export default function WaffleChart({
         .enter()
         .append("g")
         .each(function (d, i) {
-          const x = xOffset + (i % columns) * (width / (2 * columns));
+          const x = xOffset + (i % columns) * (width / (3 * columns));
           const y = marginTop + Math.floor(i / columns) * (height / rows);
-          const squareWidth = width / (2 * columns) - 2;
+          const squareWidth = width / (3 * columns) - 2;
           const squareHeight = height / rows - 2;
 
           d3.select(this)
@@ -78,7 +82,7 @@ export default function WaffleChart({
         });
 
       svg.append("text")
-        .attr("x", xOffset + width / 4)
+        .attr("x", xOffset + width / 6)
         .attr("y", height + 35) 
         .attr("text-anchor", "middle")
         .attr("fill", color)
@@ -86,8 +90,9 @@ export default function WaffleChart({
         .text(`${label}: ${percentage.toFixed(1)}%`);
     };
 
-    createWaffle(maleFullSquares, malePartialSquare, malePercentage, totalSquares, marginLeft -12 , colors["Males"], "Male NEET");
-    createWaffle(femaleFullSquares, femalePartialSquare, femalePercentage, totalSquares, width / 2+ 5, colors["Females"], "Female NEET");
+    createWaffle(maleFullSquares, malePartialSquare, malePercentage, totalSquares, marginLeft - 12, colors["Males"], "Male NEET");
+    createWaffle(femaleFullSquares, femalePartialSquare, femalePercentage, totalSquares, width / 3 + 3, colors["Females"], "Female NEET");
+    createWaffle(totalFullSquares, totalPartialSquare, totalPercentage, totalSquares, (2 * width) / 3 + 7, colors["Total"], "Total NEET");
   }, [data, width, height, marginTop, marginRight, marginBottom, marginLeft, colors, grayColor, rows, columns]);
 
   return (
