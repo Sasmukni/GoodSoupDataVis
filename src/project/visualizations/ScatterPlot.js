@@ -22,7 +22,7 @@ export default function ScatterPlot({
     const filteredData = studentData.filter(d => d.year === year);
 
     const xScale = d3.scaleLinear()
-      .domain([0, d3.max(filteredData, d => d.tot_males)])
+      .domain([0, d3.max(filteredData, d => d.tot_females)])
       .range([marginLeft, width - marginRight]);
 
     const yScale = d3.scaleLinear()

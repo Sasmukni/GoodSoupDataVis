@@ -77,7 +77,7 @@ export default function ChoroplethMap({
             <Select
               style={{ marginBottom: '10px' }}
               className={window.innerWidth > 1024 ? "w-25" : "w-50"}
-              defaultValue={year}
+              defaultValue={yearOptions.find(y => y.value === year)}
               onChange={(e) => setYear(e.value)}
               options={yearOptions}
             />
@@ -97,18 +97,18 @@ export default function ChoroplethMap({
                 {allSvgPaths}
               </svg>
               <div style={{ marginTop: '10px', textAlign: 'center' }}>
-            <svg width="300" height="50">
+            <svg width={mapWidth/3} height="50">
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="00%" stopColor="#AAAAFF" />
                   <stop offset="100%" stopColor="#0000FF" />
                 </linearGradient>
               </defs>
-              <rect x="0" y="0" width="300" height="20" fill="url(#gradient)" />
+              <rect x="0" y="0" width={mapWidth/3} height="20" fill="url(#gradient)" />
               <text x="0" y="40" fontSize="12" textAnchor="start">
                 {Intl.NumberFormat().format(d3.min(yearFilteredNumData.map(d => d.tot_students)))}
               </text>
-              <text x="300" y="40" fontSize="12" textAnchor="end">
+              <text x={mapWidth/3} y="40" fontSize="12" textAnchor="end">
                 {Intl.NumberFormat().format(d3.max(yearFilteredNumData.map(d => d.tot_students)))}
               </text>
             </svg>

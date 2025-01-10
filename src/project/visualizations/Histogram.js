@@ -27,20 +27,20 @@ export default function Histogram({
     const maleData = filteredData.map((d) => ({ value: d.tot_males, nation: d.nation }));
     const femaleData = filteredData.map((d) => ({ value: d.tot_females, nation: d.nation }));
 
-    const binThresholds = d3.range(0, 101, 10);
+    const binThresholds = d3.range(0, 60, 10);
 
     const maleBins = d3.bin()
       .value(d => d.value)
-      .domain([0, 100])
+      .domain([0, 60])
       .thresholds(binThresholds)(maleData);
 
     const femaleBins = d3.bin()
       .value(d => d.value)
-      .domain([0, 100])
+      .domain([0, 60])
       .thresholds(binThresholds)(femaleData);
 
     const xScale = d3.scaleBand()
-      .domain(binThresholds.map((d, i) => `${d}-${binThresholds[i + 1] || 100}%`))
+      .domain(binThresholds.map((d, i) => `${d}-${binThresholds[i + 1] || 60}%`))
       .range([0, innerWidth])
       .padding(0.1);
 
@@ -63,7 +63,7 @@ export default function Histogram({
       .data(maleBins)
       .join("rect")
       .attr("class", "bar-male")
-      .attr("x", (d, i) => xScale(`${binThresholds[i]}-${binThresholds[i + 1] || 100}%`))
+      .attr("x", (d, i) => xScale(`${binThresholds[i]}-${binThresholds[i + 1] || 60}%`))
       .attr("y", (d) => yScale(d.length))
       .attr("width", xScale.bandwidth() / 2)
       .attr("height", (d) => innerHeight - yScale(d.length))
@@ -81,7 +81,7 @@ export default function Histogram({
       .data(femaleBins)
       .join("rect")
       .attr("class", "bar-female")
-      .attr("x", (d, i) => xScale(`${binThresholds[i]}-${binThresholds[i + 1] || 100}%`) + xScale.bandwidth() / 2)
+      .attr("x", (d, i) => xScale(`${binThresholds[i]}-${binThresholds[i + 1] || 60}%`) + xScale.bandwidth() / 2)
       .attr("y", (d) => yScale(d.length))
       .attr("width", xScale.bandwidth() / 2)
       .attr("height", (d) => innerHeight - yScale(d.length))

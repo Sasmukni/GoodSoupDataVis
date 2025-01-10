@@ -76,7 +76,7 @@ export default function ChoroplethMapNEET({
             <Select
               style={{ marginBottom: '10px' }}
               className={window.innerWidth > 1024 ? "w-25" : "w-50"}
-              defaultValue={year}
+              defaultValue={yearOptions.find(y => y.value === year)}
               onChange={(e) => setYear(e.value)}
               options={yearOptions}
             />

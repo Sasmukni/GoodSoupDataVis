@@ -95,13 +95,13 @@ function ProjectHome() {
                     </p>
                 </div>
                 <div className='col-12'>
-                    <StackedBarChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth}/>
+                    <StackedBarChart colors={colorsType} width={window.innerWidth - 0.3 * window.innerWidth}/>
                 </div>
             </div>
             <div className='barrier'></div>
             <div className='row'>
                 <div className='col-8'>
-                    <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.5 * window.innerWidth} height={window.innerHeight* 4/10}/>
+                    <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.6 * window.innerWidth} height={window.innerHeight* 4/10}/>
                 </div>
                 <div className='col-4'>
                     <p>
