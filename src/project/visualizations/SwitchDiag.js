@@ -6,7 +6,7 @@ import TreeMapChart from './treeMapChart';
 export default function SwitchDiag({
   colorsType = ["pink"]
 }) {
-  const [diag, setDiag] = useState(null);
+  const [diag, setDiag] = useState(0);
 
   return (
     <div className='row'>

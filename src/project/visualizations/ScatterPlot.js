@@ -9,7 +9,7 @@ export default function ScatterPlot({
   marginTop = 20,
   marginRight = 30,
   marginBottom = 30,
-  marginLeft = 40,
+  marginLeft = 50,
   colors = ["steelblue"]
 }) {
   const svgRef = useRef();
@@ -41,11 +41,13 @@ export default function ScatterPlot({
 
     svg.append("g")
       .attr("transform", `translate(0,${height - marginBottom})`)
-      .call(xAxis);
+      .call(xAxis)
+      .attr("font-size", "12px");;
 
     svg.append("g")
       .attr("transform", `translate(${marginLeft},0)`)
-      .call(yAxis);
+      .call(yAxis)
+      .attr("font-size", "12px");;
 
     svg.append("text")
       .attr("x", width / 2)
@@ -56,7 +58,7 @@ export default function ScatterPlot({
 
     svg.append("text")
       .attr("x", -height / 2)
-      .attr("y", marginLeft - 31)
+      .attr("y", marginLeft*0.2)
       .attr("transform", "rotate(-90)")
       .attr("text-anchor", "middle")
       .style("font-size", "12px")

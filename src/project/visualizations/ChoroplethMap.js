@@ -26,7 +26,7 @@ export default function ChoroplethMap({
   var yearFilteredNumData = numData.filter(d => d.year === year);
   var colorScale = d3.scaleLinear()
       .domain(d3.extent([...yearFilteredNumData.map(d=>d.tot_students)]))
-      .range(['#AAAAFF', '#0000FF']);
+      .range([colors["Nation1"], colors["Nation2"]]);
   //var extent = 
   var newGeoData = geoData;
   newGeoData.features = newGeoData.features.filter((feat)=> nations.includes(feat.properties.NAME_ENGL));
@@ -36,13 +36,13 @@ export default function ChoroplethMap({
   const allSvgPaths = myGeoData.sort((a,b)=> {if(a.properties.NAME_ENGL === focused) return 1; if (b.properties.NAME_ENGL === focused) return -1; return a.properties.NAME_ENGL-b.properties.NAME_ENGL})
     .map((shape) => {
       const regionData = yearFilteredNumData.find((region) => region.nation === shape.properties?.NAME_ENGL);
-      const color =  regionData ? colorScale(regionData?.tot_students) : 'lightgrey';
+      const color =  regionData ? colorScale(regionData?.tot_students) : colors["Neutral"];
       const countryName = shape.properties?.NAME_ENGL ?? 'No Data'; 
       return (
         <path
           key={shape.id}
           d={geoPathGenerator(shape.geometry)}
-          stroke={focused === shape.properties.NAME_ENGL? "black": "lightGrey"}
+          stroke={focused === shape.properties.NAME_ENGL? "black": colors["Neutral"]}
           strokeWidth={focused === shape.properties.NAME_ENGL? 1: 0.5}
           fill={color}
           fillOpacity={1}
@@ -100,8 +100,8 @@ export default function ChoroplethMap({
             <svg width={mapWidth/3} height="50">
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="00%" stopColor="#AAAAFF" />
-                  <stop offset="100%" stopColor="#0000FF" />
+                  <stop offset="00%" stopColor={colors["Nation1"]} />
+                  <stop offset="100%" stopColor={colors["Nation2"]} />
                 </linearGradient>
               </defs>
               <rect x="0" y="0" width={mapWidth/3} height="20" fill="url(#gradient)" />
