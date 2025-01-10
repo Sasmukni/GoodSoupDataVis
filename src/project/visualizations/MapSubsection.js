@@ -44,14 +44,15 @@ export default function MapSubsection({
         <h3 className="fw-bold mb-3 mt-1">{nation}</h3>
         {data.length?
         <>
-        <div style={{ display: "flex", gap: "10px", justifyContent: "center", margin: "20px 0" }}>
+        <div className="row" style={{ display: "flex", margin: "20px 0" }}>
+            <div className="col col-sm-6 col-md-3">
             <button
                 style={{
                 backgroundColor: "#007bff",
                 color: "white",
                 border: "none",
                 borderRadius: "5px",
-                padding: "10px 20px",
+                padding: "10px 10px",
                 cursor: "pointer",
                 fontSize: "16px",
                 transition: "background-color 0.3s, transform 0.2s",
@@ -62,13 +63,15 @@ export default function MapSubsection({
             >
                 Total Students
             </button>
+            </div>
+            <div className="col col-sm-6 col-md-3">
             <button
                 style={{
                 backgroundColor: "#007bff",
                 color: "white",
                 border: "none",
                 borderRadius: "5px",
-                padding: "10px 20px",
+                padding: "10px 10px",
                 cursor: "pointer",
                 fontSize: "16px",
                 transition: "background-color 0.3s, transform 0.2s",
@@ -79,13 +82,15 @@ export default function MapSubsection({
             >
                 Education Level
             </button>
+            </div>
+            <div className="col col-sm-6 col-md-3">
             <button
                 style={{
                 backgroundColor: "#007bff",
                 color: "white",
                 border: "none",
                 borderRadius: "5px",
-                padding: "10px 20px",
+                padding: "10px 10px",
                 cursor: "pointer",
                 fontSize: "16px",
                 transition: "background-color 0.3s, transform 0.2s",
@@ -96,13 +101,15 @@ export default function MapSubsection({
             >
                 Working Time
             </button>
+            </div>
+            <div className="col col-sm-6 col-md-3">
             <button
                 style={{
                 backgroundColor: "#007bff",
                 color: "white",
                 border: "none",
                 borderRadius: "5px",
-                padding: "10px 20px",
+                padding: "10px 10px",
                 cursor: "pointer",
                 fontSize: "16px",
                 transition: "background-color 0.3s, transform 0.2s",
@@ -113,6 +120,7 @@ export default function MapSubsection({
             >
                 Sector
             </button>
+            </div>
         </div>
         {dataForDonut.length && category === "Donut" &&
             <DonutChart data={dataForDonut[0].data} width={width-30} colors={colors}/>

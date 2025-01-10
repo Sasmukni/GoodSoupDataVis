@@ -102,7 +102,7 @@ export default function DonutChart({
       .style("font-size", "14px")
       .style("fill", "white")
       .text(d => `${d.data.label}`);
-  }, [width, height, marginTop, marginRight, marginBottom, marginLeft, colors]);
+  }, [data,width, height, marginTop, marginRight, marginBottom, marginLeft, colors]);
 
   return (
     <>
