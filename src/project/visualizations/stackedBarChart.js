@@ -70,10 +70,10 @@ export default function StackedBarChart({
         keys = ["tot_males", "tot_females"];
         labels = ["Males", "Females"];
         break;
-      /*case "sector":
+      case "sector":
         keys = ["tot_public_sector", "tot_private_sector"];
         labels = ["Public Sector", "Private Sector"];
-        break;*/
+        break;
       case "workingTime":
         keys = ["tot_full_time", "tot_part_time"];
         labels = ["Full Time", "Part Time"];
