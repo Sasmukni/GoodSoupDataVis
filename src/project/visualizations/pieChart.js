@@ -94,7 +94,7 @@ export default function PieChart({
         tooltip.style("visibility", "visible")
           .style("top", `${event.pageY + 10}px`)
           .style("left", `${event.pageX + 10}px`)
-          .text(`${d.data.category}: ${d.data.value.toFixed(2)} (${percentage}%)`);
+          .text(`${d.data.category} students: ${d.data.value.toFixed(2)} (${percentage}%)`);
         d3.select(this).transition().duration(200).attr("transform", liftSlice(d));
       })
       .on("mouseout", function () {
@@ -126,7 +126,7 @@ export default function PieChart({
         tooltip.style("visibility", "visible")
           .style("top", `${event.pageY + 10}px`)
           .style("left", `${event.pageX + 10}px`)
-          .text(`${d.data.category}: ${d.data.value.toFixed(2)} (${percentage}%)`);
+          .text(`${d.data.category} students: ${d.data.value.toFixed(2)} (${percentage}%)`);
         d3.select(this).transition().duration(200).attr("transform", liftSlice(d));
       })
       .on("mouseout", function () {
