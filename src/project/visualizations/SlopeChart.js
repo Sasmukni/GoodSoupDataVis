@@ -9,12 +9,15 @@ export default function SlopeChart({
   marginBottom = 40,
   marginLeft = 100,
   marginRight = 100,
-  colors = { males: "steelblue", females: "coral" }
+  colors = { Males: "steelblue", Females: "coral" },
+  selectedNation = "North Macedonia",
+  leftYear = 2013,
+  rightYear = 2022
 }) {
   const svgRef = useRef();
-  const [selectedNation, setSelectedNation] = useState("North Macedonia");
-  const [leftYear, setLeftYear] = useState(2013);
-  const [rightYear, setRightYear] = useState(2022);
+  //const [selectedNation, setSelectedNation] = useState("North Macedonia");
+  //const [leftYear, setLeftYear] = useState(2013);
+  //const [rightYear, setRightYear] = useState(2022);
 
   const nations = Array.from(new Set(studentData.map(d => d.nation)));
   const years = Array.from(new Set(studentData.map(d => d.year))).sort(d3.ascending);
@@ -35,12 +38,14 @@ export default function SlopeChart({
     const malePoints = filteredData.map(d => ({
       year: d.year,
       value: d.tot_males,
+      isHigher: d.tot_males > d.tot_females,
       x: d.year === leftYear ? xPositions[0] : xPositions[1]
     }));
 
     const femalePoints = filteredData.map(d => ({
       year: d.year,
       value: d.tot_females,
+      isHigher: d.tot_females > d.tot_males,
       x: d.year === leftYear ? xPositions[0] : xPositions[1]
     }));
 
@@ -64,15 +69,54 @@ export default function SlopeChart({
 
         svg.append("text")
           .attr("x", d.x + (d.x === xPositions[0] ? -10 : 10))
-          .attr("y", yScale(d.value))
+          .attr("y", yScale(d.value) + (d.isHigher?-7:7))
           .attr("dy", "0.35em")
           .attr("text-anchor", d.x === xPositions[0] ? "end" : "start")
-          .text(`${d.value}%`);
+          .text(`${d.value}%`)
+          .attr("fill", color);
       });
     };
+    //draw years lines
+    let ymax = yScale(d3.max(filteredData, d => Math.max(d.tot_males, d.tot_females)))-10;
+    let ymin = yScale(d3.min(filteredData, d => Math.min(d.tot_males, d.tot_females)))+10;
+    svg.append("path")
+    .datum([{x:xPositions[0],y:ymax},
+        {x:xPositions[0], y:ymin}])
+    .attr("fill", "none")
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("d", d3.line()
+      .x(d => d.x)
+      .y(d => d.y)
+    );
+    svg.append("text")
+      .attr("x", xPositions[0])
+      .attr("y", ymin +20)
+      .attr("dy", "0.35em")
+      .attr("text-anchor","middle")
+      .text(`${leftYear}`)
+      .attr("fill", "black");
 
-    drawLine(malePoints, colors.males);
-    drawLine(femalePoints, colors.females);
+    svg.append("path")
+    .datum([{x:xPositions[1],y:ymax},
+        {x:xPositions[1], y:ymin}])
+    .attr("fill", "none")
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("d", d3.line()
+      .x(d => d.x)
+      .y(d => d.y)
+    );
+    svg.append("text")
+      .attr("x", xPositions[1])
+      .attr("y", ymin +20)
+      .attr("dy", "0.35em")
+      .attr("text-anchor","middle")
+      .text(`${rightYear}`)
+      .attr("fill", "black");
+        
+    drawLine(malePoints, colors.Males);
+    drawLine(femalePoints, colors.Females);
 
     const legendX = width - marginRight + 20;
     const legendY = 20;
@@ -81,7 +125,7 @@ export default function SlopeChart({
       .attr("cx", legendX)
       .attr("cy", legendY)
       .attr("r", 5)
-      .attr("fill", colors.males);
+      .attr("fill", colors.Males);
 
     svg.append("text")
       .attr("x", legendX + 10)
@@ -93,7 +137,7 @@ export default function SlopeChart({
       .attr("cx", legendX)
       .attr("cy", legendY + 20)
       .attr("r", 5)
-      .attr("fill", colors.females);
+      .attr("fill", colors.Females);
 
     svg.append("text")
       .attr("x", legendX + 10)
@@ -104,11 +148,11 @@ export default function SlopeChart({
 
   return (
     <div>
-      <label htmlFor="nation-selector">Select a Nation: </label>
+      {false && <><label htmlFor="nation-selector">Select a Nation: </label>
       <select
         id="nation-selector"
         value={selectedNation}
-        onChange={(e) => setSelectedNation(e.target.value)}
+        //onChange={(e) => setSelectedNation(e.target.value)}
       >
         {nations.map(nation => (
           <option key={nation} value={nation}>
@@ -121,7 +165,7 @@ export default function SlopeChart({
       <select
         id="left-year-selector"
         value={leftYear}
-        onChange={(e) => setLeftYear(parseInt(e.target.value))}
+        //onChange={(e) => setLeftYear(parseInt(e.target.value))}
       >
         {years.map(year => (
           <option key={year} value={year}>
@@ -134,7 +178,7 @@ export default function SlopeChart({
       <select
         id="right-year-selector"
         value={rightYear}
-        onChange={(e) => setRightYear(parseInt(e.target.value))}
+        //onChange={(e) => setRightYear(parseInt(e.target.value))}
       >
         {years.map(year => (
           <option key={year} value={year}>
@@ -142,7 +186,7 @@ export default function SlopeChart({
           </option>
         ))}
       </select>
-
+      </>}
       <svg ref={svgRef} width={width} height={height}></svg>
     </div>
   );

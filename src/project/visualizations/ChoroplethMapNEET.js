@@ -84,7 +84,7 @@ export default function ChoroplethMapNEET({
           <div className='row' style={{width:width}}>
             <div className='col-4' style={{border:"1px solid",borderRadius:"25px", marginTop:"20px", marginBottom:"20px", height:height}}>
               {selected?
-                <div><MapSubsectionNEET data={yearFilteredNumData.filter(d => d.nation === selected)} nation={selected} width={width * 1/3} colors={colors}/></div>
+                <div><MapSubsectionNEET data={yearFilteredNumData.filter(d => d.nation === selected)} nation={selected} year={year} width={width * 1/3} colors={colors}/></div>
                 :
                 <div className="align-middle">
                   Click on a nation to see details
