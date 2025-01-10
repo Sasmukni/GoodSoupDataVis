@@ -56,7 +56,7 @@ function ProjectHome() {
                 <div className='col-4'></div>
             </div>
             <div className='row'>
-                <div className='col-4'>
+                <div className='col-12'>
                     <p>
                     Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                     Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
@@ -70,14 +70,14 @@ function ProjectHome() {
                     Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.
                     </p>
                 </div>
-                <div className='col-8'>
-                    <StackedBarChart colors={colorsType} width={window.innerWidth - 0.4 * window.innerWidth}/>
+                <div className='col-12'>
+                    <StackedBarChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth}/>
                 </div>
             </div>
             <div className='barrier'></div>
             <div className='row'>
                 <div className='col-12'>
-                    <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.12 * window.innerWidth} height={window.innerHeight* 4/10}/>
+                    <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.25 * window.innerWidth} height={window.innerHeight* 4/10}/>
                 </div>
                 <div className='col_4'>
                     <p>
@@ -96,16 +96,13 @@ function ProjectHome() {
             </div>
             <div className='row'>
                 <div className='col-12'>
-                    <RadarChart colors={colorsType}/>
+                    <RadarChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 7/8}/>
                 </div>
                 <div className='col-12'>
-                    <PieChart colors={colorsType}/>
+                    <PieChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 7/8}/>
                 </div>
                 <div className='col-12'>
-                    <GaugeChart colors={colorsType}/>
-                </div>
-                <div className='col-12'>
-                    <TreeMapChart colors={colorsType} />
+                    <TreeMapChart colors={colorsType} width={window.innerWidth - 0.5 * window.innerWidth} height={window.innerHeight* 5/8}/>
                 </div>
             </div>
             <h2 className="text-primary fw-bold mb-3">Main visualization</h2>
@@ -122,10 +119,10 @@ function ProjectHome() {
                     <AlluvialChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 7/8}/>
                 </div>
                 <div className='col-12'>
-                    <BubbleChart colors={colorsType}/>
+                    <BubbleChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 7/8}/>
                 </div>
                 <div className='col-12'>
-                    <BarChart colors={colorsType}/>
+                    <BarChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 7/8}/>
                 </div>
             </div>
         </div>

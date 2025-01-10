@@ -8,10 +8,10 @@ export default function DumbbellPlot({
   ],
   width = 800,
   height = 400,
-  marginTop = 50,
+  marginTop = 30,
   marginRight = 50,
   marginBottom = 50,
-  marginLeft = 100,
+  marginLeft = 50,
   colors = ["steelblue", "orange"],
 }) {
   const svgRef = useRef();
@@ -27,7 +27,7 @@ export default function DumbbellPlot({
     const xScale = d3
       .scaleLinear()
       .domain([d3.min(data, (d) => Math.min(d.value1, d.value2)) - 10, d3.max(data, (d) => Math.max(d.value1, d.value2)) + 10])
-      .nice()
+      .nice(1)
       .range([0, innerWidth]);
 
     const yScale = d3
@@ -92,24 +92,56 @@ export default function DumbbellPlot({
       .selectAll(".label1")
       .data(data)
       .join("text")
-      .attr("x", (d) => xScale(d.value1) - 10)
+      .attr("x", (d) => xScale(d.value1))
       .attr("y", (d) => yScale(d.gender) + 5 + yScale.bandwidth() / 2)
-      .attr("dy", "0.35em")
-      .attr("text-anchor", "end")
+      .attr("dy", "1em")
+      .attr("text-anchor", "middle")
       .style("font-size", "10px")
-      .text((d) => d.value1);
+      .text((d) => Intl.NumberFormat().format((d.value1)));
 
     // Labels for value2
     chartGroup
       .selectAll(".label2")
       .data(data)
       .join("text")
-      .attr("x", (d) => xScale(d.value2) + 10)
+      .attr("x", (d) => xScale(d.value2))
       .attr("y", (d) => yScale(d.gender) + 5 + yScale.bandwidth() / 2)
-      .attr("dy", "0.35em")
-      .attr("text-anchor", "start")
+      .attr("dy", "1em")
+      .attr("text-anchor", "middle")
       .style("font-size", "10px")
-      .text((d) => d.value2);
+      .text((d) => Intl.NumberFormat().format((d.value2)));
+    
+  // Legend
+  const legend = svg.append("g")
+    .attr("transform", `translate(${innerWidth - marginRight},${marginTop})`);
+
+  legend.append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", 20)
+    .attr("height", 20)
+    .attr("fill", colors[0]);
+
+  legend.append("text")
+    .attr("x", 30)
+    .attr("y", 15)
+    .text("Full Time")
+    .style("font-size", "12px")
+    .attr("alignment-baseline", "middle");
+
+  legend.append("rect")
+    .attr("x", 0)
+    .attr("y", 30)
+    .attr("width", 20)
+    .attr("height", 20)
+    .attr("fill", colors[1]);
+
+  legend.append("text")
+    .attr("x", 30)
+    .attr("y", 45)
+    .text("Part Time")
+    .style("font-size", "12px")
+    .attr("alignment-baseline", "middle");
   }, [data, width, height, marginTop, marginRight, marginBottom, marginLeft, colors]);
 
   return <svg ref={svgRef} width={width} height={height}></svg>;

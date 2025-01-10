@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { useRef, useEffect, useState } from "react";
 import studentData from '../data/Project_radarchart_data';
+import Select from "react-select";
 
 function calculateMeanMale(data, selectedYear) {
   const filteredData = selectedYear === "average" ? data : data.filter(d => d.year.toString() === selectedYear);
@@ -40,9 +41,17 @@ export default function RadarChart({
   colors = ["blue"]
 }) {
   const svgRef = useRef();
+  const tooltipRef = useRef();
 
   const [selectedYear, setSelectedYear] = useState("average");
-  const years = ["average", ...new Set(studentData.map(d => d.year.toString()))];
+  const years = [
+    { value: "average", label: "Average" },
+    ...[...new Set(studentData.map(d => d.year.toString()))].map(year => ({
+      value: year,
+      label: year,
+    })),
+  ];
+
 
   const dataMale = calculateMeanMale(studentData, selectedYear);
   const dataFem = calculateMeanFemale(studentData, selectedYear);
@@ -63,7 +72,7 @@ export default function RadarChart({
     // Scales
     const maxValue = d3.max(dataMale.concat(dataFem));
     const angleSlice = (Math.PI * 2) / dataMale.length;
-    const scaleRadius = d3.scaleLinear().domain([0, maxValue]).range([0, radius]);
+    const scaleRadius = d3.scaleLinear().domain([0, maxValue]).nice().range([0, radius]);
 
     // Axes
     labels.forEach((label, i) => {
@@ -94,7 +103,7 @@ export default function RadarChart({
     const levels = 5; // Number of concentric circles
     for (let level = 1; level <= levels; level++) {
       const gridRadius = (radius / levels) * level;
-      const gridValue = Math.ceil((maxValue / levels) * level);
+      const gridValue = Math.ceil((scaleRadius.domain()[1] / levels) * level);
 
       svg.append("circle")
         .attr("cx", 0)
@@ -111,7 +120,7 @@ export default function RadarChart({
       .attr("dy", "-0.2em")
       .style("text-anchor", "middle")
       .style("font-size", "10px")
-      .text(gridValue.toFixed(1));
+      .text(gridValue.toFixed(0));
     }
 
     // Radar area male
@@ -137,7 +146,24 @@ export default function RadarChart({
       .attr("cx", (d) => Math.cos(d.angle - Math.PI / 2) * scaleRadius(d.value))
       .attr("cy", (d) => Math.sin(d.angle - Math.PI / 2) * scaleRadius(d.value))
       .attr("r", 3)
-      .attr("fill", colors["Males"]);
+      .attr("fill", colors["Males"])
+      .on("mouseover", function (event, d) {
+        const tooltip = d3.select(tooltipRef.current);
+        tooltip
+          .style("position", "absolute")
+          .style("background", "black")
+          .style("color", "white")
+          .style("padding", "5px")
+          .style("border-radius", "5px")
+          .style("pointer-events", "none")
+          .style("opacity", 1)
+          .text(Intl.NumberFormat().format(d.value))
+          .style("left", `${event.pageX + 10}px`)
+          .style("top", `${event.pageY - 20}px`);
+      })
+      .on("mouseout", function () {
+        d3.select(tooltipRef.current).style("opacity", 0);
+      });
 
     // Radar area female
     const radarLineFem = d3.lineRadial()
@@ -162,7 +188,24 @@ export default function RadarChart({
       .attr("cx", (d) => Math.cos(d.angle - Math.PI / 2) * scaleRadius(d.value))
       .attr("cy", (d) => Math.sin(d.angle - Math.PI / 2) * scaleRadius(d.value))
       .attr("r", 3)
-      .attr("fill", colors["Females"]);
+      .attr("fill", colors["Females"])
+      .on("mouseover", function (event, d) {
+        const tooltip = d3.select(tooltipRef.current);
+        tooltip
+          .style("position", "absolute")
+          .style("background", "black")
+          .style("color", "white")
+          .style("padding", "5px")
+          .style("border-radius", "5px")
+          .style("pointer-events", "none")
+          .style("opacity", 1)
+          .text(Intl.NumberFormat().format(d.value))
+          .style("left", `${event.pageX + 10}px`)
+          .style("top", `${event.pageY - 20}px`);
+      })
+      .on("mouseout", function () {
+        d3.select(tooltipRef.current).style("opacity", 0);
+      });
     
     // Legend
     const legend = svg.append("g")
@@ -196,21 +239,36 @@ export default function RadarChart({
       .style("font-size", "12px")
       .attr("alignment-baseline", "middle");
 
-  }, [width, height, marginTop, marginRight, marginBottom, marginLeft, colors]);
+  }, [width, height, marginTop, marginRight, marginBottom, marginLeft, colors, selectedYear]);
 
   return (
     <>
-      <label htmlFor="year-select">Select Year: </label>
-      <select
-          id="year-select"
-          value={selectedYear}
-          onChange={(e) => setSelectedYear(e.target.value)}
-        >
-        {years.map(year => (
-          <option key={year} value={year}>{year}</option>
-        ))}
-      </select>
+      <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
+      <Select
+          style={{ marginBottom: '10px' }}
+          className={window.innerWidth > 1024 ? "w-25" : "w-50"}
+          defaultValue={years.find(y => y.value === selectedYear)}
+          onChange={(e) => setSelectedYear(String(e.value))}
+          options={years}
+        />
+      </div>
+      <div className='container d-flex justify-content-center'>
       <svg ref={svgRef} width={width} height={height}></svg>
+      </div>
+      <div
+        ref={tooltipRef}
+        style={{
+          position: "absolute",
+          background: "#333",
+          color: "#fff",
+          padding: "5px 10px",
+          borderRadius: "4px",
+          fontSize: "12px",
+          pointerEvents: "none",
+          opacity: 0,
+          transition: "opacity 0.2s",
+        }}
+      ></div>
     </>
   );
 }
