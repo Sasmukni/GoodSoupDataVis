@@ -90,9 +90,9 @@ export default function WaffleChart({
         .text(`${label}: ${percentage.toFixed(1)}%`);
     };
 
-    createWaffle(maleFullSquares, malePartialSquare, malePercentage, totalSquares, marginLeft - 12, colors["Males"], "Male NEET");
+    createWaffle(maleFullSquares, malePartialSquare, malePercentage, totalSquares, (2 * width) / 3 + 7, colors["Males"], "Male NEET");
     createWaffle(femaleFullSquares, femalePartialSquare, femalePercentage, totalSquares, width / 3 + 3, colors["Females"], "Female NEET");
-    createWaffle(totalFullSquares, totalPartialSquare, totalPercentage, totalSquares, (2 * width) / 3 + 7, colors["Full time"], "Total NEET");
+    createWaffle(totalFullSquares, totalPartialSquare, totalPercentage, totalSquares, marginLeft - 12, colors["Full time"], "Total NEET");
   }, [data, width, height, marginTop, marginRight, marginBottom, marginLeft, colors, grayColor, rows, columns]);
 
   return (
