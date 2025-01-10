@@ -11,6 +11,7 @@ export default function StackedMultipleBarPlot({
   marginRight = 40,
   marginBottom = 40,
   marginLeft = 100,
+  colors = {}
 }) {
   const [year, setYear] = useState(2013);
   const [tooltip, setTooltip] = useState({ visible: false, value: '', nation: '', x: 0, y: 0 });
@@ -58,8 +59,8 @@ export default function StackedMultipleBarPlot({
       .call(d3.axisLeft(y));
 
     const categories = [
-      { key: "tot_females", label: "Females", color: "pink", offset: femaleOffset },
-      { key: "tot_males", label: "Males", color: "blue", offset: marginLeft + xScale(maxTotal) + 20 }
+      { key: "tot_females", label: "Females", color: colors["Females"], offset: femaleOffset },
+      { key: "tot_males", label: "Males", color: colors["Males"], offset: marginLeft + xScale(maxTotal) + 20 }
     ];
 
     categories.forEach(group => {
