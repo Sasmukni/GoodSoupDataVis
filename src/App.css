@@ -116,3 +116,15 @@
 .white{
   background-color: white;
 }
+
+.border_right{
+  border-right-color: aliceblue;
+  border-right-style: solid;
+  border-right-width: 8px;
+}
+
+.border_top{
+  border-top-color: aliceblue;
+  border-top-style: solid;
+  border-top-width: 8px;
+}
