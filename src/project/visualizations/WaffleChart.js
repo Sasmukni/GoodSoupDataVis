@@ -92,8 +92,9 @@ export default function WaffleChart({
 
   return (
     <div>
-      <div style={{ marginBottom: "10px" }}>
-        <label htmlFor="year-selector">Select Year: </label>
+      <div style={{ textAlign: "center" }}>
+        <label htmlFor="year-select">Select Year: </label>
+        <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
         <Select
           style={{ marginBottom: '10px' }}
           className={window.innerWidth > 1024 ? "w-25" : "w-50"}
@@ -103,6 +104,7 @@ export default function WaffleChart({
         />
       </div>
       <svg ref={svgRef} width={width} height={height + 50} />
+      </div>
     </div>
   );
 }

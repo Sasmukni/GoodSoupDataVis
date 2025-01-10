@@ -105,18 +105,20 @@ export default function ScatterPlot({
 
   return (
     <div>
-      <div>
+      <div style={{ textAlign: "center" }}>
         <label htmlFor="year-select">Select Year: </label>
-        <Select
-          style={{ marginBottom: '10px' }}
-          className={window.innerWidth > 1024 ? "w-25" : "w-50"}
-          defaultValue={years.find(y => y.value === year)}
-          onChange={(e) => setYear(e.value)}
-          options={years}
-        />
+        <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
+          <Select
+            style={{ marginBottom: '10px' }}
+            className={window.innerWidth > 1024 ? "w-25" : "w-50"}
+            defaultValue={years.find(y => y.value === year)}
+            onChange={(e) => setYear(e.value)}
+            options={years}
+          />
+        </div>
        
-      </div>
       <svg ref={svgRef} width={width} height={height}></svg>
+      </div>
       <div
         ref={tooltipRef}
         style={{

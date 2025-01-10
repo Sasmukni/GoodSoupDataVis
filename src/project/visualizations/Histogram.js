@@ -150,8 +150,9 @@ export default function Histogram({
   }, [filteredData, width, height, marginTop, marginRight, marginBottom, marginLeft, colors]);
 
   return (
-    <div>
-      <label htmlFor="year-selector">Select Year: </label>
+    <div style={{ textAlign: "center" }}>
+      <label htmlFor="year-select">Select Year: </label>
+        <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
       <Select
           style={{ marginBottom: '10px' }}
           className={window.innerWidth > 1024 ? "w-25" : "w-50"}
@@ -159,6 +160,7 @@ export default function Histogram({
           onChange={(e) => setYear(e.value)}
           options={years}
         />
+      </div>
       <svg ref={svgRef} width={width} height={height} />
     </div>
   );

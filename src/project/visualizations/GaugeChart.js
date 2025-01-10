@@ -25,7 +25,7 @@ export default function GaugeChart({
       .innerRadius(innerRadius)
       .outerRadius(radius)
       .startAngle(-Math.PI / 2)
-      .endAngle((Math.PI / 2) * (data.male/ 100) - Math.PI / 2);
+      .endAngle((Math.PI) * (data.male/ 100) - Math.PI / 2); 
 
     const backgroundArc = d3.arc()
       .innerRadius(innerRadius)
@@ -98,7 +98,7 @@ export default function GaugeChart({
       .innerRadius(innerRadius)
       .outerRadius(radius)
       .startAngle(-Math.PI / 2)
-      .endAngle((Math.PI / 2) * (data.female/ 100) - Math.PI / 2);
+      .endAngle((Math.PI) * (data.female/ 100) - Math.PI / 2);
 
     const backgroundArcFemale = d3.arc()
       .innerRadius(innerRadius)

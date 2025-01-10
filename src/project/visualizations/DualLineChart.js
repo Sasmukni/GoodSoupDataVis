@@ -146,5 +146,8 @@ export default function DualLineChart({
       });
   }, [width, height, marginTop, marginRight, marginBottom, marginLeft, colors]);
 
-  return <svg ref={svgRef} width={width} height={height}></svg>;
+  return (
+    <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
+    <svg ref={svgRef} width={width} height={height}></svg>
+    </div>);
 }
