@@ -18,7 +18,7 @@ export default function ChoroplethMap({
 }) {
   const mapWidth = width * 2/3;
   const [focused, setFocused] = useState(null);
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState("Italy");
   const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
   const [year, setYear] = useState(2013);
 
@@ -71,7 +71,7 @@ export default function ChoroplethMap({
     })
   const yearOptions = [...new Set(numData.map((d)=> d.year))].map((d)=> ({label:""+d, value:d}))//
   return (
-     <div className='container-fluid'>
+     <div className='container-fluid white'>
           <h4 className='mb-4'>Third Grade Students in Europe</h4>
           <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
             <Select

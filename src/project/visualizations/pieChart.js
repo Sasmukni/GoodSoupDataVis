@@ -140,8 +140,7 @@ export default function PieChart({
   }, [data, width, height, colors, selectedYear]);
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <label htmlFor="year-select">Select Year: </label>
+    <div  style={{ textAlign: "center" }}>
       <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
         <Select
           style={{ marginBottom: '10px' }}

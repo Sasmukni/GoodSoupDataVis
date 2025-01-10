@@ -41,22 +41,21 @@ function ProjectHome() {
     <div className="App">
         
         <header className="Project-header text-left py-4">
-            <div className="col-8">
+            <div className="col-12">
                 <h1 className="display-4 fw-bold text-primary mb-3">Temperature timeline</h1>
                 <h2 className="h5 text-secondary mt-3">Linechart showing max, average and min temperature over time</h2>
             </div>
-            <div className="col-3"></div>
         </header>
         <div className="container my-3">
-            <div className='row'>
+            <div className='row white'>
                 <div className='col-8'>
                     <h2 className="text-primary fw-bold mb-3">Introduction</h2>
                     <h4>A general view of the data</h4>
                 </div>
                 <div className='col-4'></div>
             </div>
-            <div className='row'>
-                <div className='col-12'>
+            <div className='row white'>
+                <div className='col-4'>
                     <p>
                     Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
                     Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
@@ -70,12 +69,12 @@ function ProjectHome() {
                     Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.
                     </p>
                 </div>
-                <div className='col-12'>
-                    <StackedBarChart colors={colorsType} width={window.innerWidth - 0.3 * window.innerWidth}/>
+                <div className='col-8'>
+                    <StackedBarChart colors={colorsType} width={window.innerWidth - 0.4 * window.innerWidth}/>
                 </div>
             </div>
             <div className='barrier'></div>
-            <div className='row'>
+            <div className='row white'>
                 <div className='col-8'>
                     <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.6 * window.innerWidth} height={window.innerHeight* 4/10}/>
                 </div>
@@ -96,25 +95,60 @@ function ProjectHome() {
             <SwitchDiag colorsType={colorsType}/>
             
             <div className='barrier'></div>
-            
-            <h2 className="text-primary fw-bold mb-3">Main visualization</h2>
-            <h4>A detailed view for each European country</h4>
+            <div className="col-12 Project-header">
+                <h2 className="display-4 fw-bold text-primary mb-3">Main visualization</h2>
+                <h3 className="h5 text-secondary mt-3">A detailed view for each European country</h3>
+            </div>
             <div className='row'>
                 <div className='col-12'>
                     <ChoroplethMap width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 3/4} colors={colorsType}/>
                 </div>
             </div>
-            <h2 className="text-primary fw-bold mb-3">Getting into the details</h2>
-            <h4>More specific visualizations</h4>
-            <div className='row'>
-                <div className='col-12'>
-                    <AlluvialChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 7/8}/>
+            <div className="col-12 Project-header">
+                <h2 className="display-4 fw-bold text-primary mb-3">Getting into the details</h2>
+                <h3 className="h5 text-secondary mt-3">More specific visualizations</h3>
+            </div>
+            <div className='row white'>
+                <div className='col-3'>
+                    <h3 className=" h2 text-secondary mt-3">Alluvial</h3>
+                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
+                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
+                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
+                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
+                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
                 </div>
-                <div className='col-12'>
-                    <BubbleChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 7/8}/>
+                <div className='col-9'>
+                    <AlluvialChart colors={colorsType} width={window.innerWidth - 0.35 * window.innerWidth} height={window.innerHeight* 7/10}/>
                 </div>
-                <div className='col-12'>
-                    <BarChart colors={colorsType} width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 7/8}/>
+            </div>
+            <div className='barrier'></div>
+            <div className='row white'>
+                <div className='col-8'>
+                    <BubbleChart colors={colorsType} width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 8/10}/>
+                </div>
+                <div className='col-4'>
+                    <h4 className="h2 text-secondary mt-3">Female Doctoral Students in Europe (Bubble Chart)</h4>
+                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
+                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
+                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
+                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
+                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+
+                </div>
+            </div>
+            <div className='barrier'></div>
+            <div className='row white'>
+            <div className='col-3'>
+                    <h4 className="h2 text-secondary mt-3">Female Doctoral Students in Europe (Bubble Chart)</h4>
+                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
+                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
+                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
+                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
+                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+
+                </div>
+                <div className='col-9'>
+                    <BarChart colors={colorsType} width={window.innerWidth - 0.33 * window.innerWidth} height={window.innerHeight* 5/8}/>
                 </div>
             </div>
         </div>
