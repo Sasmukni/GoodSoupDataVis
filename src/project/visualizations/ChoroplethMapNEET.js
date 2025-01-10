@@ -17,7 +17,7 @@ export default function ChoroplethMapNEET({
 }) {
   const mapWidth = width * 2/3;
   const [focused, setFocused] = useState(null);
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState("Italy");
   const [tooltip, setTooltip] = useState({ visible: false, value: '', x: 0, y: 0 });
   const [year, setYear] = useState(2013);
 
