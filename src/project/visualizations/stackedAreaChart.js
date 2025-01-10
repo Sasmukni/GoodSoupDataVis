@@ -108,36 +108,36 @@ export default function StackedAreaChart({
       .attr("x", -(height - marginTop - marginBottom) / 2 - marginTop)
       .attr("text-anchor", "middle")
       .style("font-size", "12px")
-      .text("Total Students");
+      .text("Total Number of Students");
 
 
     const legend = svg.append("g")
       .attr("transform", `translate(${width - marginRight - 120},${marginTop})`);
 
     legend.append("rect")
-      .attr("x", 0)
-      .attr("y", 0)
+      .attr("x", 10)
+      .attr("y", -10)
       .attr("width", 20)
       .attr("height", 20)
       .attr("fill", colors["Males"]);
 
     legend.append("text")
-      .attr("x", 30)
-      .attr("y", 15)
+      .attr("x", 40)
+      .attr("y", 5)
       .text("Males")
       .style("font-size", "12px")
       .attr("alignment-baseline", "middle");
 
     legend.append("rect")
-      .attr("x", 0)
-      .attr("y", 30)
+      .attr("x", 10)
+      .attr("y", 20)
       .attr("width", 20)
       .attr("height", 20)
       .attr("fill", colors["Females"]);
 
     legend.append("text")
-      .attr("x", 30)
-      .attr("y", 45)
+      .attr("x", 40)
+      .attr("y", 30)
       .text("Females")
       .style("font-size", "12px")
       .attr("alignment-baseline", "middle");
