@@ -28,8 +28,8 @@ export default function MapSubsection({
     })): null;
 
     var dataForHeatMap = data? data.map(d => ({data:[
-        {gender:"Male", partTime:d.male_full_time, fullTime:d.male_part_time},
-        {gender:"Female", partTime:d.fem_full_time, fullTime:d.fem_part_time}
+        {gender:"Male", partTime:d.male_part_time, fullTime:d.male_full_time},
+        {gender:"Female", partTime:d.fem_part_time, fullTime:d.fem_full_time}
     ]})):null;
 
     var dataForDumbell = data? data.map(d => ({data:[
@@ -44,8 +44,8 @@ export default function MapSubsection({
         <h3 className="fw-bold mb-3 mt-1">{nation}</h3>
         {data.length?
         <>
-        <div className="row" style={{ display: "flex", margin: "20px 0" }}>
-            <div className="col col-sm-6 col-md-3">
+        <div className="row" style={{ margin: "20px 0" }}>
+            <div className="col col-lg-6 col-xl-3">
             <button
                 style={{
                 backgroundColor: "#007bff",
@@ -64,7 +64,7 @@ export default function MapSubsection({
                 Total Students
             </button>
             </div>
-            <div className="col col-sm-6 col-md-3">
+            <div className="col col-lg-6 col-xl-3">
             <button
                 style={{
                 backgroundColor: "#007bff",
@@ -83,7 +83,7 @@ export default function MapSubsection({
                 Education Level
             </button>
             </div>
-            <div className="col col-sm-6 col-md-3">
+            <div className="col col-lg-6 col-xl-3">
             <button
                 style={{
                 backgroundColor: "#007bff",
@@ -102,7 +102,7 @@ export default function MapSubsection({
                 Working Time
             </button>
             </div>
-            <div className="col col-sm-6 col-md-3">
+            <div className="col col-lg-6 col-xl-3">
             <button
                 style={{
                 backgroundColor: "#007bff",
