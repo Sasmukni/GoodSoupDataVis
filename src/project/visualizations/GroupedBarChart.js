@@ -67,7 +67,7 @@ export default function GroupedBarChart({
         .attr("x", 1)
         .attr("height", ySubScale.bandwidth())
         .attr("width", (d) => xScale(d.value))
-        .attr("fill", (d)=> d.group==="Female"?colors[0]:colors[1])
+        .attr("fill", (d)=> d.group==="Female"?colors["Females"]:colors["Males"])
         .on("mouseover", function (event, d) {
           // Change opacity of bars only in this specific chart
           d3.selectAll(".grouped-bar").style("opacity", 0.2);

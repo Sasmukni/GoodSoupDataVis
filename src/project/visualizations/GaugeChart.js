@@ -36,7 +36,7 @@ export default function GaugeChart({
     // Gauge background
     svg.append("path")
       .attr("d", backgroundArc())
-      .attr("fill", colors.arc[0])
+      .attr("fill", colors["Neutral"])
       .attr("transform", `translate(${centerX},${centerY})`);
 
     // Select the tooltip element
@@ -45,7 +45,7 @@ export default function GaugeChart({
     // Active gauge arc
     svg.append("path")
       .attr("d", arc())
-      .attr("fill", colors.gender[0])
+      .attr("fill", colors["Males"])
       .attr("transform", `translate(${centerX},${centerY})`)
       .on("mouseover", function (event, d) {
         // Show tooltip
@@ -115,7 +115,7 @@ export default function GaugeChart({
     // Active gauge arc
     svg.append("path")
       .attr("d", arcFemale())
-      .attr("fill", colors.gender[1])
+      .attr("fill", colors["Females"])
       .attr("transform", `translate(${centerX },${centerY+ radius})`)
       .on("mouseover", function (event, d) {
         // Show tooltip

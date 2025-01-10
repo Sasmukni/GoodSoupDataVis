@@ -40,7 +40,7 @@ export default function DonutChart({
 
     const colorScale = d3.scaleOrdinal()
       .domain(data.map(d => d.label))
-      .range(colors);
+      .range([colors["Females"],colors["Males"]]);
 
     const chartGroup = svg.append("g")
       .attr("transform", `translate(${width / 2},${height / 2})`);

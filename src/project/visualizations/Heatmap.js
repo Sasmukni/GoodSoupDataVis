@@ -35,7 +35,7 @@ export default function Heatmap({
   
           const colorScale = d3.scaleLinear()
               .domain([minValue, maxValue])
-              .range([colors[0],colors[1]]);
+              .range([colors["Part time"],colors["Full time"]]);
   
           svg.attr('width', width).attr('height', height);
   
@@ -159,9 +159,9 @@ export default function Heatmap({
   
           totalGradient.selectAll('stop')
               .data([{
-                  offset: '0%', color: colors[0]
+                  offset: '0%', color: colors["Part time"]
               }, {
-                  offset: '100%', color: colors[1]
+                  offset: '100%', color: colors["Full time"]
               }])
               .enter().append('stop')
               .attr('offset', d => d.offset)
