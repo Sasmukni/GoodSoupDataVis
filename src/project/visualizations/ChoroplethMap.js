@@ -83,6 +83,7 @@ export default function ChoroplethMap({
             />
           </div>
           <div className='row' style={{width:width}}>
+            <div className='col-1'/>
             <div className='col-4' style={{border:"1px solid",borderRadius:"25px", marginTop:"20px", marginBottom:"20px", paddingLeft: "5px", height:height}}>
               {selected?
                 <div><MapSubsection data={yearFilteredNumData.filter(d => d.nation === selected)} nation={selected} width={width * 1/3} colors = {colors}/></div>
@@ -92,7 +93,7 @@ export default function ChoroplethMap({
                 </div>
               }
             </div>
-            <div className='col-8'>
+            <div className='col-7'>
               <svg width={mapWidth} height={height}>
                 {allSvgPaths}
               </svg>
