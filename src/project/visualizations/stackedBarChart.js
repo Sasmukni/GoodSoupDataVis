@@ -10,7 +10,7 @@ export default function StackedBarChart({
   marginTop = 20,
   marginRight = 100,
   marginBottom = 30,
-  marginLeft = 100,
+  marginLeft = 140,
   colors = ["pink"]
 }) {
   const svgRef = useRef();
