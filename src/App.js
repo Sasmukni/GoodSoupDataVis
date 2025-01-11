@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route, Link} from "react-router-dom";
 import Home from "./routes/home";
 import CO2Emissions from "./routes/C02Emissions";
 import Navbar from './navbar';
@@ -50,6 +50,16 @@ function App() {
         <Route path="/project" element={<ProjectHome/>}/>
         <Route path="/project/NEET" element={<SubsidiaryPage/>}/>
       </Routes>
+      <footer class="bg-body-tertiary text-center text-lg-start">
+        <div class="text-center p-3 bg-primary" >
+          <div style={{display:'flex', flexDirection:'row', justifyContent:"space-around"}}>
+            <div className="text-light fw-semibold">Alluto Enrico</div>
+            <div className="text-light fw-semibold">Capani Samuele</div>
+            <div className="text-light fw-semibold">Fuciarelli Laura</div>
+            <div className="text-light fw-semibold">Siddi Yryskeldi</div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
