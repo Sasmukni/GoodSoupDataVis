@@ -138,14 +138,14 @@ export default function Heatmap({
           totalLegend.append('text')
               .attr('x', 2)
               .attr('y', legendHeight + 32)
-              .text(minValue)
+              .text(Intl.NumberFormat().format(minValue))
               .style('font-size', '10px')
               .style('text-anchor', 'start');
   
           totalLegend.append('text')
               .attr('x', (innerWidth / 3) - 2)
               .attr('y', legendHeight + 32)
-              .text(maxValue)
+              .text(Intl.NumberFormat().format(maxValue))
               .style('font-size', '10px')
               .style('text-anchor', 'end');
   
