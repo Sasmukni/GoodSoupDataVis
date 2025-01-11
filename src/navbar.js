@@ -42,6 +42,12 @@ const Navbar =()=>{
                                           <Link className="nav-link text-light fw-semibold" to="/assignment4">Temperature</Link>
                                     </li>
                                     <li className="nav-item">
+                                          <Link className="nav-link text-light fw-semibold" to="/project">Third-level education</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                          <Link className="nav-link text-light fw-semibold" to="/project/NEET">NEETs</Link>
+                                    </li>
+                                    <li className="nav-item">
                                           <Link className="nav-link text-light fw-semibold" to="/aboutus">About Us</Link>
                                     </li>
                               </ul>
