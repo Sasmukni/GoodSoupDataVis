@@ -15,7 +15,7 @@ function Home() {
         <header className="App-header py-0">
           <div class="jumbotron jumbotron-fluid-students">
             <div class="container">
-              <h1 className="display-4 fw-bold text-primary">Gender differences in third-level education rates</h1>
+              <h1 className="display-4 fw-bold text-primary">Gender differences in third-level education rates and NEETs percentages in Europe</h1>
               <p className="lead text-secondary">By <Link to="/aboutus" style={{ textDecoration: 'none' }}><b>Good Soup</b></Link></p>
               {<p class="lead">
                 <Link class="btn btn-primary btn-lg" to="/project">Check out our project!</Link>

@@ -68,7 +68,7 @@ export default function StackedBarChart({
     switch (category) {
       case "gender":
         keys = ["tot_males", "tot_females"];
-        labels = ["Males", "Females"];
+        labels = ["Male", "Female"];
         break;
       case "sector":
         keys = ["tot_public_sector", "tot_private_sector"];
@@ -76,11 +76,11 @@ export default function StackedBarChart({
         break;
       case "workingTime":
         keys = ["tot_full_time", "tot_part_time"];
-        labels = ["Full Time", "Part Time"];
+        labels = ["Full-time", "Part-time"];
         break;
       case "educationLevel":
         keys = ["tot_short_cycle_type", "tot_bachelor_type", "tot_master_type", "tot_doctoral_type"];
-        labels = ["Short Cycle", "Bachelor", "Master", "Doctoral"];
+        labels = ["Short-cycle", "Bachelor", "Master", "Doctoral"];
         break;
       default:
         keys = [];

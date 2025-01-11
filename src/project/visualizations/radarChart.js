@@ -221,7 +221,7 @@ export default function RadarChart({
     legend.append("text")
       .attr("x", 30)
       .attr("y", 15)
-      .text("Males")
+      .text("Male")
       .style("font-size", "12px")
       .attr("alignment-baseline", "middle");
 
@@ -235,7 +235,7 @@ export default function RadarChart({
     legend.append("text")
       .attr("x", 30)
       .attr("y", 45)
-      .text("Females")
+      .text("Female")
       .style("font-size", "12px")
       .attr("alignment-baseline", "middle");
 

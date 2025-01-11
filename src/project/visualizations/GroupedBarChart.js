@@ -95,6 +95,38 @@ export default function GroupedBarChart({
           const tooltip = d3.select(tooltipRef.current);
           tooltip.style("opacity", 0);
         });
+
+        // Legend
+        const legend = svg.append("g")
+        .attr("transform", `translate(${width-marginRight*3.5},${height - marginBottom*3.5})`);
+
+        legend.append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 20)
+          .attr("height", 20)
+          .attr("fill", colors["Males"]);
+
+        legend.append("text")
+          .attr("x", 30)
+          .attr("y", 15)
+          .text("Male")
+          .style("font-size", "12px")
+          .attr("alignment-baseline", "middle");
+
+        legend.append("rect")
+          .attr("x", 0)
+          .attr("y", 30)
+          .attr("width", 20)
+          .attr("height", 20)
+          .attr("fill", colors["Females"]);
+
+        legend.append("text")
+          .attr("x", 30)
+          .attr("y", 45)
+          .text("Female")
+          .style("font-size", "12px")
+          .attr("alignment-baseline", "middle");
     }, [data, width, height, marginTop, marginRight, marginBottom, marginLeft, colors]);
   
 

@@ -124,7 +124,7 @@ export default function StackedAreaChart({
     legend.append("text")
       .attr("x", 40)
       .attr("y", 5)
-      .text("Males")
+      .text("Male")
       .style("font-size", "12px")
       .attr("alignment-baseline", "middle");
 
@@ -138,7 +138,7 @@ export default function StackedAreaChart({
     legend.append("text")
       .attr("x", 40)
       .attr("y", 30)
-      .text("Females")
+      .text("Female")
       .style("font-size", "12px")
       .attr("alignment-baseline", "middle");
 
