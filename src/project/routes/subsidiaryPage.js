@@ -46,13 +46,10 @@ function SubsidiaryPage() {
             
             <div className='row white'>
                 <div className='col-4 border_right border_external_left'>
-                <h2 className="h2 fw-bold text-primary mb-3">Introduction</h2>
+                <h2 className="text-primary fw-bold mb-3">Europe is seeing a decline in the NEET phenomenon.</h2>
                 <h3 className="h5 text-secondary mt-3">A general view of the data</h3>
-                <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                <h3 className="h5 text-secondary mt-3">Waffle Chart</h3>
+                <p>In Europe, 16.4% of the population is classified as NEETs (Not in Education, Employment, or Training). Among females, 18% are NEETs, compared to 14.8% for males. But the phenomenon of NEETs seems to decrease over the decade 2013-2022.</p>
                 </div>
                 <div className='col-8 border_external_right'>
                     <WaffleChart width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 1.4/4} colors={colorsType}/>
@@ -64,22 +61,21 @@ function SubsidiaryPage() {
                     <DualLineChart width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 1.5/4} colors={colorsType}/>
                 </div>
                 <div className='col-3 border_external_right'>
-                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                <h4 className='text-secondary'>Dual Line Chart</h4>
+                    <p>The percentage of NEETs has steadily declined over the years for both genders, albeit slowly. Female NEET percentages have consistently been higher than male percentages. The gap widened slightly between 2016 and 2018 but began to narrow after 2019. A sharp increase occurred in 2019, likely due to the COVID-19 pandemic, but this was temporary, as percentages resumed their previous decline after 2021.</p>
                 </div>
             </div>
             <div className='barrier'></div>
             <div className='row white'>
                 <div className='col-12 border_external_left border_external_right'>
-                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                <div className='col-9'>
+                    <h2 className="text-primary fw-bold mb-3">Most NEETs are in Eastern Europe and are mostly female.</h2>
+                    <h4 className='text-secondary'>Histogram - Scatter Plot</h4>
+                    <p>Higher percentages of NEETs are observed among females, particularly in Eastern European countries like Turkey and Serbia. Over time, the percentage of NEETs has decreased for both genders. Higher percentage bins were omitted, as they were consistently empty for both genders.</p>
+                    <p>Most countries cluster along a steep imaginary line, where the percentage of female NEETs is slightly higher than male NEETs. However, there are exceptions like Iceland, where male NEETs exceed females, and Turkey, where the gap is unusually wide. North Macedonia lies at the far end, with high NEET percentages for both genders.</p>
                 </div>
+                </div>
+
                 <div className='col-6 border_right border_top border_external_left'>
                     <Histogram width={window.innerWidth - 0.6 * window.innerWidth} height={window.innerHeight* 1.7/4} colors={colorsType}/>
                 </div>
@@ -88,35 +84,33 @@ function SubsidiaryPage() {
                 </div>
             </div>
             
-            <h2 className="h2 fw-bold text-primary mb-3">Main visualization</h2>
-            <h3 className="h5 text-secondary mt-3">A detailed view for each European country</h3>
+            <div className="col-12 Project-header">
+                <h2 className="display-4 fw-bold text-primary mb-3">Main visualization - NEETs percentage in Europe</h2>
+                <h3 className="h5 text-secondary mt-3">A detailed view for each European country</h3>
+            </div>
             <div className='row'>
                 <div className='col-12'>
                     <ChoroplethMapNEET width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 3/4} colors={colorsType}/>
                 </div>
             </div>
+            <div className="container my-3">
+                <h2 className="text-primary fw-bold mb-3">Understanding the data - NEETs</h2>
+                <p className="text-muted text-start fs-5 px-3">North Macedonia and Turkey have historically had the highest NEET percentages, hovering around 30%. While North Macedonia’s NEET percentage has declined, Turkey’s has increased. Italy also ranks high in NEET percentages, with a significant gap compared to other Western European countries. Nordic countries, like Sweden and Iceland, have the lowest percentages.</p>
+            </div>
             <div className='barrier'></div>
             <div className='row white'>
-                <div className='col-4 border_right border_external_left'>
-                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                <div className='col-3 border_right border_external_left'>
+                    <h2 className="text-primary fw-bold mb-3">Turkey has the greatest gender imbalance among NEETs.</h2>
+                    <h4 className='text-secondary'>Multiple Stacked Bar Chart
+                    </h4>                    
+                    <p>North Macedonia has the highest overall NEET percentage relative to its population, while Turkey has the largest percentage of female NEETs, with a significant gender imbalance. Northern European countries are more balanced and have smaller NEET percentages for both genders.</p>
                 </div>
-                <div className='col-8 border_external_right'>
-                    <MultipleStackedBarchart width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 3/4} colors={colorsType}/>
+                <div className='col-9 border_external_right'>
+                    <MultipleStackedBarchart width={window.innerWidth - 0.3 * window.innerWidth} height={window.innerHeight* 3/5} colors={colorsType}/>
                 </div>
             </div>
         </div>
-        <div className="container my-3">
-            <h2 className="text-primary fw-bold mb-3">Understanding the data</h2>
-            <p className="text-muted text-start fs-5 px-3">
-             As expected, the temperatures in Texas are consistently higher during the months corresponding to the Northern hemisphere summer (June to August) and decrease during winter (December to February).
-             It is also possible to notice that most the recent years' temperatures were overall higher when compared to previous years, although it was not always the case.
-             In general, there is a difference of more or less 10 °F between min, average and max temperatures corresponding to the same month. All temperatures measured were between the range of around 20 °F to 100 °F.
-            </p>
-        </div>
+        
     </div>);
 };
 

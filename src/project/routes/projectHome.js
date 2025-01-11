@@ -98,7 +98,15 @@ function ProjectHome() {
                 <div className='col-12'>
                     <ChoroplethMap width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 3/4} colors={colorsType}/>
                 </div>
+                <div className="container my-3 white border_external_left border_external_right">
+                <h2 className="text-primary fw-bold mb-3">Understanding the data - Tertiary Education</h2>
+                <p className="text-muted text-start fs-5 px-3">
+                Turkey consistently has the highest number of students, nearly doubling since 2013, far surpassing other European countries. Up to 2019, the United Kingdom ranked second, though its numbers remained stable, potentially due to Brexit. Western European countries generally have more students than Eastern European ones, likely due to larger populations and their appeal to international students.</p>
             </div>
+            <div className='barrier'></div>
+            <div className='barrier'></div>
+            </div>
+            
             <div className="col-12 Project-header">
                 <h2 className="display-4 fw-bold text-primary mb-3">Getting into the details</h2>
                 <h3 className="h5 text-secondary mt-3">More specific visualizations</h3>
@@ -145,14 +153,7 @@ function ProjectHome() {
                 </div>
             </div>
         </div>
-        <div className="container my-3">
-            <h2 className="text-primary fw-bold mb-3">Understanding the data</h2>
-            <p className="text-muted text-start fs-5 px-3">
-             As expected, the temperatures in Texas are consistently higher during the months corresponding to the Northern hemisphere summer (June to August) and decrease during winter (December to February).
-             It is also possible to notice that most the recent years' temperatures were overall higher when compared to previous years, although it was not always the case.
-             In general, there is a difference of more or less 10 °F between min, average and max temperatures corresponding to the same month. All temperatures measured were between the range of around 20 °F to 100 °F.
-            </p>
-        </div>
+        
     </div>);
 };
 

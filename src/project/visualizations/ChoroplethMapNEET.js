@@ -71,7 +71,6 @@ export default function ChoroplethMapNEET({
   const yearOptions = [...new Set(numData.map((d)=> d.year))].map((d)=> ({label:""+d, value:d}))//
   return (
      <div className='container-fluid white'>
-          <h4 className='mb-4'>NEETS percentage in Europe</h4>
           <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
             <Select
               style={{ marginBottom: '10px' }}
@@ -83,7 +82,7 @@ export default function ChoroplethMapNEET({
           </div>
           <div className='row' style={{width:width}}>
             <div className="col-1"></div>
-            <div className='col-4' style={{border:"1px solid",borderRadius:"25px", marginTop:"20px", marginBottom:"20px", height:height}}>
+            <div className='col-4' style={{border:"1px solid",borderRadius:"25px", marginTop:"20px", marginBottom:"20px"}}>
               {selected?
                 <div><MapSubsectionNEET data={yearFilteredNumData.filter(d => d.nation === selected)} nation={selected} year={year} width={width * 1/3} colors={colors}/></div>
                 :
