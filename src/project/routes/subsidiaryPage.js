@@ -83,7 +83,7 @@ function SubsidiaryPage() {
                     <ScatterPlot width={window.innerWidth - 0.6 * window.innerWidth} height={window.innerHeight* 1.5/4} colors={colorsType}/>
                 </div>
             </div>
-            
+            <div className='barrier'></div>
             <div className="col-12 Project-header">
                 <h2 className="display-4 fw-bold text-primary mb-3">Main visualization - NEETs percentage in Europe</h2>
                 <h3 className="h5 text-secondary mt-3">A detailed view for each European country</h3>

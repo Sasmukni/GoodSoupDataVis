@@ -70,7 +70,7 @@ export default function ChoroplethMapNEET({
     })
   const yearOptions = [...new Set(numData.map((d)=> d.year))].map((d)=> ({label:""+d, value:d}))//
   return (
-     <div className='container-fluid white'>
+     <div className='container-fluid white padding_top_1'>
           <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
             <Select
               style={{ marginBottom: '10px' }}

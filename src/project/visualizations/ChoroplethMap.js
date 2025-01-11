@@ -71,7 +71,7 @@ export default function ChoroplethMap({
     })
   const yearOptions = [...new Set(numData.map((d)=> d.year))].map((d)=> ({label:""+d, value:d}))//
   return (
-     <div className='container-fluid white'>
+     <div className='container-fluid white padding_top_1'>
           <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
             <Select
               style={{ marginBottom: '10px' }}
@@ -94,7 +94,7 @@ export default function ChoroplethMap({
               }
 
             </div>
-            <div className='col-7'>
+            <div className='col-7 '>
               <svg width={mapWidth} height={height}>
                 {allSvgPaths}
               </svg>

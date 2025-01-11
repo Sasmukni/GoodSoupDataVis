@@ -148,7 +148,7 @@ function ProjectHome() {
                     <p>The number of female students appears proportional to the population size of the country.</p>
 
                 </div>
-                <div className='col-9 border_external_right'>
+                <div className='col-9 border_external_right padding_top'>
                     <BarChart colors={colorsType} width={window.innerWidth - 0.33 * window.innerWidth} height={window.innerHeight* 5/8}/>
                 </div>
             </div>
