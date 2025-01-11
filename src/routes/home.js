@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import {useRef} from "react";
 function Home() {
     const assRef = useRef();
+    const proRef = useRef();
 
     function goToAssignments(){
       assRef.current.scrollIntoView();
     }
-
+    function goToProjects(){
+      proRef.current.scrollIntoView(false);
+    }
 
     return (
       <div className="App">
@@ -18,11 +21,36 @@ function Home() {
               <h1 className="display-4 fw-bold text-primary">Gender differences in third-level education rates and NEETs percentages in Europe</h1>
               <p className="lead text-secondary">By <Link to="/aboutus" style={{ textDecoration: 'none' }}><b>Good Soup</b></Link></p>
               {<p class="lead">
-                <Link class="btn btn-primary btn-lg" to="/project">Check out our project!</Link>
+                <div class="btn btn-primary btn-lg" onClick={goToProjects} to="/project">Check out our project!</div>
               </p>}
             </div>
           </div>
 
+          <div ref={proRef} style={{paddingTop:"20px", paddingBottom:"20px"}}>
+            <div class="row gap-4 my-5 mx-3">
+              <div class="col-sm-12">
+                <Link to="/project" style={{ textDecoration: 'none' }}>
+                <div class="card shadow-sm p-4">
+                  <div class="card-body">
+                    <h3 class="card-title text-primary fw-semibold mb-4">Third-level Education</h3>
+                    <p class="card-text text-secondary">In Europe comparison of the trends regarding third-level education</p>
+                  </div>
+                </div>
+                </Link>
+              </div>
+              
+              <div class="col-sm-12">
+                <Link to="/project/NEET" style={{ textDecoration: 'none' }}>
+                <div class="card shadow-sm p-4">
+                  <div class="card-body">
+                    <h3 class="card-title text-primary fw-semibold mb-4">Neets in Europe</h3>
+                    <p class="card-text text-secondary">In Europe comparison of the trends regarding neets</p>
+                  </div>
+                </div>
+                </Link>
+              </div>
+            </div>
+          </div>
           <div class="jumbotron jumbotron-fluid">
             <div class="container">
               <h1 className="display-4 fw-bold text-primary">Global Warming in Data</h1>
