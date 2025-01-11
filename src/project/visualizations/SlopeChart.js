@@ -131,7 +131,7 @@ export default function SlopeChart({
       .attr("x", legendX + 10)
       .attr("y", legendY)
       .attr("dy", "0.35em")
-      .text("Males");
+      .text("Male");
 
     svg.append("circle")
       .attr("cx", legendX)
@@ -143,7 +143,7 @@ export default function SlopeChart({
       .attr("x", legendX + 10)
       .attr("y", legendY + 20)
       .attr("dy", "0.35em")
-      .text("Females");
+      .text("Female");
   }, [selectedNation, leftYear, rightYear, width, height, marginTop, marginBottom, marginLeft, marginRight, colors]);
 
   return (

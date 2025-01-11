@@ -59,8 +59,8 @@ export default function StackedMultipleBarPlot({
       .call(d3.axisLeft(y));
 
     const categories = [
-      { key: "tot_females", label: "Females", color: colors["Females"], offset: femaleOffset },
-      { key: "tot_males", label: "Males", color: colors["Males"], offset: marginLeft + xScale(maxTotal) + 20 }
+      { key: "tot_females", label: "Female", color: colors["Females"], offset: femaleOffset },
+      { key: "tot_males", label: "Male", color: colors["Males"], offset: marginLeft + xScale(maxTotal) + 20 }
     ];
 
     categories.forEach(group => {
@@ -102,8 +102,7 @@ export default function StackedMultipleBarPlot({
   return (
     <>
       <div style={{ textAlign: "center" }}>
-        <label htmlFor="year-select">Select Year: </label>
-          <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>  
+        <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>  
         <Select
           style={{ marginBottom: '10px' }}
           className={window.innerWidth > 1024 ? "w-25" : "w-50"}

@@ -131,8 +131,8 @@ export default function DualLineChart({
       .attr("transform", `translate(${width - marginRight - 100}, ${marginTop})`);
 
     const legendData = [
-      { label: "Females", color: colors["Females"] },
-      { label: "Males", color: colors["Males"] }
+      { label: "Female", color: colors["Females"] },
+      { label: "Male", color: colors["Males"] }
     ];
 
     legend.selectAll(".legend-item")

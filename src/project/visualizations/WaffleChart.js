@@ -90,15 +90,14 @@ export default function WaffleChart({
         .text(`${label}: ${percentage.toFixed(1)}%`);
     };
 
-    createWaffle(maleFullSquares, malePartialSquare, malePercentage, totalSquares, (2 * width) / 3 + 7, colors["Males"], "Male NEET");
-    createWaffle(femaleFullSquares, femalePartialSquare, femalePercentage, totalSquares, width / 3 + 3, colors["Females"], "Female NEET");
-    createWaffle(totalFullSquares, totalPartialSquare, totalPercentage, totalSquares, marginLeft - 12, colors["Full time"], "Total NEET");
+    createWaffle(maleFullSquares, malePartialSquare, malePercentage, totalSquares, (2 * width) / 3 + 7, colors["Males"], "Male NEETs");
+    createWaffle(femaleFullSquares, femalePartialSquare, femalePercentage, totalSquares, width / 3 + 3, colors["Females"], "Female NEETs");
+    createWaffle(totalFullSquares, totalPartialSquare, totalPercentage, totalSquares, marginLeft - 12, colors["Full time"], "Total NEETs");
   }, [data, width, height, marginTop, marginRight, marginBottom, marginLeft, colors, grayColor, rows, columns]);
 
   return (
     <div>
       <div style={{ textAlign: "center" }}>
-        <label htmlFor="year-select">Select Year: </label>
         <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
         <Select
           style={{ marginBottom: '10px' }}

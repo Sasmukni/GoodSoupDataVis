@@ -54,7 +54,7 @@ export default function ScatterPlot({
       .attr("y", height)
       .attr("text-anchor", "middle")
       .style("font-size", "12px")
-      .text("NEET % - Males");
+      .text("NEET % - Male");
 
     svg.append("text")
       .attr("x", -height / 2)
@@ -62,7 +62,7 @@ export default function ScatterPlot({
       .attr("transform", "rotate(-90)")
       .attr("text-anchor", "middle")
       .style("font-size", "12px")
-      .text("NEET % - Females");
+      .text("NEET % - Female");
 
     const circles = svg.selectAll("circle")
       .data(filteredData)
@@ -91,7 +91,7 @@ export default function ScatterPlot({
           .style("border-radius", "5px")
           .style("pointer-events", "none")
           .style("opacity", 1)
-          .html( `${d.nation}: Males ${d.tot_males}%, Females ${d.tot_females}%`)
+          .html( `${d.nation}: Male ${d.tot_males}%, Female ${d.tot_females}%`)
           .style("left", `${event.pageX + 10}px`)
           .style("top", `${event.pageY - 20}px`);
       })
@@ -108,7 +108,6 @@ export default function ScatterPlot({
   return (
     <div>
       <div style={{ textAlign: "center" }}>
-        <label htmlFor="year-select">Select Year: </label>
         <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
           <Select
             style={{ marginBottom: '10px' }}

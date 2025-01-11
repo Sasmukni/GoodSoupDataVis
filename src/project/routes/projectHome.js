@@ -43,7 +43,7 @@ function ProjectHome() {
         <header className="Project-header text-left py-4">
             <div className="col-12">
                 <h1 className="display-4 fw-bold text-primary mb-3">Third-level education rates across Europe</h1>
-                <h2 className="h5 text-secondary mt-3">An analysis and comparison focused on gender</h2>
+                <h2 className="h5 text-secondary mt-3">Gender analysis and comparison regarding third-level education students</h2>
             </div>
         </header>
         <div className="container-fluid my-3">
@@ -91,7 +91,7 @@ function ProjectHome() {
             
             <div className='barrier'></div>
             <div className="col-12 Project-header">
-                <h2 className="display-4 fw-bold text-primary mb-3">Main visualization - Third Grade Students in Europe</h2>
+                <h2 className="display-4 fw-bold text-primary mb-3">Main visualization - Third-level students in Europe</h2>
                 <h3 className="h5 text-secondary mt-3">A detailed view for each European country</h3>
             </div>
             <div className='row'>
@@ -99,7 +99,7 @@ function ProjectHome() {
                     <ChoroplethMap width={window.innerWidth - 0.2 * window.innerWidth} height={window.innerHeight* 3/4} colors={colorsType}/>
                 </div>
                 <div className="container my-3 white border_external_left border_external_right">
-                <h2 className="text-primary fw-bold mb-3">Understanding the data - Tertiary Education</h2>
+                <h2 className="text-primary fw-bold mb-3">Understanding the data - Tertiary education</h2>
                 <p className="text-muted text-start fs-5 px-3">
                 Turkey consistently has the highest number of students, nearly doubling since 2013, far surpassing other European countries. Up to 2019, the United Kingdom ranked second, though its numbers remained stable, potentially due to Brexit. Western European countries generally have more students than Eastern European ones, likely due to larger populations and their appeal to international students.</p>
             </div>
@@ -114,7 +114,7 @@ function ProjectHome() {
             <div className='row white'>
                 <div className='col-3 border_right border_external_left'>
                 
-                <h2 className="text-primary fw-bold mb-3">The flow of students in higher education.</h2>
+                <h2 className="text-primary fw-bold mb-3">The flow of students in higher education</h2>
                 <h4 className='text-secondary'>Sankey chart</h4>
                     <p>Turkey has the highest number of students, followed by countries with large populations or those popular with international students, and finally smaller countries. Overall, there are slightly more female students than male students in Europe. The bachelor’s level is the most common education level, followed by master’s, short-cycle, and doctoral levels.
                     </p>
@@ -131,7 +131,7 @@ function ProjectHome() {
                     <BubbleChart colors={colorsType} width={window.innerWidth - 0.3 * window.innerWidth} height={window.innerHeight* 7/10}/>
                 </div>
                 <div className='col-3 border_external_right'>
-                    <h2 className="text-primary fw-bold mb-3">Female Doctoral Students in Europe.</h2>
+                    <h2 className="text-primary fw-bold mb-3">Female doctoral students in Europe</h2>
                     <h4 className='text-secondary'>Bubble chart</h4>
                     <p>Up until 2019, the United Kingdom, Germany, and Turkey had the highest number of female doctoral students. The number of female doctoral students is generally proportional to the population size of each country.</p>
 
@@ -140,7 +140,7 @@ function ProjectHome() {
             <div className='barrier'></div>
             <div className='row white'>
             <div className='col-3 border_right border_external_left'>
-                    <h2 className="text-primary fw-bold mb-3">The ranking of European nations with the most female students.
+                    <h2 className="text-primary fw-bold mb-3">The ranking of European nations according to the number of female students
                     </h2>
                     <h4 className='text-secondary'>Bar chart</h4>
                     <p>Using the average number of female students per country, Turkey leads with almost twice as many as the United Kingdom, which ranks second. 

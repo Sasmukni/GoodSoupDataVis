@@ -20,14 +20,12 @@ export default function MapSubsectionNEET({
    
     return (
         
-    <div>
-        <h3>{nation}</h3>
+    <div style={{
+        textAlign: "center",
+      }}>
+        <h3 className="fw-bold mb-3 mt-1">{nation}</h3>
         {data.length?
         <>
-        {/*<div>
-            <button onClick={() => setCategory("Gauge")}>Male/Female</button>
-            <button onClick={() => setCategory("Slope")}>Years</button>
-        </div>*/}
         <div style={{ display: "flex", gap: "10px", justifyContent: "center", margin: "20px 0" }}>
             <button
                 style={{

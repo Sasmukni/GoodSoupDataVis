@@ -38,15 +38,15 @@ function SubsidiaryPage() {
     <div className="App">
         <header className=" Project-header text-left py-4">
             <div className='col-12'>
-            <h1 className="display-4 fw-bold text-primary mb-3">NEETs percentages across Europe</h1>
-            <h2 className="h5 text-secondary mt-3">An analysis and comparison focused on gender</h2>
+            <h1 className="display-4 fw-bold text-primary mb-3">NEET percentages across Europe</h1>
+            <h2 className="h5 text-secondary mt-3">Gender analysis and comparison regarding NEETs (youth not in employment, education, or training)</h2>
             </div>
         </header>
         <div className="container-fluid my-3">
             
             <div className='row white'>
                 <div className='col-4 border_right border_external_left'>
-                <h2 className="text-primary fw-bold mb-3">Europe is seeing a decline in the NEET phenomenon.</h2>
+                <h2 className="text-primary fw-bold mb-3">Europe is seeing a decline in the NEET phenomenon</h2>
                 <h3 className="h5 text-secondary mt-3">A general view of the data</h3>
                 <h3 className="h5 text-secondary mt-3">Waffle Chart</h3>
                 <p>In Europe, 16.4% of the population is classified as NEETs (Not in Education, Employment, or Training). Among females, 18% are NEETs, compared to 14.8% for males. But the phenomenon of NEETs seems to decrease over the decade 2013-2022.</p>
@@ -69,7 +69,7 @@ function SubsidiaryPage() {
             <div className='row white'>
                 <div className='col-12 border_external_left border_external_right'>
                 <div className='col-9'>
-                    <h2 className="text-primary fw-bold mb-3">Most NEETs are in Eastern Europe and are mostly female.</h2>
+                    <h2 className="text-primary fw-bold mb-3">Most NEETs are from Eastern Europe and female</h2>
                     <h4 className='text-secondary'>Histogram - Scatter Plot</h4>
                     <p>Higher percentages of NEETs are observed among females, particularly in Eastern European countries like Turkey and Serbia. Over time, the percentage of NEETs has decreased for both genders. Higher percentage bins were omitted, as they were consistently empty for both genders.</p>
                     <p>Most countries cluster along a steep imaginary line, where the percentage of female NEETs is slightly higher than male NEETs. However, there are exceptions like Iceland, where male NEETs exceed females, and Turkey, where the gap is unusually wide. North Macedonia lies at the far end, with high NEET percentages for both genders.</p>
@@ -85,7 +85,7 @@ function SubsidiaryPage() {
             </div>
             <div className='barrier'></div>
             <div className="col-12 Project-header">
-                <h2 className="display-4 fw-bold text-primary mb-3">Main visualization - NEETs percentage in Europe</h2>
+                <h2 className="display-4 fw-bold text-primary mb-3">Main visualization - NEET percentages in Europe</h2>
                 <h3 className="h5 text-secondary mt-3">A detailed view for each European country</h3>
             </div>
             <div className='row'>
@@ -100,7 +100,7 @@ function SubsidiaryPage() {
             <div className='barrier'></div>
             <div className='row white'>
                 <div className='col-3 border_right border_external_left'>
-                    <h2 className="text-primary fw-bold mb-3">Turkey has the greatest gender imbalance among NEETs.</h2>
+                    <h2 className="text-primary fw-bold mb-3">Turkey has the greatest gender imbalance among NEETs</h2>
                     <h4 className='text-secondary'>Multiple Stacked Bar Chart
                     </h4>                    
                     <p>North Macedonia has the highest overall NEET percentage relative to its population, while Turkey has the largest percentage of female NEETs, with a significant gender imbalance. Northern European countries are more balanced and have smaller NEET percentages for both genders.</p>

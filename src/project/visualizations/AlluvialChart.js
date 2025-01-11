@@ -87,7 +87,7 @@ const yearOptions = [
     {label : 2021, value: data2021},
     {label : 2022, value: data2022}
 ];
-const [topSelected, setTopSelected] = useState(data2022);
+const [topSelected, setTopSelected] = useState(data2013);
 
 const svgRef = useRef();
 const tooltipRef = useRef();

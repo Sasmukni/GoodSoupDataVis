@@ -18,7 +18,7 @@ function Home() {
         <header className="App-header py-0">
           <div class="jumbotron jumbotron-fluid-students">
             <div class="container">
-              <h1 className="display-4 fw-bold text-primary">Gender differences in third-level education rates and NEETs percentages in Europe</h1>
+              <h1 className="display-4 fw-bold text-primary">Gender differences in third-level education rates and NEET percentages in Europe</h1>
               <p className="lead text-secondary">By <Link to="/aboutus" style={{ textDecoration: 'none' }}><b>Good Soup</b></Link></p>
               {<p class="lead">
                 <div class="btn btn-primary btn-lg" onClick={goToProjects} to="/project">Check out our project!</div>
@@ -32,8 +32,8 @@ function Home() {
                 <Link to="/project" style={{ textDecoration: 'none' }}>
                 <div class="card shadow-sm p-4">
                   <div class="card-body">
-                    <h3 class="card-title text-primary fw-semibold mb-4">Third-level Education</h3>
-                    <p class="card-text text-secondary">In Europe comparison of the trends regarding third-level education</p>
+                    <h3 class="card-title text-primary fw-semibold mb-4">Third-level education rates across Europe</h3>
+                    <p class="card-text text-secondary">Gender analysis and comparison regarding third-level education students</p>
                   </div>
                 </div>
                 </Link>
@@ -43,8 +43,8 @@ function Home() {
                 <Link to="/project/NEET" style={{ textDecoration: 'none' }}>
                 <div class="card shadow-sm p-4">
                   <div class="card-body">
-                    <h3 class="card-title text-primary fw-semibold mb-4">Neets in Europe</h3>
-                    <p class="card-text text-secondary">In Europe comparison of the trends regarding neets</p>
+                    <h3 class="card-title text-primary fw-semibold mb-4">NEET percentages across Europe</h3>
+                    <p class="card-text text-secondary">Gender analysis and comparison regarding NEETs (youth not in employment, education, or training)</p>
                   </div>
                 </div>
                 </Link>
