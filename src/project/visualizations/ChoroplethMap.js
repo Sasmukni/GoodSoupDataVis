@@ -72,7 +72,6 @@ export default function ChoroplethMap({
   const yearOptions = [...new Set(numData.map((d)=> d.year))].map((d)=> ({label:""+d, value:d}))//
   return (
      <div className='container-fluid white'>
-          <h4 className='mb-4'>Third Grade Students in Europe</h4>
           <div className='container my-3 filters-bar d-flex justify-content-center gap-3'>
             <Select
               style={{ marginBottom: '10px' }}
@@ -84,14 +83,16 @@ export default function ChoroplethMap({
           </div>
           <div className='row' style={{width:width}}>
             <div className='col-1'/>
-            <div className='col-4' style={{border:"1px solid",borderRadius:"25px", marginTop:"20px", marginBottom:"20px", paddingLeft: "5px", height:height}}>
+            <div className='col-4' style={{border:"1px solid",borderRadius:"25px", marginTop:"20px", marginBottom:"20px", paddingLeft: "5px"}}>
               {selected?
                 <div><MapSubsection data={yearFilteredNumData.filter(d => d.nation === selected)} nation={selected} width={width * 1/3} colors = {colors}/></div>
                 :
                 <div className="align-middle">
                   Click on a nation to see details
                 </div>
+
               }
+
             </div>
             <div className='col-7'>
               <svg width={mapWidth} height={height}>

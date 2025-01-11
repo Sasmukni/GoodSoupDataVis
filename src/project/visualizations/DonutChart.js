@@ -107,6 +107,7 @@ export default function DonutChart({
   return (
     <>
       <svg ref={svgRef}></svg>
+      <p className=" text text-right">In most countries, there are slightly more female students than male students. However, exceptions include Germany and Turkey, where male students outnumber females, although the gap has narrowed over time, with recent data showing nearly equal proportions. Poland, on the other hand, has a significantly higher number of female students than male students, diverging from the overall European trend.</p>
       <div
         ref={tooltipRef}
         style={{

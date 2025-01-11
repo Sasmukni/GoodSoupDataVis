@@ -52,16 +52,17 @@ function ProjectHome() {
                 <h2 className="text-primary fw-bold mb-3">Introduction</h2>
                 <h4>A general view of the data</h4>
                     <p>
-                    Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                    Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                    sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                    amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                    Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.
-                    Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                    Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                    sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                    amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                    Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.
+                    Turkey has the highest number of students, likely due to its appeal to students from Asia compared to other European countries.
+                    Following Turkey, the United Kingdom (up to 2019, before Brexit) stands out, probably because of the accessibility of English as its official language.
+                    After these two, countries with large populations and/or popularity as tourist destinations dominate, while smaller or less popular countries rank lower.
+                    </p>
+                    <p>
+                    In terms of gender, most countries show an almost equal number of male and female students, although there is a slight tendency toward more female students in many cases. 
+                    Regarding working time, most students in all countries are full-time, though some countries, like Poland, have a significant proportion of part-time students.
+                    </p>
+                    <p>
+                    For education levels, bachelor’s programs are the most popular, followed by master’s and doctoral programs, respectively.
+                    Short-cycle programs are less common in most countries, with Turkey being an exception, where the numbers are significant.
                     </p>
                 </div>
                 <div className='col-8 border_external_right'>
@@ -74,14 +75,13 @@ function ProjectHome() {
                     <StackedAreaChart colors={colorsType}width={window.innerWidth - 0.35 * window.innerWidth} height={window.innerHeight* 4/10}/>
                 </div>
                 <div className='col-4 border_external_right'>
+                    <h2 className="text-primary fw-bold mb-3">Number of students has increased across Europe</h2>
+                    <h4 className='text-secondary'>Stacked area chart</h4>
                     <p>
-                        Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.
-                        Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
+                    The number of students decreased in 2019, but it is likely due to the absence of the United Kingdom after BREXIT. 
+                    </p>
+                    <p>
+                    The numbers both for male and female students have increased at a consistent pace over time before 2019 and again after 2019.
                     </p>
                 </div>
             </div>
@@ -91,7 +91,7 @@ function ProjectHome() {
             
             <div className='barrier'></div>
             <div className="col-12 Project-header">
-                <h2 className="display-4 fw-bold text-primary mb-3">Main visualization</h2>
+                <h2 className="display-4 fw-bold text-primary mb-3">Main visualization - Third Grade Students in Europe</h2>
                 <h3 className="h5 text-secondary mt-3">A detailed view for each European country</h3>
             </div>
             <div className='row'>
@@ -105,41 +105,39 @@ function ProjectHome() {
             </div>
             <div className='row white'>
                 <div className='col-3 border_right border_external_left'>
-                    <h3 className=" h2 text-secondary mt-3">Alluvial</h3>
-                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                
+                <h2 className="text-primary fw-bold mb-3">The flow of students in higher education.</h2>
+                <h4 className='text-secondary'>Sankey chart</h4>
+                    <p>Turkey has the highest number of students, followed by countries with large populations or those popular with international students, and finally smaller countries. Overall, there are slightly more female students than male students in Europe. The bachelor’s level is the most common education level, followed by master’s, short-cycle, and doctoral levels.
+                    </p>
+                    <p>Male students are more likely to enroll in short-cycle and bachelor’s programs, while female students tend to favour master’s programs. At the doctoral level, men outnumber women. Across all levels, most students are full-time.
+                    </p>
                 </div>
                 <div className='col-9 border_external_right'>
-                    <AlluvialChart colors={colorsType} width={window.innerWidth - 0.35 * window.innerWidth} height={window.innerHeight* 7/10}/>
+                    <AlluvialChart colors={colorsType} width={window.innerWidth - 0.3 * window.innerWidth} height={window.innerHeight* 7/10}/>
                 </div>
             </div>
             <div className='barrier'></div>
             <div className='row white'>
-                <div className='col-8 border_right border_external_left'>
-                    <BubbleChart colors={colorsType} width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 8/10}/>
+                <div className='col-9 border_right border_external_left'>
+                    <BubbleChart colors={colorsType} width={window.innerWidth - 0.3 * window.innerWidth} height={window.innerHeight* 7/10}/>
                 </div>
-                <div className='col-4 border_external_right'>
-                    <h4 className="h2 text-secondary mt-3">Female Doctoral Students in Europe (Bubble Chart)</h4>
-                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                <div className='col-3 border_external_right'>
+                    <h2 className="text-primary fw-bold mb-3">Female Doctoral Students in Europe.</h2>
+                    <h4 className='text-secondary'>Bubble chart</h4>
+                    <p>Up until 2019, the United Kingdom, Germany, and Turkey had the highest number of female doctoral students. The number of female doctoral students is generally proportional to the population size of each country.</p>
 
                 </div>
             </div>
             <div className='barrier'></div>
             <div className='row white'>
             <div className='col-3 border_right border_external_left'>
-                    <h4 className="h2 text-secondary mt-3">Female Doctoral Students in Europe (Bubble Chart)</h4>
-                    <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                        Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                        sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                        amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                        Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                    <h2 className="text-primary fw-bold mb-3">The ranking of European nations with the most female students.
+                    </h2>
+                    <h4 className='text-secondary'>Bar chart</h4>
+                    <p>Using the average number of female students per country, Turkey leads with almost twice as many as the United Kingdom, which ranks second. 
+                    </p>
+                    <p>The number of female students appears proportional to the population size of the country.</p>
 
                 </div>
                 <div className='col-9 border_external_right'>

@@ -16,24 +16,21 @@ export default function SwitchDiag({
         <div className='col-3' >
             <div className="card ">
                 <div className="card-body " >
-                    <h5 className="card-title text text-primary">Radar chart</h5>
-                    <h6 className="card-title">Radar chart</h6>
+                    <h5 className="card-title text text-primary">The average number of women in the bachelor and master's cycles is higher than that of men.</h5>
                     <img class="card-img-top img-small" src={radarchartimg} alt="Card image cap" style={{maxWidth:"250px"}}/>
                     <button className="btn btn-primary" onClick={()=>setDiag(0)}>Show me</button>
                 </div>
             </div>
             <div className="card ">
                 <div className="card-body">
-                    <h5 className="card-title text text-primary">Pie charts</h5>
-                    <h6 className="card-title">Pie charts</h6>
+                    <h5 className="card-title text text-primary">Full-time study is common among students in Europe.</h5>
                     <img class="card-img-top" src={piechartimg} alt="Card image cap" style={{maxWidth:"250px"}}/>
                     <button className="btn btn-primary" onClick={()=>setDiag(1)}>Show me</button>
                 </div>
             </div>
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title text text-primary">Tree map chart</h5>
-                    <h6 className="card-title">Tree map chart</h6>
+                    <h5 className="card-title text text-primary">Women are more inclined to private universities than men.</h5>
                     <img class="card-img-top" src={treemapimg} alt="Card image cap" style={{maxWidth:"250px"}}/>
                     <button className="btn btn-primary" onClick={()=>setDiag(2)}>Show me</button>
                 </div>
@@ -45,52 +42,34 @@ export default function SwitchDiag({
         {diag===0 &&
             <div className="col-9 white border_external_right">
                 <RadarChart colors={colorsType} width={window.innerWidth - 0.5 * window.innerWidth} height={window.innerHeight* 4/8}/>
-                <h5 className="card-title text text-primary">Radar chart</h5>
-                <h6 className="card-title">Radar chart</h6>
-                <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                    Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                    sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                    amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                    Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.
-                    Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                    Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                    sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                    amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                    Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                <h2 className="card-title text-primary fw-bold mb-3">The average number of women in the bachelor and master's cycles is higher than that of men.</h2>
+                <h4 className='card-title text-secondary'>Radar chart</h4>
+                <p>The proportions of male and female students across education levels are broadly similar. 
+                    Most are enrolled at the bachelor’s level, followed by the master’s, short-cycle, and doctoral levels. 
+                </p><p>
+                    For the short-cycle and doctoral levels, the gender distribution is nearly identical, while at the bachelor’s and master’s levels,
+                    female students are significantly more numerous.
+                </p>
             </div>   
         }
         {diag===1 &&
             <div className="col-9 white border_external_right">
-                <PieChart colors={colorsType} width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 5/8}/>
-                <h5 className="card-title text text-primary">Pie charts</h5>
-                <h6 className="card-title">Pie charts</h6>
-                <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                    Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                    sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                    amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                    Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.
-                    Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                    Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                    sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                    amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                    Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                <PieChart colors={colorsType} width={window.innerWidth - 0.4 * window.innerWidth} height={window.innerHeight* 4/8}/>
+                <h2 className="card-title text-primary fw-bold mb-3">Full-time study is common among students in Europe.</h2>
+                <h4 className='card-title text-secondary'>Pie charts</h4>
+                <p>The proportions of male and female students based on working time are similar, with most studying full-time (80%–90% across years). 
+                    However, female students are slightly more likely to study part-time, possibly because, in some less developed countries, 
+                    women are often expected to take on caregiving responsibilities at home.</p>
             </div>   
         }
         {diag===2 &&
             <div className="col-9 white border_external_right">
                 <TreeMapChart colors={colorsType} width={window.innerWidth - 0.5 * window.innerWidth} height={window.innerHeight* 4/8}/>
-                <h5 className="card-title text text-primary">Treemap chart</h5>
-                <h6 className="card-title">Treemap chart</h6>
-                <p>Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                    Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                    sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                    amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                    Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.
-                    Ut ultricies, tellus non sagittis malesuada, velit dui venenatis eros, at pellentesque mauris neque non dui. 
-                    Integer in lobortis dui. In a ornare quam. Donec maximus, dui interdum egestas ornare, augue leo suscipit nisl, 
-                    sed aliquet lacus sapien ut tortor. Integer dignissim est leo, eu finibus diam accumsan id. Morbi a eros sit 
-                    amet magna sollicitudin mattis. Donec vel lobortis nibh. Curabitur eu aliquam diam, ac faucibus nulla. 
-                    Pellentesque vitae eros ac diam tincidunt condimentum eget vitae nunc.</p>
+                <h2 className="card-title text-primary fw-bold mb-3">Women are more inclined to private universities than men.</h2>
+                <h4 className='card-title text-secondary'>Treemap chart</h4>
+                <p>There are generally more female students than male students, and this trend extends across both the public and private sectors. 
+                    However, female students are more likely to attend private institutions, possibly correlating with their higher likelihood of 
+                    part-time enrollment, as private universities often offer part-time programs compared to public ones.</p>
             </div>   
         }
         </>
