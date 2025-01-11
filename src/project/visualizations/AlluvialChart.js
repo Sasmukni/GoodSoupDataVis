@@ -359,13 +359,13 @@ const links = svg.append("g")
             } 
         }else if (sourceNode.layer === "study_type" && targetNode.layer === "working_time") {
           if (targetNode.name === "Full time") {
-              tooltip.html(`The ${d.value_perc.toFixed(2)}% of students enrolled in a ${sourceNode.name} type of studies, they are studing in ${targetNode.name}.<br>
+              tooltip.html(`The ${((d.value_perc/sourceNode.value_perc)*100).toFixed(2)}% of students enrolled in a ${sourceNode.name} type of studies, they are studing in ${targetNode.name}.<br>
                             They are ${((d.value_perc/targetNode.value_perc)*100).toFixed(2)}% of total students studing in ${targetNode.name}.`)
                   .style("left", `${event.pageX + 5}px`)
                   .style("top", `${event.pageY - 28}px`)
                   .style("opacity", 1);
           } else if (targetNode.name === "Part time") {
-              tooltip.html(`The ${d.value_perc.toFixed(2)}% of students enrolled in a ${sourceNode.name} type of studies, they are studing in ${targetNode.name}.<br>
+              tooltip.html(`The ${((d.value_perc/sourceNode.value_perc)*100).toFixed(2)}% of students enrolled in a ${sourceNode.name} type of studies, they are studing in ${targetNode.name}.<br>
                             They are ${((d.value_perc/targetNode.value_perc)*100).toFixed(2)}% of total students studing in ${targetNode.name}.`)
                   .style("left", `${event.pageX + 5}px`)
                   .style("top", `${event.pageY - 28}px`)
