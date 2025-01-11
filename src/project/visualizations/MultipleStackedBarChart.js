@@ -10,7 +10,7 @@ export default function StackedMultipleBarPlot({
   marginTop = 40,
   marginRight = 40,
   marginBottom = 40,
-  marginLeft = 100,
+  marginLeft = 130,
   colors = {}
 }) {
   const [year, setYear] = useState(2013);
