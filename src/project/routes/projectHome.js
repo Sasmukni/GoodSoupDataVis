@@ -143,7 +143,7 @@ function ProjectHome() {
                     <h2 className="text-primary fw-bold mb-3">The ranking of European nations according to the number of female students
                     </h2>
                     <h4 className='text-secondary'>Bar chart</h4>
-                    <p>Using the average number of female students per country, Turkey leads with almost twice as many as the United Kingdom, which ranks second. 
+                    <p>Using the average number of female students per country. Again, we see Turkey as the country with most feale students, followed by other European countries in order of population and appeal to students.
                     </p>
                     <p>The number of female students appears proportional to the population size of the country.</p>
 
