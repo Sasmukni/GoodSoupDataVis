@@ -55,7 +55,7 @@ export default function RadarChart({
 
   const dataMale = calculateMeanMale(studentData, selectedYear);
   const dataFem = calculateMeanFemale(studentData, selectedYear);
-  const labels = ["Short Cycle", "Bachelor", "Master", "Doctoral"];
+  const labels = ["Short-cycle", "Bachelor", "Master", "Doctoral"];
 
   useEffect(() => {
     const radius = Math.min(width, height) / 2 - Math.max(marginTop, marginRight, marginBottom, marginLeft);
