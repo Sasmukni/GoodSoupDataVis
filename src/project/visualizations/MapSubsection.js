@@ -113,6 +113,8 @@ export default function MapSubsection({
                 cursor: "pointer",
                 fontSize: "16px",
                 transition: "background-color 0.3s, transform 0.2s",
+                width:"100%",
+                height:"100%"
                 }}
                 onClick={() => setCategory("Dumbell")}
                 onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}

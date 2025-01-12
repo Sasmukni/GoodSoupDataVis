@@ -165,7 +165,7 @@ export default function GaugeChart({
 
   return <>
       <svg ref={svgRef} width={width} height={height} />
-      <p>
+      <p style={{textAlign:"left"}}>
       In Western European countries, the gap between male and female NEET percentages is present but not pronounced, as seen in Germany. However, in Eastern Europe, such as Romania, the gap is much more noticeable.
       </p>
       <div

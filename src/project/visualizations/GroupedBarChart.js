@@ -133,9 +133,9 @@ export default function GroupedBarChart({
   return (
     <div>
       <svg ref={svgRef} width={width} height={height}></svg>
-      <p>Across most countries, bachelor-level programs attract the majority of students. In some, such as Turkey and France, short-cycle programs are also popular, while in others, like Italy, they are uncommon, or there is no data, as with Romania. In Western Europe, many students pursue master’s degrees, such as in France and Italy, whereas in Eastern Europe, this is less common, except for some countries like Romania and Ireland. The number of doctoral students is generally low.
+      <p style={{textAlign:"left"}}>Across most countries, bachelor-level programs attract the majority of students. In some, such as Turkey and France, short-cycle programs are also popular, while in others, like Italy, they are uncommon, or there is no data, as with Romania. In Western Europe, many students pursue master’s degrees, such as in France and Italy, whereas in Eastern Europe, this is less common, except for some countries like Romania and Ireland. The number of doctoral students is generally low.
       </p>
-      <p>Regarding gender, women outnumber men up to the master’s level in most countries. However, countries like Germany and Turkey are exceptions. At the doctoral level, even in countries with more female students overall, men tend to dominate, as seen in France.
+      <p style={{textAlign:"left"}}>Regarding gender, women outnumber men up to the master’s level in most countries. However, countries like Germany and Turkey are exceptions. At the doctoral level, even in countries with more female students overall, men tend to dominate, as seen in France.
       </p>
       <div
         ref={tooltipRef}

@@ -147,9 +147,9 @@ export default function DumbbellPlot({
   return (
   <div>
     <svg ref={svgRef} width={width} height={height}></svg>
-    <p>In general, public institutions enrol more students than private ones for both genders. However, the gap varies by country. In Poland, the numbers for public and private institutions are similar, while in Turkey, the public-private gap is substantial. 
+    <p style={{textAlign:"left"}}>In general, public institutions enrol more students than private ones for both genders. However, the gap varies by country. In Poland, the numbers for public and private institutions are similar, while in Turkey, the public-private gap is substantial. 
     </p>
-    <p>In countries like Italy and Croatia, male and female enrollment is more proportional in the private sector than in the public sector, where female students dominate.
+    <p style={{textAlign:"left"}}>In countries like Italy and Croatia, male and female enrollment is more proportional in the private sector than in the public sector, where female students dominate.
     </p>
   </div>
   );

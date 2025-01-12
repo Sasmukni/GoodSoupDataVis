@@ -188,7 +188,7 @@ export default function SlopeChart({
       </select>
       </>}
       <svg ref={svgRef} width={width} height={height}></svg>
-      <p>The gap between male and female NEET percentages is clearly visible, with Turkey showing the largest disparity. France, on the other hand, has one of the smallest gaps. Some countries, like Iceland, show fluctuations, with the NEET percentage favouring males in some years and females in others. In countries like Poland, female percentages remain steady while male percentages decrease.</p>
+      <p style={{textAlign:"left"}}>The gap between male and female NEET percentages is clearly visible, with Turkey showing the largest disparity. France, on the other hand, has one of the smallest gaps. Some countries, like Iceland, show fluctuations, with the NEET percentage favouring males in some years and females in others. In countries like Poland, female percentages remain steady while male percentages decrease.</p>
     </div>
   );
 }

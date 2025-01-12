@@ -172,8 +172,8 @@ export default function Heatmap({
       return (
           <div>
               <svg ref={svgRef} width={width} height={height}></svg>
-              <p>In Western Europe, most students are full-time, with female students significantly outnumbering males. Female part-time students outnumber males, but the gap is narrower than for full-time students.
-            </p><p>In Eastern Europe, such as Hungary and Slovakia, this trend reverses: female part-time students far outnumber males, while full-time students are more balanced between genders, with a slight female majority. These trends have remained consistent over the years.
+              <p style={{textAlign:"left"}}>In Western Europe, most students are full-time, with female students significantly outnumbering males. Female part-time students outnumber males, but the gap is narrower than for full-time students.
+            </p><p style={{textAlign:"left"}}>In Eastern Europe, such as Hungary and Slovakia, this trend reverses: female part-time students far outnumber males, while full-time students are more balanced between genders, with a slight female majority. These trends have remained consistent over the years.
                 </p>
               {tooltip.visible && (
                   <div
